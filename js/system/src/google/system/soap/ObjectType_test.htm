@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <!--
+    Copyright 2011, Google Inc. All Rights Reserved.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    author: api.anash@gmail.com (Anash P. Oommen)
+    author: api.davidtorres@gmail.com (David Torres)
+  -->
+
+  <head>
+    <title>system.soap unit tests - google.system.soap.ObjectType</title>
+    <script src="../../../../../closure/goog/base.js"></script>
+    <script src="../../../../../adwordsapi/src/awapi.js"></script>
+    <script>
+      goog.require('goog.array');
+      goog.require('goog.testing.jsunit');
+      goog.require('goog.testing.recordFunction');
+      goog.require('google.system.soap.Object');
+      goog.require('google.system.soap.ObjectType');
+    </script>
+  </head>
+  <body>
+    <script>
+      // Define the types to assisting in testing google.system.soap.ObjectType.
+      goog.provide('google.system.soap.TestSoapObject');
+      goog.provide('google.system.soap.TestBaseSoapObject');
+      goog.provide('google.system.soap.TestSoapObject2');
+
+      google.system.soap.TestSoapObject = function () {
+      };
+
+      google.system.soap.TestBaseSoapObject = function () {
+      };
+
+      google.system.soap.TestSoapObject2 = function () {
+      };
+
+      var baseType;
+      var type;
+      var type2;
+
+      /**
+       * Initialize the test case.
+       */
+      function setUp() {
+        baseType = type = type2 = null;
+      }
+
+      /**
+       * Cleanup the test case.
+       */
+      function tearDown() {
+      }
+
+      /**
+       * Defines types for running test cases.
+       */
+      function defineTypes () {
+        baseType = google.system.soap.ObjectType.defineType('xmlnamespace',
+            'google.system.soap.TestBaseSoapObject', false);
+        type = google.system.soap.ObjectType.defineType('xmlnamespace',
+            'google.system.soap.TestSoapObject', false,
+            'google.system.soap.TestBaseSoapObject');
+        type2 = google.system.soap.ObjectType.defineType('xmlnamespace',
+            'google.system.soap.TestSoapObject2', false);
+      }
+
+      /**
+       * Tests if base types can be setup and retrieved correctly.
+       */
+      function testBaseDefineType() {
+        var type = google.system.soap.ObjectType.defineType('xmlnamespace',
+            'google.system.soap.TestBaseSoapObject', false);
+        assertEquals(type.getXmlNamespace(), 'xmlnamespace');
+        assertEquals(type.getFullClassName(),
+            'google.system.soap.TestBaseSoapObject');
+        assertTrue(!type.isEnum());
+        assertEquals(type.getBaseFullClassName(), 'google.system.soap.Object');
+        var testBaseObject = new google.system.soap.TestBaseSoapObject();
+        assertTrue(type === testBaseObject.getType());
+        assertTrue(testBaseObject instanceof google.system.soap.Object);
+      }
+
+      /**
+       * Tests if types can be setup and retrieved correctly.
+       */
+      function testDefineType() {
+        var type = google.system.soap.ObjectType.defineType('xmlnamespace',
+            'google.system.soap.TestSoapObject', false,
+            'google.system.soap.TestBaseSoapObject');
+        assertEquals(type.getBaseFullClassName(),
+            'google.system.soap.TestBaseSoapObject');
+        var testType = new google.system.soap.TestSoapObject();
+        assertTrue(type === testType.getType());
+        assertTrue(testType instanceof google.system.soap.Object);
+        assertTrue(testType instanceof google.system.soap.TestBaseSoapObject);
+      }
+
+      /**
+       * Tests if properties can be defined correctly.
+       */
+      function testDefineProperty() {
+        defineTypes();
+        var property = type.addProperty('property', 'google.system.soap.Object',
+            [], true, false);
+        assertEquals(property.getName(), 'property');
+        assertEquals(property.isArray(), true);
+        assertEquals(property.isSystem(), false);
+        var object = new google.system.soap.TestSoapObject();
+        assertNotNull(object.setProperty);
+        object.setProperty('value');
+        assertEquals(object.getProperty(), 'value');
+      }
+
+      /**
+       * Tests if properties can be retrieved.
+       */
+      function testGetProperties() {
+        defineTypes();
+        var property = type.addProperty('property', 'xmlelementname',
+            'google.system.soap.TestSoapObject2', true, false);
+        assertEquals(type.getProperties().length, 1);
+        var property = (type.getProperties())[0];
+        assertEquals(property.getName(), 'property');
+        var property2 = type.addProperty('property2', 'xmlelementname2',
+            'google.system.soap.TestSoapObject2', true, false);
+        assertEquals(type.getProperties().length, 2);
+      }
+
+      /**
+       * Tests if inherited properties can be retrieved.
+       */
+      function testGetInheritedProperties() {
+        defineTypes();
+        var property = baseType.addProperty('inheritableproperty',
+            'xmlelementname', 'google.system.soap.TestSoapObject2', true,
+            false);
+        assertEquals(type.getProperties().length, 1);
+        var property = (type.getProperties())[0];
+        assertEquals(property.getName(), 'inheritableproperty');
+        var property2 = type.addProperty('property2', 'xmlelementname2',
+            'google.system.soap.TestSoapObject2', true, false);
+        assertEquals(type.getProperties().length, 2);
+      }
+
+      /**
+       * Tests if we can retrieve a property by name.
+       */
+      function testGetPropertyByName() {
+        defineTypes();
+        var property = type.addProperty('property', [], true, false);
+        var propertyToCheck = type.getPropertyByName('property');
+        assertEquals(property.getName(), propertyToCheck.getName());
+        assertEquals(property.isArray(), propertyToCheck.isArray());
+        assertEquals(property.isSystem(), propertyToCheck.isSystem());
+      }
+
+      /**
+       * Tests if we can get a class name.
+       */
+      function testGetClassname(){
+        defineTypes();
+        assertEquals(baseType.getClassName(), 'TestBaseSoapObject');
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <!--
+    Copyright 2011, Google Inc. All Rights Reserved.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    author: api.anash@gmail.com (Anash P. Oommen)
+  -->
+  <head>
+    <title>system.net unit tests - google.system.net.HttpWebTransportForGadgetsApi</title>
+    <script src="../../../../../closure/goog/base.js"></script>
+    <script src="../../../../../adwordsapi/src/awapi.js"></script>
+    <script>
+      goog.require('goog.testing.jsunit');
+      goog.require('google.system.net.HttpWebTransportSettings');
+      goog.require('google.system.net.HttpWebTransportForGadgetsApi');
+    </script>
+    <script>
+      function MockXmlHttp() {
+        // incoming parameters.
+        this.verbToExpect = null;
+        this.uriToExpect = null;
+        this.contentToExpect = null;
+
+        // outgoing parameters.
+        this.shouldSucceed = true;
+        this.responseToSend = null;
+
+        // hooks.
+        this.gadgetsIoMakeRequest = null;
+      }
+
+      MockXmlHttp.prototype.beginMock = function() {
+        var thisPtr = this;
+        try {
+          goog.provide('gadgets.io.RequestParameters');
+        } catch(err) {
+        }
+        try {
+          goog.provide('gadgets.io.makeRequest');
+        } catch(err) {
+        }
+        gadgets.io.RequestParameters.POST_DATA = 'POST_DATA';
+        gadgets.io.RequestParameters.METHOD = 'METHOD';
+
+        this.gadgetsIoMakeRequest = gadgets.io.makeRequest;
+        gadgets.io.makeRequest = function(url, opt_callback, opt_params) {
+
+          assertEquals(opt_params[gadgets.io.RequestParameters.METHOD],
+              thisPtr.verbToExpect);
+          assertObjectEquals(opt_params[gadgets.io.RequestParameters.POST_DATA],
+              thisPtr.contentToExpect);
+          if (opt_callback) {
+            var response = {
+              errors: thisPtr.shouldSucceed? []: [''],
+              text: thisPtr.responseToSend
+            };
+
+            opt_callback(response);
+          }
+        };
+      };
+
+      MockXmlHttp.prototype.endMock = function() {
+        gadgets.io.makeRequest = this.gadgetsIoMakeRequest;
+      };
+
+    </script>
+  </head>
+  <body>
+    <script>
+      var settings = new google.system.net.HttpWebTransportSettings({
+      });
+      var mockXhr = new MockXmlHttp();
+      var transport = new google.system.net.HttpWebTransportForGadgetsApi(
+          settings);
+
+      var url = 'http://localhost/test.htm';
+      var method = 'POST';
+
+      var content = {
+        key1: 'value1',
+        key2: 'value2'
+      };
+
+      /**
+       * Initialize the test case.
+       */
+      function setUp() {
+        mockXhr.beginMock();
+      }
+
+      /**
+       * Cleanup the test case.
+       */
+      function tearDown() {
+        mockXhr.endMock();
+      }
+
+      /**
+       * Test if we can send a request and get a response that succeeds.
+       */
+      function testSendWithSuccessResponse() {
+        mockXhr.verbToExpect = method;
+        mockXhr.uriToExpect = url;
+
+        mockXhr.contentToExpect = content;
+
+        // test a call that should succeed.
+        mockXhr.shouldSucceed = true;
+        mockXhr.responseToSend = 'successful response';
+
+        transport.send(url, method, content, null, 0,
+            function(data) {
+              assertEquals(data, mockXhr.responseToSend);
+            },
+            function(data) {
+              fail('Call was expected to succeed, so failure callback ' +
+                  'should not be called.');
+            }
+        );
+      }
+
+      /**
+       * Test if we can send a request and get a response that fails.
+       */
+      function testSendWithFailureResponse() {
+        mockXhr.verbToExpect = method;
+        mockXhr.uriToExpect = url;
+
+        mockXhr.contentToExpect = content;
+
+        // test a call that should fail.
+        mockXhr.shouldSucceed = false;
+        mockXhr.responseToSend = 'failed response';
+
+        transport.send(url, method, content, null, 0,
+            function(data) {
+              fail('Call was expected to fail, so success callback ' +
+                    'should not be called.');
+            },
+            function(data) {
+              assertEquals(data, mockXhr.responseToSend);
+            }
+        );
+      }
+
+      /**
+       * Test if we can retrieve the settings.
+       */
+      function testGetSettings() {
+        assertObjectEquals(settings, transport.getSettings());
+      }
+    </script>
+  </body>
+</html>

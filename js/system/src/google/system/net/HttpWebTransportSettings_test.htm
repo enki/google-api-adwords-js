@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <!--
+    Copyright 2011, Google Inc. All Rights Reserved.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    author: api.anash@gmail.com (Anash P. Oommen)
+  -->
+  <head>
+    <title>system.net unit tests - google.system.net.HttpWebTransportSettings</title>
+    <script src="../../../../../closure/goog/base.js"></script>
+    <script src="../../../../../adwordsapi/src/awapi.js"></script>
+    <script>
+      goog.require('goog.array');
+      goog.require('goog.testing.jsunit');
+      goog.require('goog.testing.recordFunction');
+      goog.require('google.system.net.HttpWebTransportSettings');
+    </script>
+  </head>
+  <body>
+    <script>
+      var settings = null;
+      var options = {
+        key1: 'value1',
+        key2: 'value2'
+      };
+
+      /**
+       * Initialize the test case.
+       */
+      function setUp() {
+        settings = new google.system.net.HttpWebTransportSettings(options);
+      }
+
+      /**
+       * Cleanup the test case.
+       */
+      function tearDown() {
+      }
+
+      /**
+       * Test if we can initialize HttpWebTransportSettings using an empty
+       * constructor.
+       */
+      function testEmptyConstructor() {
+        assertNotThrows(function() {
+          var tempSettings = google.system.net.HttpWebTransportSettings();
+        });
+      }
+
+      /**
+       * Test if we can retrieve a setting from HttpWebTransportSettings.
+       */
+      function testGetSetting() {
+        assertEquals(settings.getSetting('key1'), options.key1);
+        assertUndefined(settings.getSetting('nosuchkey'));
+        assert(settings.getSetting('nosuchkey') == null);
+      }
+
+      /**
+       * Test if we can set a setting from HttpWebTransportSettings and
+       * retrieve it later.
+       */
+      function testSetSetting() {
+        settings.setSetting('key3', 'value3');
+        assertEquals(settings.getSetting('key3'), 'value3');
+      }
+    </script>
+  </body>
+</html>

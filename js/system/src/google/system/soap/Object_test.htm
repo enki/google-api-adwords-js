@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html>
+  <!--
+    Copyright 2011, Google Inc. All Rights Reserved.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    author: api.anash@gmail.com (Anash P. Oommen)
+  -->
+  <head>
+    <title>system.soap unit tests - google.system.soap.Object</title>
+    <script src="../../../../../closure/goog/base.js"></script>
+    <script src="../../../../../adwordsapi/src/awapi.js"></script>
+    <script>
+      goog.require('goog.array');
+      goog.require('goog.dom.xml');
+      goog.require('goog.testing.jsunit');
+      goog.require('goog.testing.recordFunction');
+      goog.require('google.system.soap.Object');
+      goog.require('google.system.soap.ObjectType');
+      goog.require('google.system.soap.Nametable');
+    </script>
+  </head>
+  <body>
+    <script>
+      var xmlDoc;
+      var rootNode;
+      var namespace = 'namespace';
+      var crossNamespace = 'crossNamespace';
+      var soapObjectTypeName = 'google.system.soap.Object';
+      var soapObject = goog.getObjectByName(soapObjectTypeName);
+      var type;
+      var nameTable;
+
+      // Define a nametable for testing purposes.
+      Nametable = function() {
+        google.system.soap.Nametable.call(this);
+
+        this.localxmlnt_ = {
+          'ns': namespace,
+          'crossns': crossNamespace,
+        };
+      };
+      goog.inherits(Nametable, google.system.soap.Nametable);
+
+      Nametable.prototype.getLocalNsAsString = function() {
+        var retval = [];
+        var localNamespaces = this.getLocalNamespaces();
+        for (var localPrefix in localNamespaces) {
+          retval.push('xmlns:' + localPrefix + '=' +
+              '"' + localNamespaces[localPrefix] + '"');
+        }
+        var globalNamespaces = this.xmlnt_;
+        for (var globalPrefix in globalNamespaces) {
+          retval.push('xmlns:' + globalPrefix + '=' +
+              '"' + globalNamespaces[globalPrefix] + '"');
+        }
+
+        return retval.join(' ');
+      };
+
+      // Define an outer class to see if nested serialization can work properly.
+      OuterClass = function() {
+        soapObject.call(this);
+      };
+
+      type = google.system.soap.ObjectType.defineType(namespace,
+          'OuterClass', false, soapObjectTypeName);
+      // Define a simple field to see if simple fields are serialized properly.
+      type.addProperty('simpleProperty', 'integer', 'simpleProperty', false,
+          true);
+
+      // Define a simple field where property name != field name to see if
+      // such properties can be serialized properly.
+      type.addProperty('propertyNameDifferent', 'integer',
+          'propertyXmlNameDifferent', false, true);
+
+      // Define a complex field to see if base and derived fields are
+      // serialized properly.
+      type.addProperty('complexProperty', 'ComplexBaseClass', 'complexProperty',
+          false, false);
+
+      // Define a complex field to see if base and derived types are serialized
+      // properly when each type has a different serialization node name.
+      type.addProperty('complexPropertyDifferentNodeNames', 'ComplexBaseClass',
+          [
+            {
+              elementName: 'ComplexBaseClassNode',
+              className: 'ComplexBaseClass'
+            },
+            {
+              elementName: 'ComplexDerivedClassNode',
+              className: 'ComplexDerivedClass'
+            }
+          ], false, false);
+
+      // Define an enum field to see if enum fields are serialized properly.
+      type.addProperty('enumProperty', 'EnumClass', 'enumProperty', false,
+          false);
+
+      // Define a complex enum field to see if enum fields are serialized
+      // properly when extended.
+      type.addProperty('enumComplexProperty', 'EnumClass',
+          'enumComplexProperty', false, false);
+
+      // Define an array of simple fields to see if an array of simple fields
+      // are serialized properly.
+      type.addProperty('simpleArrayProperty', 'integer', 'simpleArrayProperty',
+          true, true);
+
+      // Define an array of complex fields to see if an array of base and
+      // derived fields are serialized properly.
+      type.addProperty('complexArrayProperty', 'ComplexBaseClass',
+          'complexArrayProperty', true, false);
+
+      // Define an array of complex fields to see if base and derived types are
+      // serialized properly when each type has a different serialization node
+      // name.
+      type.addProperty('complexArrayPropertyDifferentNodeNames',
+          'ComplexBaseClass',
+          [
+            {
+              elementName: 'ComplexBaseClassNode',
+              className: 'ComplexBaseClass'
+            },
+            {
+              elementName: 'ComplexDerivedClassNode',
+              className: 'ComplexDerivedClass'
+            }
+          ], true, false);
+
+      // Define an array of enum fields to see if an array of enum fields are
+      // serialized properly.
+      type.addProperty('enumArrayProperty', 'EnumClass', 'enumArrayProperty',
+          true, false);
+
+      // Define an enumeration class to see if enumeration classes can be
+      // serialized properly.
+      EnumClass = function() {
+        soapObject.call(this);
+      };
+
+      type = google.system.soap.ObjectType.defineType(namespace,
+            'EnumClass', true, soapObjectTypeName);
+      EnumClass.VALUE1 = 'VALUE1';
+      EnumClass.VALUE2 = 'VALUE2';
+
+      // Define a derived enumeration class to see if enumeration classes can be
+      // serialized properly when extended.
+      DerivedEnumClass = function() {
+        EnumClass.call(this);
+      };
+
+      type = google.system.soap.ObjectType.defineType(namespace,
+            'DerivedEnumClass', true, 'EnumClass');
+      DerivedEnumClass.VALUE3 = 'VALUE3';
+      DerivedEnumClass.VALUE4 = 'VALUE4';
+
+      // Define a base class to see if base types may be serialized correctly.
+      ComplexBaseClass = function() {
+        soapObject.call(this);
+      };
+
+      type = google.system.soap.ObjectType.defineType(namespace,
+          'ComplexBaseClass', false, soapObjectTypeName);
+      type.addProperty('baseProperty', 'integer', 'baseProperty', false, true);
+
+      // Define a derived class to see if derived types may be serialized
+      // correctly.
+      ComplexDerivedClass = function() {
+        ComplexBaseClass.call(this);
+      };
+
+      type = google.system.soap.ObjectType.defineType(namespace,
+          'ComplexDerivedClass', false, 'ComplexBaseClass');
+      type.addProperty('derivedProperty', 'integer', 'derivedProperty', false,
+          true);
+
+      // Define a cross namespace class to see if they can be serialized
+      // correctly.
+      ComplexCrossDomainClass = function() {
+        ComplexDerivedClass.call(this);
+      };
+
+      type = google.system.soap.ObjectType.defineType(crossNamespace,
+          'ComplexCrossDomainClass', false, 'ComplexDerivedClass');
+      type.addProperty('crossDomainProperty', 'integer', 'crossDomainProperty',
+          false, true);
+
+      /**
+       * Initialize the test case.
+       */
+      function setUp() {
+        xmlDoc = goog.dom.xml.createDocument();
+        rootNode = xmlDoc.createElement('root');
+        xmlDoc.appendChild(rootNode);
+        nameTable = new Nametable();
+      }
+
+      /**
+       * Cleanup the test case.
+       */
+      function tearDown() {
+      }
+
+      /**
+       * Test if we can serialize a simple property.
+       */
+      function testSerializeSimpleProperty() {
+        var obj = new OuterClass();
+        obj.simpleProperty = 42;
+        obj.serialize(xmlDoc, nameTable, rootNode, namespace);
+        assertEquals(goog.dom.xml.serialize(xmlDoc),
+            [
+              '<root>',
+                '<ns:simpleProperty>42</ns:simpleProperty>',
+              '</root>'
+            ].join(''));
+      }
+
+      /**
+       * Test if we can serialize a complex property.
+       */
+      function testSerializeComplexProperty() {
+        var obj = new OuterClass();
+        obj.complexProperty = new ComplexBaseClass();
+        obj.complexProperty.baseProperty = 42;
+        obj.serialize(xmlDoc, nameTable, rootNode, namespace);
+        assertEquals(goog.dom.xml.serialize(xmlDoc),
+            [
+              '<root>',
+                '<ns:complexProperty>',
+                  '<ns:baseProperty>42</ns:baseProperty>',
+                '</ns:complexProperty>',
+              '</root>'
+            ].join(''));
+      }
+
+      /**
+       * Test if we can serialize a complex property when a property of base
+       * type holds an object of derived type.
+       */
+      function testSerializeComplexPropertyWithXsiTypes() {
+        var obj = new OuterClass();
+        obj.complexProperty = new ComplexDerivedClass();
+        obj.complexProperty.derivedProperty = 42;
+        obj.serialize(xmlDoc, nameTable, rootNode, namespace);
+        assertEquals(goog.dom.xml.serialize(xmlDoc),
+            [
+              '<root>',
+                '<ns:complexProperty xsi:type="ns:ComplexDerivedClass">',
+                  '<ns:derivedProperty>42</ns:derivedProperty>',
+                '</ns:complexProperty>',
+              '</root>'
+            ].join(''));
+      }
+
+      /**
+       * Test if we can serialize a complex property when a property of base
+       * type holds an object of derived type and each type has its own
+       * serialization node names.
+       */
+      function testSerializeComplexPropertyWithXsiTypesAndDifferentNodeNames() {
+        var obj = new OuterClass();
+        obj.complexPropertyDifferentNodeNames = new ComplexDerivedClass();
+        obj.complexPropertyDifferentNodeNames.derivedProperty = 42;
+        obj.serialize(xmlDoc, nameTable, rootNode, namespace);
+
+        // Note: This test is identical to
+        // testSerializeComplexPropertyWithXsiTypes, but its point is to
+        // illustrate that node name doesn't have any effect in serializing,
+        // only xsi:type matters.
+        assertEquals(goog.dom.xml.serialize(xmlDoc),
+            [
+              '<root>',
+                '<ns:ComplexBaseClassNode xsi:type="ns:ComplexDerivedClass">',
+                  '<ns:derivedProperty>42</ns:derivedProperty>',
+                '</ns:ComplexBaseClassNode>',
+              '</root>'
+            ].join(''));
+      }
+
+      /**
+       * Test if we can serialize an enum property.
+       */
+      function testSerializeEnumProperty() {
+        var obj = new OuterClass();
+        obj.enumProperty = EnumClass.VALUE1;
+        obj.serialize(xmlDoc, nameTable, rootNode, namespace);
+        assertEquals(goog.dom.xml.serialize(xmlDoc),
+            [
+              '<root>',
+                '<ns:enumProperty>VALUE1</ns:enumProperty>',
+              '</root>'
+            ].join(''));
+      }
+
+      /**
+       * Test if we can serialize an enum property when a property of base
+       * type holds an object of derived type..
+       */
+      function testSerializeEnumPropertyWithXsiTypes() {
+        var obj = new OuterClass();
+        obj.enumProperty = DerivedEnumClass.VALUE3;
+        obj.serialize(xmlDoc, nameTable, rootNode, namespace);
+        // TODO(Anash): Verify with other libraries to see if this is indeed
+        // the expected behaviour.
+        assertEquals(goog.dom.xml.serialize(xmlDoc),
+            [
+              '<root>',
+                '<ns:enumProperty>VALUE3</ns:enumProperty>',
+              '</root>'
+            ].join(''));
+      }
+
+      /**
+       * Test if we can serialize an array of simple properties.
+       */
+      function testSerializeSimpleArrayProperty() {
+        var obj = new OuterClass();
+        obj.simpleArrayProperty = [42, 36];
+        obj.serialize(xmlDoc, nameTable, rootNode, namespace);
+        assertEquals(goog.dom.xml.serialize(xmlDoc),
+            [
+              '<root>',
+                '<ns:simpleArrayProperty>42</ns:simpleArrayProperty>',
+                '<ns:simpleArrayProperty>36</ns:simpleArrayProperty>',
+              '</root>'
+            ].join(''));
+      }
+
+      /**
+       * Test if we can serialize an array of complex properties when the array
+       * contains a mix of base and derived type objects.
+       */
+      function testSerializeComplexArrayPropertyWithXsiTypes() {
+        var obj = new OuterClass();
+
+        var obj1 = new ComplexBaseClass();
+        obj1.baseProperty = 42;
+
+        var obj2 = new ComplexDerivedClass();
+        obj2.derivedProperty = 36;
+
+        obj.complexArrayProperty = [obj1, obj2];
+
+        obj.serialize(xmlDoc, nameTable, rootNode, namespace);
+        assertEquals(goog.dom.xml.serialize(xmlDoc),
+            [
+              '<root>',
+                '<ns:complexArrayProperty>',
+                  '<ns:baseProperty>42</ns:baseProperty>',
+                '</ns:complexArrayProperty>',
+                '<ns:complexArrayProperty xsi:type="ns:ComplexDerivedClass">',
+                  '<ns:derivedProperty>36</ns:derivedProperty>',
+                '</ns:complexArrayProperty>',
+              '</root>'
+            ].join(''));
+      }
+
+      /**
+       * Test if we can serialize an array of complex properties when a property
+       * of base type holds an object of derived type and each type has its own
+       * serialization node names.
+       */
+      function
+          testSerializeComplexArrayPropertyWithXsiTypesAndDifferentNodeNames() {
+        var obj = new OuterClass();
+
+        var obj1 = new ComplexBaseClass();
+        obj1.baseProperty = 42;
+
+        var obj2 = new ComplexDerivedClass();
+        obj2.derivedProperty = 36;
+
+        obj.complexArrayPropertyDifferentNodeNames = [obj1, obj2];
+        obj.serialize(xmlDoc, nameTable, rootNode, namespace);
+
+        // Note: This test is identical to
+        // testSerializeComplexArrayPropertyWithXsiTypes, but its point is to
+        // illustrate that node name doesn't have any effect in serializing,
+        // only xsi:type matters.
+        assertEquals(goog.dom.xml.serialize(xmlDoc),
+            [
+              '<root>',
+                '<ns:ComplexBaseClassNode>',
+                  '<ns:baseProperty>42</ns:baseProperty>',
+                '</ns:ComplexBaseClassNode>',
+                '<ns:ComplexBaseClassNode xsi:type="ns:ComplexDerivedClass">',
+                  '<ns:derivedProperty>36</ns:derivedProperty>',
+                '</ns:ComplexBaseClassNode>',
+              '</root>'
+            ].join(''));
+      }
+
+      /**
+       * Test if we can serialize an array of enum properties when the array
+       * contains a mix of base and derived type objects.
+       */
+      function testSerializeEnumArrayPropertyWithXsiTypes() {
+        var obj = new OuterClass();
+        obj.enumArrayProperty = [EnumClass.VALUE1, DerivedEnumClass.VALUE3];
+
+        obj.serialize(xmlDoc, nameTable, rootNode, namespace);
+        // TODO(Anash): Verify with other libraries to see if this is indeed
+        // the expected behaviour.
+        assertEquals(goog.dom.xml.serialize(xmlDoc),
+            [
+              '<root>',
+                '<ns:enumArrayProperty>VALUE1</ns:enumArrayProperty>',
+                '<ns:enumArrayProperty>VALUE3</ns:enumArrayProperty>',
+              '</root>'
+            ].join(''));
+      }
+
+      /**
+       * Test if we can serialize a non-existent property.
+       */
+      function testSerializeNonExistentProperty() {
+        var obj = new OuterClass();
+        obj.nonExistentProperty = 42;
+        obj.serialize(xmlDoc, nameTable, rootNode, namespace);
+        // TODO(Anash): Should we modify the code to throw an exception in such
+        // cases?
+        assertEquals(goog.dom.xml.serialize(xmlDoc),
+            [
+              '<root/>'
+            ].join(''));
+      }
+
+      /**
+       * Test if we can serialize a property where property name != xml node
+       * name.
+       */
+      function testSerializePropertyNameDiffersFromXmlName() {
+        var obj = new OuterClass();
+        obj.propertyNameDifferent = 42;
+        obj.serialize(xmlDoc, nameTable, rootNode, namespace);
+        assertEquals(goog.dom.xml.serialize(xmlDoc),
+            [
+              '<root>',
+                '<ns:propertyXmlNameDifferent>42</ns:propertyXmlNameDifferent>',
+              '</root>'
+            ].join(''));
+      }
+
+
+      // Deserializer tests.
+
+      /**
+       * Deserialize an xml as OuterClass object.
+       * @param {string} xml The xml to deserialize.
+       * @return {OuterClass} The parsed OuterClass object instance.
+       */
+      function deserializeXmlAsOuterClass(xml) {
+        var obj = new OuterClass();
+        rootNode = goog.dom.xml.loadXml(xml).documentElement;
+        obj.deserialize(rootNode, nameTable);
+        return obj;
+      }
+
+      /**
+       * Test if we can deserialize a simple property.
+       */
+      function testDeserializeSimpleProperty() {
+        var obj = deserializeXmlAsOuterClass(
+            [
+              '<root ' + nameTable.getLocalNsAsString() + '>',
+                '<ns:simpleProperty>42</ns:simpleProperty>',
+              '</root>'
+            ].join('')
+        );
+        assertEquals(obj.simpleProperty, 42);
+      }
+
+      /**
+       * Test if we can deserialize a complex property.
+       */
+      function testDeserializeComplexProperty() {
+        var obj = deserializeXmlAsOuterClass(
+            [
+              '<root ' + nameTable.getLocalNsAsString() + '>',
+                  '<ns:complexProperty>',
+                    '<ns:baseProperty>42</ns:baseProperty>',
+                  '</ns:complexProperty>',
+              '</root>'
+            ].join('')
+        );
+
+        assertNotNull(obj.complexProperty);
+        assertTrue(obj.complexProperty instanceof ComplexBaseClass);
+        assertNotNull(obj.complexProperty.baseProperty);
+        assertEquals(obj.complexProperty.baseProperty, 42);
+      }
+
+      /**
+       * Test if we can deserialize a complex property when a property of base
+       * type holds an object of derived type.
+       */
+      function testDeserializeComplexPropertyWithXsiTypes() {
+        var obj = deserializeXmlAsOuterClass(
+            [
+              '<root ' + nameTable.getLocalNsAsString() + '>',
+                '<ns:complexProperty xsi:type="ns:ComplexDerivedClass">',
+                  '<ns:derivedProperty>42</ns:derivedProperty>',
+                '</ns:complexProperty>',
+              '</root>'
+            ].join(''));
+
+        assertNotNull(obj.complexProperty);
+        assertTrue(obj.complexProperty instanceof ComplexDerivedClass);
+        assertNotNull(obj.complexProperty.derivedProperty);
+        assertEquals(obj.complexProperty.derivedProperty, 42);
+      }
+
+      /**
+       * Test if we can deserialize a complex property when a property of base
+       * type holds an object of derived type and each type has its own
+       * serialization node names.
+       */
+      function
+          testDeSerializeComplexPropertyWithXsiTypesAndDifferentNodeNames() {
+        // TODO(Anash): This test needs to be fixed with an actual example where
+        // serialization node name depends on node type. The difficulty is in
+        // finding one, AdWords API mostly uses xsiType instead. May be bmjs
+        // has something.
+        var obj = deserializeXmlAsOuterClass(
+            [
+              '<root ' + nameTable.getLocalNsAsString() + '>',
+                '<ns:ComplexBaseClassNode xsi:type="ns:ComplexDerivedClass">',
+                  '<ns:derivedProperty>42</ns:derivedProperty>',
+                '</ns:ComplexBaseClassNode>',
+              '</root>'
+            ].join(''));
+        assertNotNull(obj.complexPropertyDifferentNodeNames);
+        assertTrue(obj.complexPropertyDifferentNodeNames instanceof
+            ComplexDerivedClass);
+        assertNotNull(obj.complexPropertyDifferentNodeNames.derivedProperty);
+        assertEquals(obj.complexPropertyDifferentNodeNames.derivedProperty, 42);
+      }
+
+      /**
+       * Test if we can deserialize an enum property.
+       */
+      function testDeserializeEnumProperty() {
+        var obj = deserializeXmlAsOuterClass(
+            [
+              '<root ' + nameTable.getLocalNsAsString() + '>',
+                '<ns:enumProperty>VALUE1</ns:enumProperty>',
+              '</root>'
+            ].join(''));
+        assertNotNull(obj.enumProperty);
+        assertEquals(obj.enumProperty, EnumClass.VALUE1);
+      }
+
+      /**
+       * Test if we can deserialize an enum property when a property of base
+       * type holds an object of derived type..
+       */
+      function testDeserializeEnumPropertyWithXsiTypes() {
+        // TODO(Anash): Verify with other libraries to see if this is indeed
+        // the expected behaviour.
+        var obj = deserializeXmlAsOuterClass(
+            [
+              '<root ' + nameTable.getLocalNsAsString() + '>',
+                '<ns:enumProperty>VALUE3</ns:enumProperty>',
+              '</root>'
+            ].join(''));
+        assertNotNull(obj.enumProperty);
+        assertEquals(obj.enumProperty, DerivedEnumClass.VALUE3);
+      }
+
+      /**
+       * Test if we can deserialize an array of simple properties.
+       */
+      function testDeserializeSimpleArrayProperty() {
+        var obj = deserializeXmlAsOuterClass(
+            [
+              '<root ' + nameTable.getLocalNsAsString() + '>',
+                '<ns:simpleArrayProperty>42</ns:simpleArrayProperty>',
+                '<ns:simpleArrayProperty>36</ns:simpleArrayProperty>',
+              '</root>'
+            ].join(''));
+        assertArrayEquals(obj.simpleArrayProperty, [42, 36]);
+      }
+
+      /**
+       * Test if we can deserialize an array of complex properties when the
+       * array contains a mix of base and derived type objects.
+       */
+      function testDeserializeComplexArrayPropertyWithXsiTypes() {
+        var obj = deserializeXmlAsOuterClass(
+            [
+              '<root ' + nameTable.getLocalNsAsString() + '>',
+                '<ns:complexArrayProperty>',
+                  '<ns:baseProperty>42</ns:baseProperty>',
+                '</ns:complexArrayProperty>',
+                '<ns:complexArrayProperty xsi:type="ns:ComplexDerivedClass">',
+                  '<ns:derivedProperty>36</ns:derivedProperty>',
+                '</ns:complexArrayProperty>',
+              '</root>'
+            ].join(''));
+
+        assertNotNull(obj.complexArrayProperty);
+        assertEquals(obj.complexArrayProperty.length, 2);
+
+        assertNotNull(obj.complexArrayProperty[0]);
+        assertTrue(obj.complexArrayProperty[0] instanceof ComplexBaseClass);
+        assertNotNull(obj.complexArrayProperty[0].baseProperty);
+        assertEquals(obj.complexArrayProperty[0].baseProperty, 42);
+
+        assertNotNull(obj.complexArrayProperty[1]);
+        assertTrue(obj.complexArrayProperty[1] instanceof ComplexDerivedClass);
+        assertNotNull(obj.complexArrayProperty[1].derivedProperty);
+        assertEquals(obj.complexArrayProperty[1].derivedProperty, 36);
+      }
+
+      /**
+       * Test if we can deserialize an array of complex properties when a
+       * property of base type holds an object of derived type and each type
+       * has its own serialization node names.
+       */
+      function testDeSerializeComplexArrayPropertyWithXsiTypesAndDifferentNodeNames() {
+        // TODO(Anash): Figure out an input xml so we can write this test.
+      }
+
+      /**
+       * Test if we can deserialize an array of enum properties when the array
+       * contains a mix of base and derived type objects.
+       */
+      function testDeserializeEnumArrayPropertyWithXsiTypes() {
+         var obj = deserializeXmlAsOuterClass(
+            [
+              '<root ' + nameTable.getLocalNsAsString() + '>',
+                '<ns:enumArrayProperty>VALUE1</ns:enumArrayProperty>',
+                '<ns:enumArrayProperty>VALUE3</ns:enumArrayProperty>',
+              '</root>'
+            ].join(''));
+        obj.enumArrayProperty = [EnumClass.VALUE1, DerivedEnumClass.VALUE3];
+
+        obj.serialize(xmlDoc, nameTable, rootNode, namespace);
+        assertArrayEquals(obj.enumArrayProperty, [EnumClass.VALUE1,
+            DerivedEnumClass.VALUE3]);
+      }
+
+      /**
+       * Test if we can deserialize a non-existent property.
+       */
+      function testDeserializeNonExistentProperty() {
+        // TODO(Anash): Should we throw an exception for this behaviour?
+        var obj = deserializeXmlAsOuterClass(
+            [
+              '<root ' + nameTable.getLocalNsAsString() + '>',
+                '<ns:noSuchProperty>VALUE1</ns:noSuchProperty>',
+              '</root>'
+            ].join(''));
+        assertUndefined(obj.noSuchProperty);
+      }
+
+      /**
+       * Test if we can deserialize a property where property name != xml node
+       * name.
+       */
+      function testDeserializePropertyNameDiffersFromXmlName() {
+        var obj = deserializeXmlAsOuterClass(
+            [
+              '<root ' + nameTable.getLocalNsAsString() + '>',
+                '<ns:propertyXmlNameDifferent>42</ns:propertyXmlNameDifferent>',
+              '</root>'
+            ].join(''));
+        assertNotNull(obj.propertyNameDifferent);
+        assertEquals(obj.propertyNameDifferent, 42);
+      }
+
+      // Test cross domain serialization and deserialization.
+
+      /**
+       * Test if we can serialize a complex property when a property of base
+       * type holds an object of derived type, and it is crossdomain in nature.
+       */
+      function testSerializeCrossDomainComplexPropertyWithXsiTypes() {
+        var obj = new OuterClass();
+        obj.complexProperty = new ComplexCrossDomainClass();
+        obj.complexProperty.crossDomainProperty = 42;
+        obj.serialize(xmlDoc, nameTable, rootNode, namespace);
+        assertEquals(goog.dom.xml.serialize(xmlDoc),
+            [
+              '<root>',
+                '<ns:complexProperty xsi:type="ns:ComplexCrossDomainClass">',
+                  '<crossns:crossDomainProperty>' + 42 +
+                      '</crossns:crossDomainProperty>',
+                '</ns:complexProperty>',
+              '</root>'
+            ].join(''));
+      }
+
+      /**
+       * Test if we can deserialize a complex property when a property of base
+       * type holds an object of derived type, and it is crossdomain in nature.
+       */
+      function testDeserializeCrossDomainComplexPropertyWithXsiTypes() {
+        var obj = deserializeXmlAsOuterClass(
+            [
+              '<root ' + nameTable.getLocalNsAsString() + '>',
+                '<ns:complexProperty xsi:type="ns:ComplexCrossDomainClass">',
+                  '<crossns:crossDomainProperty>' + 42 +
+                      '</crossns:crossDomainProperty>',
+                '</ns:complexProperty>',
+              '</root>'
+            ].join(''));
+
+        assertNotNull(obj.complexProperty);
+        assertTrue(obj.complexProperty instanceof ComplexCrossDomainClass);
+        assertNotNull(obj.complexProperty.crossDomainProperty);
+        assertEquals(obj.complexProperty.crossDomainProperty, 42);
+      }
+
+      /**
+       * Test if we can retrieve the type of an object.
+       */
+       function testGetType() {
+        var obj = new OuterClass()
+        var type = obj.getType();
+        assertNotNull(type);
+        assertEquals(type.getClassName(), 'OuterClass');
+      }
+    </script>
+  </body>
+</html>

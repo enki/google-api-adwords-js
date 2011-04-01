@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <!--
+    Copyright 2011, Google Inc. All Rights Reserved.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    author: api.anash@gmail.com (Anash P. Oommen)
+  -->
+  <head>
+    <title>google.ads.common tests - google.ads.common.Service</title>
+    <script src="../../../../../closure/goog/base.js"></script>
+    <script src="../../../../../adwordsapi/src/awapi.js"></script>
+    <script>
+      goog.require('goog.array');
+      goog.require('goog.net.XhrIo');
+      goog.require('goog.testing.jsunit');
+      goog.require('goog.testing.recordFunction');
+
+      goog.require('google.ads.common.Service');
+      goog.require('google.system.soap.ServiceListener');
+      goog.require('google.system.soap.ServiceType');
+      goog.require('google.system.net.HttpWebTransport');
+    </script>
+  </head>
+  <body>
+    <script>
+      var namespace = 'namespace';
+      var crossNamespace = 'crossNamespace'
+      var soapObjectTypeName = 'google.system.soap.Object';
+      var soapObject = goog.getObjectByName(soapObjectTypeName);
+
+      // Define a mock transport so we can get and set the requests and
+      // response.
+      MockTransport = function(settings) {
+        google.system.net.HttpWebTransport.call(this, settings);
+        this.urlToExpect = url;
+        this.methodToExpect = 'POST';
+        this.contentToExpect = null;
+        this.headersToExpect = null;
+        this.timeoutIntervalToExpect = 0;
+
+        this.shouldSucceed = true;
+        this.responseToSend = null;
+      };
+      goog.inherits(MockTransport, google.system.net.HttpWebTransport);
+
+      MockTransport.prototype.send = function(url, method, content, headers,
+          timeoutInterval, onSuccess, onFailure) {
+        assertEquals(this.urlToExpect, url);
+        assertEquals(this.methodToExpect, method);
+        assertEquals(this.contentToExpect, content);
+        assertEquals(this.headersToExpect, headers);
+        assertEquals(this.timeoutIntervalToExpect, timeoutInterval);
+
+        if (this.shouldSucceed) {
+          onSuccess(this.responseToSend);
+        } else {
+          onFailure(this.responseToSend);
+        }
+      };
+
+      // Define a nametable for testing purposes.
+      Nametable = function() {
+        google.system.soap.Nametable.call(this);
+
+        this.localxmlnt_ = {
+          'ns': namespace,
+          'crossns': crossNamespace,
+        };
+      };
+      goog.inherits(Nametable, google.system.soap.Nametable);
+
+      Nametable.prototype.getLocalNsAsString = function() {
+        var retval = [];
+        var localNamespaces = this.getLocalNamespaces();
+        for (var localPrefix in localNamespaces) {
+          retval.push('xmlns:' + localPrefix + '=' +
+              '"' + localNamespaces[localPrefix] + '"');
+        }
+        var globalNamespaces = this.xmlnt_;
+        for (var globalPrefix in globalNamespaces) {
+          retval.push('xmlns:' + globalPrefix + '=' +
+              '"' + globalNamespaces[globalPrefix] + '"');
+        }
+
+        return retval.join(' ');
+      };
+
+      // Define a mock service, since Service class cannot be tested directly.
+      TestService = function() {
+        google.ads.common.Service.call(this);
+        this.nametable_ = new Nametable();
+      };
+
+      var type = google.system.soap.ServiceType.defineService(namespace,
+          'TestService', 'google.ads.common.Service');
+      type.addProperty('testHeader', 'TestHeader', 'TestHeader', false, false);
+
+      // Define a method that takes a complex object as argument and returns
+      // a complex object.
+      type.addMethod(
+        'testMethod1',
+        namespace,
+        namespace,
+        'literal',
+        'wrapped',
+        'returnNode',
+        {
+          className: 'ReturnClass',
+          isArray: false,
+          isSystem: false
+        },
+        [{
+          propertyName: 'testHeader',
+          direction: 'in'
+        }],
+        [{
+          className: 'ParameterClass1',
+          isArray: false,
+          isSystem: false,
+          name: 'parameter1',
+          xmlElementName: 'parameter1'
+        }]
+      );
+
+      TestService.prototype.testMethod1 = function(parameter1, onsuccess,
+          onfailure) {
+        this.invoke.call(this, 'testMethod1', [parameter1], onsuccess,
+            onfailure);
+      };
+
+      // Define test classes for parameters, headers and returntypes for
+      // TestService methods.
+      TestHeader = function() {
+        soapObject.call(this);
+      };
+
+      type = google.system.soap.ObjectType.defineType(namespace,
+          'TestHeader', false, soapObjectTypeName);
+      // Define a simple field to see if simple fields are serialized properly.
+      type.addProperty('simpleProperty', 'integer', 'simpleProperty', false,
+          true);
+
+      ReturnClass = function() {
+        soapObject.call(this);
+      };
+
+      type = google.system.soap.ObjectType.defineType(namespace,
+          'ReturnClass', false, soapObjectTypeName);
+      // Define a simple field to see if simple fields are serialized properly.
+      type.addProperty('simpleProperty', 'integer', 'simpleProperty', false,
+          true);
+
+      ParameterClass1 = function() {
+        soapObject.call(this);
+      };
+
+      type = google.system.soap.ObjectType.defineType(namespace,
+          'ParameterClass1', false, soapObjectTypeName);
+      // Define a simple field to see if simple fields are serialized properly.
+      type.addProperty('simpleProperty', 'integer', 'simpleProperty', false,
+          true);
+
+      var service;
+      var url;
+      var transport;
+      var nameTable;
+      /**
+       * Initialize the test case.
+       */
+      function setUp() {
+        url = 'http://localhost/testing';
+        transport = new MockTransport();
+        nameTable = new Nametable();
+        service = new TestService();
+      }
+
+      /**
+       * Cleanup the test case.
+       */
+      function tearDown() {
+      }
+
+      /**
+       * Test if we can call a method with a complex parameter and get back a
+       * complex object as response.
+       */
+      function testInvokeMethod1() {
+        service.setHttpWebTransport(transport);
+        service.setUrl(url);
+
+        var xmlToExpect = [
+          '<soap:Envelope ' +
+              'xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" ' +
+              'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ' +
+              'xmlns:xsd="http://www.w3.org/2001/XMLSchema">',
+            '<soap:Header>',
+              '<ns:TestHeader xmlns:ns="namespace" xmlns:crossns=' +
+                  '"crossNamespace">',
+                '<ns:simpleProperty>21</ns:simpleProperty>',
+              '</ns:TestHeader>',
+            '</soap:Header>',
+            '<soap:Body>',
+              '<ns:testMethod1 xmlns:ns="namespace" xmlns:crossns=' +
+                  '"crossNamespace">',
+                '<ns:parameter1>',
+                  '<ns:simpleProperty>42</ns:simpleProperty>',
+                '</ns:parameter1>',
+              '</ns:testMethod1>',
+            '</soap:Body>',
+          '</soap:Envelope>'
+        ].join('');
+
+        var responseToSend = [
+            '<soap:Envelope ' +
+                'xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">',
+              '<soap:Header>',
+              '</soap:Header>',
+              '<soap:Body>',
+                '<testMethod1Response xmlns="namespace">',
+                  '<returnNode>',
+                    '<simpleProperty>24</simpleProperty>',
+                  '</returnNode>',
+                '</testMethod1Response>',
+              '</soap:Body>',
+            '</soap:Envelope>'
+        ].join('');
+
+        transport.contentToExpect = xmlToExpect;
+        transport.responseToSend = responseToSend;
+        transport.shouldSucceed = true;
+
+        var header = new TestHeader();
+        header.simpleProperty = 21;
+        service.testHeader = header;
+
+        var param = new ParameterClass1();
+        param.simpleProperty = 42;
+        service.testMethod1(param,
+            function(data) {
+              assertNotNull(data);
+              assertTrue(data instanceof ReturnClass);
+              assertNotNull(data.simpleProperty);
+              assertEquals(data.simpleProperty, 24);
+            },
+            function(data) {
+              fail('The call should succeed, so failure callback should not ' +
+                  'be called.');
+            }
+        );
+      }
+    </script>
+  </body>
+</html>

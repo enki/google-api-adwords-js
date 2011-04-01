@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <!--
+    Copyright 2011, Google Inc. All Rights Reserved.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    author: api.anash@gmail.com (Anash P. Oommen)
+  -->
+  <head>
+    <title>system.soap unit tests - google.system.soap.ServiceListener</title>
+    <script src="../../../../../closure/goog/base.js"></script>
+    <script src="../../../../../adwordsapi/src/awapi.js"></script>
+    <script>
+      goog.require('goog.array');
+      goog.require('goog.testing.jsunit');
+      goog.require('goog.testing.recordFunction');
+      goog.require('google.system.soap.ServiceListener');
+    </script>
+  </head>
+  <body>
+    <script>
+      var listener;
+
+      /**
+       * Initialize the test case.
+       */
+      function setUp() {
+        listener = new google.system.soap.ServiceListener();
+      }
+
+      /**
+       * Cleanup the test case.
+       */
+      function tearDown() {
+      }
+
+      /**
+       * Test if we can call beforeSerialize and get a callback.
+       */
+      function testBeforeSerialize() {
+        listener.beforeSerialize(null, null, null, function() {
+          assert(true);
+        }, null);
+      }
+
+      /**
+       * Test if we can call beforeSend and get a callback.
+       */
+      function testBeforeSend() {
+        listener.beforeSend(null, null, function() {
+          assert(true);
+        }, null);
+      }
+
+      /**
+       * Test if we can call beforeDeserialize and get a callback.
+       */
+      function testBeforeDeserialize() {
+        listener.beforeDeserialize(null, null, null, function() {
+          assert(true);
+        }, null);
+      }
+
+      /**
+       * Test if we can call beforeReturn and get a callback.
+       */
+      function testBeforeReturn() {
+        listener.beforeReturn(null, null, null, function() {
+          assert(true);
+        }, null);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <!--
+    Copyright 2011, Google Inc. All Rights Reserved.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    author: api.anash@gmail.com (Anash P. Oommen)
+  -->
+  <head>
+    <title>google.ads.common tests - google.ads.common.AppConfigBase</title>
+    <script src="../../../../../closure/goog/base.js"></script>
+    <script src="../../../../../adwordsapi/src/awapi.js"></script>
+    <script>
+      goog.require('goog.array');
+      goog.require('goog.testing.jsunit');
+      goog.require('goog.testing.recordFunction');
+
+      goog.require('google.ads.common.AppConfigBase');
+      goog.require('google.system.core.Runtime');
+      goog.require('google.system.net.HttpWebTransportSettings');
+    </script>
+  </head>
+  <body>
+    <script>
+      var MockAppConfigBase = function() {
+        google.ads.common.AppConfigBase.call(this);
+        this.testKey_ = null;
+      };
+
+      goog.inherits(MockAppConfigBase, google.ads.common.AppConfigBase);
+
+
+      MockAppConfigBase.prototype.getTestKey = function() {
+        return this.testKey_;
+      };
+
+      MockAppConfigBase.prototype.setTestKey = function(testKey) {
+        this.testKey_ = testKey;
+      };
+
+      var appConfig;
+
+      var config = {
+        TestKey: 'TestValue',
+        HttpWebTransport: 'google.system.net.HttpWebTransportForServerProxy',
+        HttpWebTransportSettings: {
+          ProxyUrl: '/awapijs/proxy.php'
+        }
+      };
+
+      var httpWebTransportSettings;
+
+      /**
+       * Initialize the test case.
+       */
+      function setUp() {
+        appConfig = new MockAppConfigBase();
+        httpWebTransportSettings =
+            new google.system.net.HttpWebTransportSettings(
+                config.HttpWebTransportSettings);
+      }
+
+      /**
+       * Cleanup the test case.
+       */
+      function tearDown() {
+      }
+
+      /*
+       * Test if we can set and get the http web transport.
+       */
+      function testSetGetHttpWebTransport() {
+        appConfig.setHttpWebTransport(config.HttpWebTransport);
+        assertObjectEquals(appConfig.getHttpWebTransport(),
+            config.HttpWebTransport);
+      }
+
+      /*
+       * Test if we can set and get the http web transport settings.
+       */
+      function testSetGetHttpWebTransportSettings() {
+        appConfig.setHttpWebTransportSettings(httpWebTransportSettings);
+        assertObjectEquals(appConfig.getHttpWebTransportSettings(),
+            httpWebTransportSettings);
+      }
+
+      /*
+       * Test if we can get the signature.
+       */
+      function testGetSignature() {
+        assertEquals(appConfig.getSignature(), appConfig.getShortName() + '-' +
+            appConfig.getVersion());
+      };
+
+      /*
+       * Test if we can get the version.
+       */
+      function testGetVersion() {
+        assertEquals(appConfig.getVersion(), appConfig.getShortName() + '-' +
+            google.system.core.Runtime.getInstance().getVersion());
+      };
+
+      /*
+       * Test if we can read settings.
+       */
+      function testReadSettings() {
+        appConfig.readSettings(config);
+        assertEquals(appConfig.getHttpWebTransport(), config.HttpWebTransport);
+        assertObjectEquals(appConfig.getHttpWebTransportSettings(),
+            httpWebTransportSettings);
+      }
+
+      /*
+       * Test if we can set and get config values.
+       */
+      function testSetGetConfigValue() {
+        appConfig.setConfigValue('TestKey', 'TestValue');
+        assertEquals(appConfig.getConfigValue('TestKey'), 'TestValue');
+      }
+    </script>
+  </body>
+</html>
