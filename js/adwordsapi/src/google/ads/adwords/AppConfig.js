@@ -29,6 +29,7 @@ goog.require('google.ads.common.AppConfigBase');
 /**
  * This class reads the configuration keys for AdWords.
  *
+ * @extends google.ads.common.AppConfigBase
  * @constructor
  */
 google.ads.adwords.AppConfig = function() {
@@ -43,10 +44,12 @@ google.ads.adwords.AppConfig = function() {
   this.userAgent_ = null;
   this.legacyAdWordsApiServer_ = this.DEFAULT_LEGACY_ADWORDSAPI_SERVER_;
   this.adWordsApiServer_ = this.DEFAULT_ADWORDSAPI_SERVER_;
-  this.shortNameField_ = 'AwApi-DotNet';
 
-  this.readSettings(google.system.core.Runtime.getInstance().
-      getConfig()['AdWordsApi']);
+  var runtimeConfig = google.system.core.Runtime.getInstance().getConfig();
+  if (runtimeConfig && runtimeConfig['AdWordsApi']) {
+    this.readSettings(google.system.core.Runtime.getInstance().
+        getConfig()['AdWordsApi']);
+  }
 };
 goog.inherits(google.ads.adwords.AppConfig, google.ads.common.AppConfigBase);
 

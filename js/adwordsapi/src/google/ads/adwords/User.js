@@ -32,6 +32,7 @@ goog.require('google.ads.common.AdsUser');
  *
  * @param {google.ads.adwords.AppConfig} config AdWords configuration
  * properties.
+ * @extends google.ads.common.AdsUser
  * @constructor
  */
 google.ads.adwords.User = function(config) {

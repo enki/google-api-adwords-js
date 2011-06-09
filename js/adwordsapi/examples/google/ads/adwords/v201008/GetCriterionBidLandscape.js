@@ -37,6 +37,7 @@ goog.require('google.ads.adwords.v201008.CriterionBidLandscapeSelector');
  *
  * Tags: BidLandscapeService.getBidLandscape
  *
+ * @extends google.ads.adwords.examples.ExampleBase
  * @constructor
  */
 google.ads.adwords.examples.v201008.GetCriterionBidLandscape = function() {

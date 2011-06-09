@@ -42,6 +42,7 @@ goog.require('google.ads.adwords.v201008.UserListService');
  *
  * Tags: UserListService.mutate
  *
+ * @extends google.ads.adwords.examples.ExampleBase
  * @constructor
  */
 google.ads.adwords.examples.v201008.AddLogicalUserList = function() {

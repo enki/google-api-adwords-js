@@ -38,6 +38,7 @@ goog.require('google.ads.adwords.v201008.DateTimeRange');
  *
  * Tags: CustomerSyncService.get
  *
+ * @extends google.ads.adwords.examples.ExampleBase
  * @constructor
  */
 google.ads.adwords.examples.v201008.GetAllAccountChanges = function() {
@@ -112,9 +113,9 @@ google.ads.adwords.examples.v201008.GetAllAccountChanges.prototype.run =
                           campaignChanges.deletedCampaignCriteria));
 
                   if (campaignChanges.changedAdGroups) {
-                    for (var i = 0; i < campaignChanges.changedAdGroups.length;
-                        i++) {
-                      var adGroupChanges = campaignChanges.changedAdGroups[i];
+                    for (var j = 0; j < campaignChanges.changedAdGroups.length;
+                        j++) {
+                      var adGroupChanges = campaignChanges.changedAdGroups[j];
                       this.writeOutput('  Ad group with id "%d" was changed:',
                           adGroupChanges.adGroupId);
                       this.writeOutput('    Ad group changed status: %s',
@@ -133,7 +134,7 @@ google.ads.adwords.examples.v201008.GetAllAccountChanges.prototype.run =
                     }
                   }
                 }
-                this.writeOutput();
+                this.writeOutput('');
               }
             } else {
               this.writeOutput('No account changes were found.');

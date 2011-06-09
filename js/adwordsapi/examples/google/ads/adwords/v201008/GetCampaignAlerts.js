@@ -41,6 +41,7 @@ goog.require('google.ads.adwords.v201008.TriggerTimeSpec');
  *
  * Tags: AlertService.get
  *
+ * @extends google.ads.adwords.examples.ExampleBase
  * @constructor
  */
 google.ads.adwords.examples.v201008.GetCampaignAlerts = function() {

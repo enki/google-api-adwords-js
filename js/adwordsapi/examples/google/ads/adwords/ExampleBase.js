@@ -28,7 +28,7 @@ goog.require('goog.string.format');
 /**
  * Base class for all code examples.
  *
- * @constructor.
+ * @constructor
  */
 google.ads.adwords.examples.ExampleBase = function() {
   this.description = '';

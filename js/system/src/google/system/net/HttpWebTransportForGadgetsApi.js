@@ -31,6 +31,7 @@ goog.require('google.system.net.HttpWebTransport');
  *
  * @param {google.system.net.HttpWebTransportSettings} settings Settings to be
  * applied.
+ * @extends google.system.net.HttpWebTransport
  * @constructor
  */
 google.system.net.HttpWebTransportForGadgetsApi = function(settings) {
@@ -50,8 +51,8 @@ goog.inherits(google.system.net.HttpWebTransportForGadgetsApi,
  * @param {function} onSuccess The callback for success.
  * @param {function} onFailure The callback for failure.
  */
-google.system.net.HttpWebTransport.prototype.send = function(url, method,
-    content, headers, timeoutInterval, onSuccess, onFailure) {
+google.system.net.HttpWebTransportForGadgetsApi.prototype.send = function(url,
+    method, content, headers, timeoutInterval, onSuccess, onFailure) {
   var params = {};
   params[gadgets.io.RequestParameters.METHOD] = method;
   params[gadgets.io.RequestParameters.POST_DATA] = content;

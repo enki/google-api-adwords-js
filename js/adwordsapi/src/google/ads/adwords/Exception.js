@@ -29,6 +29,7 @@ goog.require('google.ads.common.AdsException');
 /**
  * The base class for all exceptions specific to AdWords.
  *
+ * @extends google.ads.common.AdsException
  * @constructor
  * @param {string?} message An optional error message for the exception.
  * @param {Object?} innerException If this exception was thrown in response to

@@ -35,6 +35,7 @@ goog.require('google.system.soap.ObjectType');
  * @param {string} fullClassName Full class name of the service.
  * @param {string} fullBaseClassName Full class name of the base class for the
  * service.
+ * @extends google.system.soap.ObjectType
  * @constructor
  */
 google.system.soap.ServiceType = function(xmlNamespace, fullClassName,

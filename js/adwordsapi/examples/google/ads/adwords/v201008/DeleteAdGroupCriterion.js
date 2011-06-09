@@ -38,6 +38,7 @@ goog.require('google.ads.adwords.v201008.Operator');
  *
  * Tags: AdGroupCriterionService.mutate
  *
+ * @extends google.ads.adwords.examples.ExampleBase
  * @constructor
  */
 

@@ -29,6 +29,7 @@ goog.require('google.system.core.Exception');
  * An exception that is thrown by a method when an argument of wrong type is
  * passed into it as an argument.
  *
+ * @extends google.system.core.Exception
  * @constructor
  * @param {string?} message An optional error message for the exception.
  * @param {Object?} innerException If this exception was thrown in response to

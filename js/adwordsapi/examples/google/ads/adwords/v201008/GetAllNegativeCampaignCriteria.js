@@ -17,11 +17,11 @@
  */
 
 /**
- * @fileoverview Defines GetNegativeCampaignCriteria, a code example that gets
- * all negative campaign criteria in an account.
+ * @fileoverview Defines GetAllNegativeCampaignCriteria, a code example that
+ * gets all negative campaign criteria in an account.
  */
 
-goog.provide('google.ads.adwords.examples.v201008.GetNegativeCampaignCriteria');
+goog.provide('google.ads.adwords.examples.v201008.GetAllNegativeCampaignCriteria');
 
 goog.require('google.ads.adwords.AdWordsService.v201008');
 goog.require('google.ads.adwords.examples.ExampleBase');
@@ -36,15 +36,18 @@ goog.require('google.ads.adwords.v201008.Placement');
  *
  * Tags: CampaignCriterionService.get
  *
+ * @extends google.ads.adwords.examples.ExampleBase
  * @constructor
  */
-google.ads.adwords.examples.v201008.GetNegativeCampaignCriteria = function() {
+google.ads.adwords.examples.v201008.GetAllNegativeCampaignCriteria =
+    function() {
   google.ads.adwords.examples.ExampleBase.call(this);
   this.description = 'This code example retrieves all negative campaign ' +
       'criteria in an account. To add a negative campaign criterion, run ' +
       'AddNegativeCampaignCriterion.js.';
 };
-goog.inherits(google.ads.adwords.examples.v201008.GetNegativeCampaignCriteria,
+goog.inherits(
+    google.ads.adwords.examples.v201008.GetAllNegativeCampaignCriteria,
     google.ads.adwords.examples.ExampleBase);
 
 /**
@@ -55,8 +58,8 @@ goog.inherits(google.ads.adwords.examples.v201008.GetNegativeCampaignCriteria,
  * @param {function} callback the callback method to be called once this example
  * is complete.
  */
-google.ads.adwords.examples.v201008.GetNegativeCampaignCriteria.prototype.run =
-    function(user, callback) {
+google.ads.adwords.examples.v201008.GetAllNegativeCampaignCriteria.prototype.
+    run = function(user, callback) {
   // Get the CampaignCriterionService.
   var campaignCriterionService = user.getService(
       google.ads.adwords.AdWordsService.v201008.CampaignCriterionService);

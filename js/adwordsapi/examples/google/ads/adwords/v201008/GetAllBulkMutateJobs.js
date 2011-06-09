@@ -35,6 +35,7 @@ goog.require('google.ads.adwords.v201008.BulkMutateJobService');
  *
  * Tags: BulkMutateJobService.get
  *
+ * @extends google.ads.adwords.examples.ExampleBase
  * @constructor
  */
 

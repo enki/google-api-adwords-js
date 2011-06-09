@@ -30,6 +30,7 @@ goog.require('google.system.core.Exception');
  * it as an argument, and the method doesn't accept null as a value for that
  * argument.
  *
+ * @extends google.system.core.Exception
  * @constructor
  * @param {string} argumentName The name of argument that had a null value.
  * @param {string?} message An optional error message for the exception.

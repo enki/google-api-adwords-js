@@ -22,6 +22,7 @@
 
 goog.provide('google.ads.common.AuthToken');
 
+goog.require('google.ads.common.AdsException');
 goog.require('google.ads.common.AuthTokenErrorCode');
 goog.require('google.ads.common.AuthTokenException');
 goog.require('google.ads.common.CommonErrorMessages');
@@ -93,12 +94,12 @@ google.ads.common.AuthToken.prototype.getToken = function(
     '&service=' + encodeURIComponent(this.service_) +
     '&source=' + encodeURIComponent(this.SOURCE_);
 
-  var request = google.system.net.HttpWebTransportFactory.create(
+  var transport = google.system.net.HttpWebTransportFactory.create(
       this.config_.getHttpWebTransport(),
       this.config_.getHttpWebTransportSettings());
 
-  if (request != null) {
-    request.send(this.URL_, 'POST', postParams, null, 0, goog.bind(
+  if (transport != null) {
+    transport.send(this.URL_, 'POST', postParams, null, 0, goog.bind(
         function(response) {
           var objResponse = this.parseResponse_(response);
           if (onSuccess != null) {
@@ -112,6 +113,9 @@ google.ads.common.AuthToken.prototype.getToken = function(
           }
         }, this)
     );
+  } else {
+    onError(new google.ads.common.AdsException('Can\'t instanciate web ' +
+        'transport ' + this.config_.getHttpWebTransport()));
   }
 };
 

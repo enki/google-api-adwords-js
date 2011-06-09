@@ -15,9 +15,7 @@
 /**
  * @author api.anash@gmail.com (Anash P. Oommen)
  * @author api.davidtorres@gmail.com (David Torres)
- */
-
-/**
+ *
  * @fileoverview Defines Type, a class to store the type of a
  * google.system.soap.Object.
  */
@@ -36,29 +34,54 @@ goog.require('google.system.soap.ObjectProperty');
  * @param {string} fullClassName Full class name of the this object type.
  * @param {string} isEnum True if the object is of type enum.
  * @param {string?} baseFullClassName Base class name if this type inherits
- * from other, this constructor takes cares automatically of the object
- * inheritance if this type is provided, if not it makes the class name inherit
- * from google.system.soap.Object.
+ *     from other, this constructor takes cares automatically of the object
+ *     inheritance if this type is provided, if not it makes the class name
+ *     inherit from google.system.soap.Object.
  * @constructor
  */
 google.system.soap.ObjectType = function(xmlNamespace, fullClassName, isEnum,
     baseFullClassName) {
+
+  /**
+   * XML namespace of the object.
+   * @type {string}
+   * @private
+   */
   this.xmlNamespace_ = xmlNamespace;
+
+  /**
+   * Full object classname (E.g. google.ads.adwords.v201003.Campaign).
+   * @type {string}
+   * @private
+   */
   this.fullClassName_ = fullClassName;
+
+  /**
+   * If it's an enumeration type.
+   * @type {boolean}
+   * @private
+   */
   this.isEnum_ = isEnum;
+
+  /**
+   * List of this type properties.
+   * @type {Array.<google.system.soap.ObjectProperty>}
+   * @private
+   */
+  this.properties_ = [];
+
   if (fullClassName != 'google.system.soap.Object') {
     this.baseFullClassName_ = baseFullClassName ? baseFullClassName :
         'google.system.soap.Object';
   }
-  this.properties_ = [];
   var classObject = goog.getObjectByName(this.fullClassName_);
-  if (classObject == null) {
+  if (goog.isNull(classObject)) {
     throw new google.system.core.Exception('nonexistent fullClassName: ' +
         fullClassName + ' provided');
   }
   if (fullClassName != 'google.system.soap.Object') {
     var baseClassObject = goog.getObjectByName(this.baseFullClassName_);
-    if (baseClassObject == null) {
+    if (goog.isNull(baseClassObject)) {
       throw new google.system.core.Exception('nonexistent baseFullClassName: ' +
           this.baseFullClassName_ + ' provided');
     }
@@ -72,10 +95,10 @@ google.system.soap.ObjectType = function(xmlNamespace, fullClassName, isEnum,
  *
  * @param {string} xmlNamespace Namespace of the type.
  * @param {string} fullClassName Type full class name
- * (E.g. google.ads.adwords.v201008.Campaign).
+ *     (E.g. google.ads.adwords.v201008.Campaign).
  * @param {boolean} isEnum True if it represent an enumeration.
  * @param {?string} baseFullClassName Base type full name, defaults to
- * 'google.system.soap.Object'.
+ *     'google.system.soap.Object'.
  * @return {google.system.soap.ObjectType} The new object type.
  */
 google.system.soap.ObjectType.defineType = function(
@@ -109,9 +132,8 @@ google.system.soap.ObjectType.prototype.getFullClassName = function() {
  * @return {string} The type class name.
  */
 google.system.soap.ObjectType.prototype.getClassName = function() {
-  var i = this.fullClassName_.lastIndexOf('.');
-  i = i >= 0 ? i + 1 : 0;
-  return this.fullClassName_.substring(i);
+  var nameArray = this.fullClassName_.split('.');
+  return nameArray[nameArray.length - 1];
 };
 
 /**
@@ -137,7 +159,7 @@ google.system.soap.ObjectType.prototype.isEnum = function() {
 };
 
 /**
- * Retrives the type full class name.
+ * Retrieves the type full class name.
  *
  * @return {string} The full class name.
  */
@@ -157,22 +179,22 @@ google.system.soap.ObjectType.prototype.getBaseType = function() {
 };
 
 /**
- * Add a property to the object type definition.
+ * Adds a property to the object type definition.
  *
- * @param {Object} name Name of the property, getters and setters will be
- * generated based on this.
- * @param {Object} propertyFullClassName Full classname that maps the property
- * unless is a system property where possible values can be
- * [boolean|integer|string].
+ * @param {string} name Name of the property, getters and setters will be
+ *     generated based on this.
+ * @param {string} propertyFullClassName Full classname that maps the property
+ *     unless is a system property where possible values can be
+ *     [boolean|integer|string].
  * @param {(string|Object.<string, string>)} xmlElementNameMapping In general
- * this maps to a simple xmlElement name unless, it is a choice type of SOAP
- * element where multiple xml element names can be defined depending on the
- * type of the value to be serialiazed, so it can take the form of
- * [{elementName: 'element', className: 'fullClassName'}, ...].
+ *     this maps to a simple xmlElement name unless, it is a choice type of SOAP
+ *     element where multiple xml element names can be defined depending on the
+ *     type of the value to be serialiazed, so it can take the form of
+ *     [{elementName: 'element', className: 'fullClassName'}, ...].
  * @param {boolean} isArray True if is an array type of property, false
- * otherwise.
+ *     otherwise.
  * @param {boolean} isSystem True if is a system kind of property, false
- * otherwise.
+ *     otherwise.
  * @return {google.system.soap.ObjectProperty} The new property.
  */
 google.system.soap.ObjectType.prototype.addProperty = function(
@@ -181,10 +203,10 @@ google.system.soap.ObjectType.prototype.addProperty = function(
   var property = new google.system.soap.ObjectProperty(name,
       propertyFullClassName, xmlElementNameMapping, isArray, isSystem);
 
-  if (this.getPropertyByName(name, true) == null) {
+  if (goog.isNull(this.getPropertyByName(name, true))) {
     this.properties_.push(property);
     var classType = goog.getObjectByName(this.fullClassName_);
-    if (classType != null) {
+    if (!goog.isNull(classType)) {
       classType.prototype[property.getSetterName()] = function(value) {
         this[name] = value;
       };
@@ -201,7 +223,7 @@ google.system.soap.ObjectType.prototype.addProperty = function(
  * Retrieves the list of properties tied to this type.
  *
  * @param {boolean?} ignoreInheritance If true it will only look at this type
- * direct property and not follow the inherentance path.
+ *     direct property and not follow the inherentance path.
  * @return {Array.<google.system.soap.ObjectProperty>} The list of properties.
  */
 google.system.soap.ObjectType.prototype.getProperties = function(
@@ -228,7 +250,7 @@ google.system.soap.ObjectType.prototype.getProperties = function(
  *
  * @param {string} name Name of the property to retrieve.
  * @param {boolean} ignoreInheritance If true it will only look at this type
- * direct property and not follow the inheritance path.
+ *     direct property and not follow the inheritance path.
  * @return {google.system.soap.ObjectProperty} The property or null if not
  * property was found.
  */

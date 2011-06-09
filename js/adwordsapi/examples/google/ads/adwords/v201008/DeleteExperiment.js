@@ -37,6 +37,7 @@ goog.require('google.ads.adwords.v201008.Operator');
  *
  * Tags: ExperimentService.mutate
  *
+ * @extends google.ads.adwords.examples.ExampleBase
  * @constructor
  */
 

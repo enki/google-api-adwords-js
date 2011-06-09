@@ -40,9 +40,10 @@ goog.require('google.system.net.HttpWebTransportFactory');
 /**
  * The factory class for all AdWords API services.
  *
+ * @extends google.ads.common.ServiceFactory
+ * @constructor
  * @param {google.ads.adwords.AppConfig} config AdWords configuration
  * properties.
- * @constructor
  */
 google.ads.adwords.ServiceFactory = function(config) {
   google.ads.common.ServiceFactory.call(this, config);

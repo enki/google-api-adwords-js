@@ -33,6 +33,7 @@ goog.require('google.system.net.HttpWebTransportFactory');
  * To get a report definition, run AddKeywordsPerformanceReportDefinition.js.
  * Currently, there is only production support for report download.
  *
+ * @extends google.ads.adwords.examples.ExampleBase
  * @constructor
  */
 google.ads.adwords.examples.v201008.DownloadReport =

@@ -30,6 +30,7 @@ goog.require('google.system.core.Exception');
  * Base class for all exceptions thrown by the library related to an Ads API
  * call.
  *
+ * @extends google.system.core.Exception
  * @constructor
  * @param {string?} message An optional error message for the exception.
  * @param {Object?} innerException If this exception was thrown in response to

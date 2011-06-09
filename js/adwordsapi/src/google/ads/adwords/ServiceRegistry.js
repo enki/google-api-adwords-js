@@ -30,6 +30,7 @@ goog.require('google.ads.common.ServiceRegistry');
  * Lists all the services available through this library.
  *
  * @constructor
+ * @extends google.ads.common.ServiceRegistry
  */
 google.ads.adwords.ServiceRegistry = function() {
   google.ads.common.ServiceRegistry.call(this);

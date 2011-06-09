@@ -131,6 +131,27 @@
         assertEquals(config.getAdWordsApiServer(), testConfig.AdWordsApi.
             AdWordsApiServer);
       }
+
+      /*
+       * Tests passing a custom config and no config set via runtime.
+       */
+      function testCustomConfig() {
+        google.system.core.Runtime.getInstance().setConfig();
+        config = new google.ads.adwords.AppConfig();
+        config.readSettings(testConfig.AdWordsApi);
+        assertEquals(config.getAuthToken(), testConfig.AdWordsApi.AuthToken);
+        assertEquals(config.getEmail(), testConfig.AdWordsApi.Email);
+        assertEquals(config.getPassword(), testConfig.AdWordsApi.Password);
+        assertEquals(config.getClientEmail(),
+          testConfig.AdWordsApi.ClientEmail);
+        assertEquals(config.getClientCustomerId(),
+          testConfig.AdWordsApi.ClientCustomerId);
+        assertEquals(config.getDeveloperToken(),
+          testConfig.AdWordsApi.DeveloperToken);
+        assertEquals(config.getUserAgent(), testConfig.AdWordsApi.UserAgent);
+        assertEquals(config.getAdWordsApiServer(), testConfig.AdWordsApi.
+          AdWordsApiServer);
+       }
     </script>
   </body>
 </html>

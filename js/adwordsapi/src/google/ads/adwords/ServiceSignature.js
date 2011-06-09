@@ -34,7 +34,7 @@ goog.require('google.system.soap.ServiceType');
  * @param {string} version Service version.
  * @param {string} groupName The group name.
  * @param {string} serviceName Service name.
-
+ * @extends google.ads.common.ServiceSignature
  * @constructor
  */
 google.ads.adwords.ServiceSignature = function(version, groupName,

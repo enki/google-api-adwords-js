@@ -36,6 +36,7 @@ goog.require('google.ads.adwords.v201008.Media_Size_DimensionsMapEntry');
  *
  * Tags: MediaService.get
  *
+ * @extends google.ads.adwords.examples.ExampleBase
  * @constructor
  */
 google.ads.adwords.examples.v201008.GetAllImages = function() {

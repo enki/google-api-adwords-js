@@ -39,6 +39,7 @@ goog.require('google.system.soap.Object');
  * Contains the serialization logic to transform request into SOAP XML
  * envelopes and then send them through the network.
  *
+ * @extends google.system.soap.Object
  * @constructor
  */
 google.system.soap.Service = function() {
@@ -337,7 +338,8 @@ google.system.soap.Service.prototype.fireListeners_ = function(
     var listener = listeners.pop();
     var continueFn = goog.bind(this.fireListeners_, this, listeners,
         fnFactory, continueCallback, failureCallback);
-    var listenerErrorFn = goog.bind(this.listenerError_, this, listener);
+    var listenerErrorFn = goog.bind(this.listenerError_, this, listener,
+        failureCallback);
     fnFactory(listener).call(listener, continueFn, listenerErrorFn);
   } else {
     continueCallback();
@@ -350,12 +352,17 @@ google.system.soap.Service.prototype.fireListeners_ = function(
  *
  * @param {google.system.soap.ServiceListener} listener Listener that caused
  * the failure.
+ * @param {function(google.system.core.Exception)} failureCallback Function to
+ * be called in case one of the listeners fails.
  * @param {google.system.core.Exception} exception Exception returned by the
  * listener.
  * @private
  */
 google.system.soap.Service.prototype.listenerError_ = function(
-    listener, exception) {
+    listener, failureCallback, exception) {
+  if (failureCallback) {
+    failureCallback(exception);
+  }
   throw exception;
 };
 

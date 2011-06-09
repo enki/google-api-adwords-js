@@ -15,9 +15,7 @@
 /**
  * @author api.anash@gmail.com (Anash P. Oommen)
  * @author api.davidtorres@gmail.com (David Torres)
- */
-
-/**
+ *
  * @fileoverview Defines a SOAP object class.
  */
 
@@ -34,6 +32,14 @@ goog.require('goog.json');
  */
 google.system.soap.Object = function() {
 };
+
+/**
+ * Retains the ObjectType of the object.
+ *
+ * @type google.system.soap.ObjectType
+ * @private
+ */
+google.system.soap.Object.prototype.type_ = null;
 
 /**
  * Retrieves the {google.system.soap.ObjectType} associated to this object.
@@ -58,9 +64,9 @@ google.system.soap.Object.prototype.deserialize = function(node, xmlnt) {
     }
     var availableType = this.getTypeAsPerXsiType_(xmlnt, node.childNodes[i],
         this.getType().getNamespace());
-    if (availableType != null) {
+    if (!goog.isNull(availableType)) {
       availableType = goog.getObjectByName(availableType);
-      if (availableType != null) {
+      if (!goog.isNull(availableType)) {
         availableType = new availableType();
       }
     } else {
@@ -68,14 +74,14 @@ google.system.soap.Object.prototype.deserialize = function(node, xmlnt) {
       if (!property.isSystem()) {
         var propertyFullClassName = property.getFullClassName();
         availableType = goog.getObjectByName(propertyFullClassName);
-        if (availableType != null) {
+        if (!goog.isNull(availableType)) {
           availableType = new availableType();
         }
       }
     }
 
     var propertyValue = null;
-    if (availableType != null && availableType.getType().isEnum() == false) {
+    if (!goog.isNull(availableType) && !availableType.getType().isEnum()) {
       availableType.deserialize(node.childNodes[i], xmlnt);
       propertyValue = availableType;
     } else {
@@ -92,7 +98,7 @@ google.system.soap.Object.prototype.deserialize = function(node, xmlnt) {
 
     var property = this.getType().getPropertyByName(propertyName);
     var currentPropertyValue = this[property.getGetterName()](this);
-    if (property.isArray() == true) {
+    if (property.isArray()) {
       if (currentPropertyValue == null) {
         currentPropertyValue = [];
       }
@@ -105,7 +111,8 @@ google.system.soap.Object.prototype.deserialize = function(node, xmlnt) {
 };
 
 /**
- * Method that serializes a SOAP Object into XML. *
+ * Method that serializes a SOAP Object into XML.
+ *
  * @param {Document} doc Current XML document to append.
  * @param {google.system.soap.Nametable} xmlnt Namespace table.
  * @param {Node} parentNode Root of the XML document.
@@ -153,24 +160,24 @@ google.system.soap.Object.prototype.getSerializationNodeNameForProperty_ =
     function(propertyName, propertyValue) {
   var property = this.getType().getPropertyByName(propertyName);
   var xmlElementsMapping = property.getXmlElementNameMapping();
-  if (goog.typeOf(xmlElementsMapping) == 'array') {
-    for (var i = 0, elementMapping;
-        elementMapping = xmlElementsMapping[i]; i++) {
-      if (elementMapping.elementName != null &&
-              elementMapping.className != null) {
-        var desiredType =
-            goog.getObjectByName(elementMapping.className);
-        if (desiredType != null) {
-          if (propertyValue instanceof desiredType) {
-            return elementMapping.elementName;
-          }
-        }
-      } else {
-        return elementMapping.elementName;
-      }
-    }
-  } else {
+
+  if (!goog.isArray(xmlElementsMapping)) {
     return xmlElementsMapping;
+  }
+
+  for (var i = 0, elementMapping;
+      elementMapping = xmlElementsMapping[i]; i++) {
+    if (!goog.isNull(elementMapping.elementName) &&
+        !goog.isNull(elementMapping.className)) {
+      var desiredType = goog.getObjectByName(elementMapping.className);
+      if (!goog.isNull(desiredType)) {
+        if (propertyValue instanceof desiredType) {
+          return elementMapping.elementName;
+        }
+      }
+    } else {
+      return elementMapping.elementName;
+    }
   }
   return propertyName;
 };
@@ -192,8 +199,7 @@ google.system.soap.Object.prototype.serializeProperty_ = function(
   var nodeName = this.getSerializationNodeNameForProperty_(name, value);
   var node = doc.createElement(prefix + ':' + nodeName);
   if (value instanceof google.system.soap.Object) {
-    if (value.getType().getBaseType() !=
-        google.system.soap.Object.prototype.getType()) {
+    if (!goog.isNull(value.getType().getBaseType())) {
       // The prefix for the object may not be the same as prefix of the node.
       // e.g.
       // <o:targets xsi:type="cm:CountryTarget">
@@ -224,10 +230,10 @@ google.system.soap.Object.prototype.getXsiPrefixForNode_ = function(
     childNode, xmlnt) {
   var node = childNode;
   var requiredNs = xmlnt.getNamespaceFromPrefix('xsi');
-  var xsiPrefix = null;
 
   while (this.getNodeName_(node) != null) {
     var foundNs = false;
+    var xsiPrefix;
     for (var i = 0; i < node.attributes.length; i++) {
       if (node.attributes[i].prefix == 'xmlns') {
         if (node.attributes[i].nodeValue == requiredNs) {
@@ -245,12 +251,12 @@ google.system.soap.Object.prototype.getXsiPrefixForNode_ = function(
       }
     }
     if (foundNs) {
-      break;
+      return xsiPrefix;
     } else {
       node = node.parentNode;
     }
   }
-  return xsiPrefix;
+  return null;
 };
 
 /**
@@ -265,31 +271,31 @@ google.system.soap.Object.prototype.getXsiPrefixForNode_ = function(
 google.system.soap.Object.prototype.getTypeAsPerXsiType_ = function(
     xmlnt, childNode, namespace) {
   var xsiPrefix = '';
-  var retVal = null;
+  var xsiType = null;
 
   var xsiPrefix = this.getXsiPrefixForNode_(childNode, xmlnt);
-  if (xsiPrefix == null) {
+  if (goog.isNull(xsiPrefix)) {
     // we walked all the way to the root without finding any xsi namespace.
-    return retVal;
+    return null;
   }
   var xsiTypeNodeName = xsiPrefix + 'type';
 
   for (var i = 0; i < childNode.attributes.length; i++) {
     if (childNode.attributes[i].nodeName == xsiTypeNodeName) {
-      retVal = childNode.attributes[i].nodeValue;
+      xsiType = childNode.attributes[i].nodeValue;
       break;
     }
   }
 
-  if (retVal != null) {
-    var splits = retVal.split(':');
+  if (!goog.isNull(xsiType)) {
+    var splits = xsiType.split(':');
     if (splits.length == 2) {
-      retVal = (namespace == '') ? splits[1] : namespace + '.' + splits[1];
+      xsiType = (namespace == '') ? splits[1] : namespace + '.' + splits[1];
     } else {
-      retVal = (namespace == '') ? splits[0] : namespace + '.' + splits[0];
+      xsiType = (namespace == '') ? splits[0] : namespace + '.' + splits[0];
     }
   }
-  return retVal;
+  return xsiType;
 };
 
 /**
@@ -301,13 +307,8 @@ google.system.soap.Object.prototype.getTypeAsPerXsiType_ = function(
  */
 google.system.soap.Object.prototype.getSerializationNamespace_ = function(
     currentNamespace) {
-  var xmlns = null;
-  xmlns = this.getType().getXmlNamespace();
-  if (xmlns == null) {
-    xmlns = currentNamespace;
-  }
-
-  return xmlns;
+  var xmlns = this.getType().getXmlNamespace();
+  return xmlns || currentNamespace;
 };
 
 /**
@@ -319,23 +320,17 @@ google.system.soap.Object.prototype.getSerializationNamespace_ = function(
  */
 google.system.soap.Object.prototype.getDeserializationFieldName_ = function(
     nodeName) {
-  var type = this.getType();
-  var property = null;
-  var propertyName = null;
-  var allProperties = type.getProperties();
+  var allProperties = this.getType().getProperties();
   for (var i = 0; i < allProperties.length; i++) {
-     property = allProperties[i];
-    propertyName = property.getName();
-    var xmlElementMapping = property.getXmlElementNameMapping();
-    if (goog.typeOf(xmlElementMapping) == 'array') {
+    var propertyName = allProperties[i].getName();
+    var xmlElementMapping = allProperties[i].getXmlElementNameMapping();
+    if (goog.isArray(xmlElementMapping)) {
       for (var j = 0; j < xmlElementMapping.length; j++) {
         if (xmlElementMapping[j].elementName == nodeName) {
           return propertyName;
         }
       }
-    } else if (xmlElementMapping == nodeName) {
-      return propertyName;
-    } else if (propertyName == nodeName) {
+    } else if (xmlElementMapping == nodeName || propertyName == nodeName) {
       return propertyName;
     }
   }
@@ -352,10 +347,10 @@ google.system.soap.Object.prototype.getDeserializationFieldName_ = function(
 google.system.soap.Object.prototype.getNodeName_ = function(node) {
   // IE stores nodename in node.baseName, whereas Firefox, Chrome and related
   // browsers store them in node.localName.
-  var retval = node.localName || node.baseName;
-  if (retval == '') {
+  var nodeName = node.localName || node.baseName;
+  if (nodeName == '') {
     return null;
   } else {
-    return retval;
+    return nodeName;
   }
 };

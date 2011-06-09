@@ -29,6 +29,7 @@ goog.require('google.ads.adwords.Exception');
 /**
  * A custom exception class for wrapping AdWords API SOAP exceptions.
  *
+ * @extends google.ads.adwords.Exception
  * @constructor
  * @param {Object} apiException The original ApiException object from
  * AdWords API.

@@ -48,6 +48,7 @@ goog.require('google.ads.adwords.v201008.TextAd');
  *
  * Tags: BulkMutateJobService.mutate
  *
+ * @extends google.ads.adwords.examples.ExampleBase
  * @constructor
  */
 

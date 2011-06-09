@@ -32,6 +32,7 @@ goog.require('google.system.net.HttpWebTransport');
  *
  * @param {google.system.net.HttpWebTransportSettings} settings Setting to be
  * applied.
+ * @extends google.system.net.HttpWebTransport
  * @constructor
  */
 google.system.net.HttpWebTransportForExtensions = function(settings) {

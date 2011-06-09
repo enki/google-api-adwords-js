@@ -41,6 +41,7 @@ goog.require('google.ads.adwords.v201008.SitelinksExtension');
  *
  * Tags: CampaignAdExtensionService.mutate
  *
+ * @extends google.ads.adwords.examples.ExampleBase
  * @constructor
  */
 

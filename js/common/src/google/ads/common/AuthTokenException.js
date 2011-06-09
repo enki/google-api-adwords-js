@@ -28,6 +28,7 @@ goog.require('google.ads.common.AdsException');
 /**
  * An exception class that represents an exception thrown by ClientLogin API.
  *
+ * @extends google.ads.common.AdsException
  * @constructor
  * @param {number} errorCode The error code associated with this Auth Exception.
  * @param {string} errorUrl The url that describes this error.

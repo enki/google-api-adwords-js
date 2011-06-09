@@ -53,7 +53,8 @@ function forwardCall() {
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_URL, $url);
 
-  $headers = (array) json_decode($_POST['headers']);
+  $headers = (array) json_decode(get_magic_quotes_gpc()? 
+      stripslashes($_POST['headers']) : $_POST['headers']);
 
   if (count($headers) > 0) {
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
@@ -65,7 +66,8 @@ function forwardCall() {
 
   if ($_POST['method'] == 'POST') {
     curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $_POST['params']);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, stripslashes(get_magic_quotes_gpc()? 
+      stripslashes($_POST['params']) : $_POST['params']));
   }
   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
   curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);

@@ -29,6 +29,7 @@ goog.require('google.system.core.Exception');
 /**
  * A generic exception thrown when a SOAP call fails.
  *
+ * @extends google.system.core.Exception
  * @constructor
  * @param {string} faultCode The fault code for this SOAP Exception.
  * @param {string} faultString The fault string for this SOAP Exception.

@@ -151,6 +151,26 @@
           assertEquals(error.getErrorCode(), 'BadAuthentication');
         });
       }
+
+      /**
+       * Test for an expected exception to be thrown in case the transport
+       * can't be instanciated.
+       */
+      function testNonExistentTransport() {
+        var appConfig = new google.ads.common.AppConfigBase();
+        appConfig.readSettings({
+          HttpWebTransport: 'InvalidTransport',
+          HttpWebTransportSettings: {}
+        });
+        var authToken = new google.ads.common.AuthToken(appConfig, service,
+            email, password);
+        authToken.getToken(function () {
+          assertTrue(false);
+        }, function (exception) {
+          // This is the expected path.
+          assertTrue(exception instanceof google.ads.common.AdsException);
+        });
+      }
     </script>
   </body>
 </html>

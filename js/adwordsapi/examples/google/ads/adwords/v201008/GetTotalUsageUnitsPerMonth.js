@@ -37,6 +37,7 @@ goog.require('google.ads.adwords.v201008.InfoService');
  *
  * Tags: InfoService.get
  *
+ * @extends google.ads.adwords.examples.ExampleBase
  * @constructor
  */
 

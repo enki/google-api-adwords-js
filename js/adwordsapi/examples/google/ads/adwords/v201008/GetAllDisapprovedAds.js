@@ -36,6 +36,7 @@ goog.require('google.ads.adwords.v201008.TextAd');
  *
  * Tags: AdGroupAdService.get
  *
+ * @extends google.ads.adwords.examples.ExampleBase
  * @constructor
  */
 google.ads.adwords.examples.v201008.GetAllDisapprovedAds = function() {
@@ -67,14 +68,16 @@ google.ads.adwords.examples.v201008.GetAllDisapprovedAds.prototype.run =
   selector.campaignIds = [campaignId];
 
   try {
-    // Delete ad.
+    // Get all disapproved ads.
     adGroupAdService.get(selector,
       goog.bind(function(page) {
+        var hasDisapprovedAds = false;
         if (page && page.entries && page.entries.length > 0) {
           for (var i = 0, len = page.entries.length; i < len; i++) {
             var adGroupAdValue = page.entries[i];
             if (adGroupAdValue.ad.approvalStatus ==
                 google.ads.adwords.v201008.AdApprovalStatus.DISAPPROVED) {
+              hasDisapprovedAds = true;
               this.writeOutput('Ad id "%s" has been disapproved for the ' +
                   'following reason(s):', adGroupAdValue.ad.id);
               for (var j = 0, len1 = adGroupAdValue.ad.disapprovalReasons.
@@ -84,7 +87,8 @@ google.ads.adwords.examples.v201008.GetAllDisapprovedAds.prototype.run =
               }
             }
           }
-        } else {
+        }
+        if (!hasDisapprovedAds) {
           this.writeOutput('No disapproved ads were found.');
         }
         callback();

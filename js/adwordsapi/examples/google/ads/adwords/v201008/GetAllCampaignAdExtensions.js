@@ -35,6 +35,7 @@ goog.require('google.ads.adwords.v201008.Paging');
  *
  * Tags: CampaignAdExtensionService.get
  *
+ * @extends google.ads.adwords.examples.ExampleBase
  * @constructor
  */
 google.ads.adwords.examples.v201008.GetAllCampaignAdExtensions = function() {

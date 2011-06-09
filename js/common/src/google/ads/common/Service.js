@@ -30,6 +30,7 @@ goog.require('google.system.soap.Service');
  * The base class for all SOAP services supported by this library. Must be
  * subclassed and getCustomException_ implemented.
  *
+ * @extends google.system.soap.Service
  * @constructor
  */
 google.ads.common.Service = function() {

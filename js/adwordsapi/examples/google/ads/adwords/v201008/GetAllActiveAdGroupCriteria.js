@@ -39,6 +39,7 @@ goog.require('google.ads.adwords.v201008.UserStatus');
  *
  * Tags: AdGroupCriterionService.get
  *
+ * @extends google.ads.adwords.examples.ExampleBase
  * @constructor
  */
 

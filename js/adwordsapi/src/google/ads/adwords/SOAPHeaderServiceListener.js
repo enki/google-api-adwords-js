@@ -34,6 +34,7 @@ goog.require('google.system.soap.ServiceListener');
  *
  * @param {google.ads.adwords.AppConfig} config AdWords configuration
  * properties.
+ * @extends google.system.soap.ServiceListener
  * @constructor
  */
 google.ads.adwords.SOAPHeaderServiceListener = function(
@@ -60,7 +61,7 @@ google.ads.adwords.SOAPHeaderServiceListener.prototype.beforeSerialize =
     function(service, methodName, parameterValues, successCallback,
         failureCallback) {
   this.makeRequestHeader_(service, this.config_, goog.bind(this.setHeader_,
-      this, service, successCallback, failureCallback));
+      this, service, successCallback, failureCallback), failureCallback);
 };
 
 /**
@@ -90,10 +91,12 @@ google.ads.adwords.SOAPHeaderServiceListener.prototype.setHeader_ = function(
  * parameters.
  * @param {function} callback A function to be called with the generated
  * RequestHeader object, to be injected in the called service.
+ * @param {function} failureCallback A function to be called when an error is
+ * encountered.
  * @private
  */
 google.ads.adwords.SOAPHeaderServiceListener.prototype.makeRequestHeader_ =
-    function(service, config, callback) {
+    function(service, config, callback, failureCallback) {
   var headers = this.readHeadersFromConfig_(config);
   var requestHeader = service.requestHeader;
   if (requestHeader == null) {
@@ -127,6 +130,8 @@ google.ads.adwords.SOAPHeaderServiceListener.prototype.makeRequestHeader_ =
       config.setConfigValue('authToken', token);
       requestHeader.setAuthToken(token);
       callback(requestHeader);
+    }, function (exception) {
+      failureCallback(exception);
     });
   } else {
     callback(requestHeader);

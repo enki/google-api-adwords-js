@@ -32,11 +32,12 @@ goog.require('google.ads.adwords.v201008.Operator');
 goog.require('google.ads.adwords.v201008.TextAd');
 
 /**
- * This code example adds a text ad to a given ad group. To get ad_group,
+ * This code example adds a text ad to a given ad group. To get ad group,
  * run GetAllAdGroups.js.
  *
  * Tags: AdGroupAdService.mutate
  *
+ * @extends google.ads.adwords.examples.ExampleBase
  * @constructor
  */
 google.ads.adwords.examples.v201008.AddAds = function() {

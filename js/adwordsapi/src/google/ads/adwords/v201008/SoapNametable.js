@@ -3,7 +3,9 @@ goog.provide('google.ads.adwords.v201008.SoapNametable');
 goog.require('google.system.soap.Nametable');
 
 /**
+ * @extends google.system.soap.Nametable
  * @constructor
+ * @ignore
  */
 google.ads.adwords.v201008.SoapNametable = function() {
   google.system.soap.Nametable.call(this);
@@ -17,4 +19,5 @@ google.ads.adwords.v201008.SoapNametable = function() {
     'ch': 'https://adwords.google.com/api/adwords/ch/v201008'
   };
 };
-goog.inherits(google.ads.adwords.v201008.SoapNametable, google.system.soap.Nametable);
+goog.inherits(google.ads.adwords.v201008.SoapNametable,
+    google.system.soap.Nametable);

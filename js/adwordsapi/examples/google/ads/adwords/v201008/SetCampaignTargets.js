@@ -42,6 +42,7 @@ goog.require('google.ads.adwords.v201008.Operator');
  *
  * Tags: CampaignTargetService.mutate
  *
+ * @extends google.ads.adwords.examples.ExampleBase
  * @constructor
  */
 google.ads.adwords.examples.v201008.SetCampaignTargets = function() {

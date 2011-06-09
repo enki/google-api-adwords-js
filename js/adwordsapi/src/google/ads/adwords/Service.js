@@ -30,6 +30,7 @@ goog.require('google.ads.common.Service');
 /**
  * The class that defines SOAP services specific to AdWords.
  *
+ * @extends google.ads.common.Service
  * @constructor
  */
 google.ads.adwords.Service = function() {

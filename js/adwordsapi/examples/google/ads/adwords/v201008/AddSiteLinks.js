@@ -35,6 +35,7 @@ goog.require('google.ads.adwords.v201008.SitelinksExtension');
  *
  * Tags: CampaignAdExtensionService.mutate
  *
+ * @extends google.ads.adwords.examples.ExampleBase
  * @constructor
  */
 
@@ -91,7 +92,7 @@ google.ads.adwords.examples.v201008.AddSiteLinks.prototype.run = function(
     campaignAdExtensionService.mutate([operation],
       goog.bind(function(retVal) {
         if (retVal && retVal.value && retVal.value.length > 0) {
-          for (var i = 0, len = retval.value.length; i < len; i++) {
+          for (var i = 0, len = retVal.value.length; i < len; i++) {
             var campaignExtension = retVal.value[i];
             this.writeOutput('Created a campaign ad extension with id = "%d" ' +
                 'and status = "%s"', campaignExtension.adExtension.id,

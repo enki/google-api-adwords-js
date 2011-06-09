@@ -39,6 +39,7 @@ goog.require('google.ads.adwords.v201008.Operator');
  *
  * Tags: AdExtensionOverrideService.get
  *
+ * @extends google.ads.adwords.examples.ExampleBase
  * @constructor
  */
 
