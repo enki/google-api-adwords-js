@@ -1,0 +1,11 @@
+AdWords API JavaScript Library - Using compiled scripts
+=======================================================
+
+If you are a developer who
+- is interested in using the AdWords API JS library
+- don't plan to use closure library in your project,
+- is fine with downloading ~600KB uncompressed JS into your project
+- do not wish to run other tools like closure compiler
+
+then you can use the scripts in this folder. See index.htm for an example on
+how to use the scripts inside this folder.

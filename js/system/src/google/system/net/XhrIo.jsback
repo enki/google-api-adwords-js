@@ -1,0 +1,159 @@
+goog.provide('google.system.net.XhrIo');
+goog.provide('google.system.net.XmlHttpFactory');
+goog.require('goog.net.XhrIo');
+goog.require('goog.net.DefaultXmlHttpFactory');
+
+google.system.net.XmlHttpFactory = function() {
+  goog.net.DefaultXmlHttpFactory.call(this);
+  this.rawXhr_ =
+      goog.net.DefaultXmlHttpFactory.prototype.createInstance.call(this);
+};
+goog.inherits(google.system.net.XmlHttpFactory, goog.net.DefaultXmlHttpFactory);
+
+google.system.net.XmlHttpFactory.prototype.createInstance = function() {
+  return this.getRawXhr();
+};
+
+google.system.net.XmlHttpFactory.prototype.getRawXhr = function() {
+  return this.rawXhr_;
+};
+
+google.system.net.XhrIo = function() {
+  this.xmlHttpFactory = new google.system.net.XmlHttpFactory();
+  goog.net.XhrIo.call(this, this.xmlHttpFactory);
+  this.url_ = null;
+  this.content_ = null;
+  this.headers_ = null;
+  this.method_ = null;
+  this.binaryMode_ = false;
+};
+goog.inherits(google.system.net.XhrIo, goog.net.XhrIo);
+
+google.system.net.XhrIo.prototype.getBinaryMode = function() {
+  return this.binaryMode_;
+};
+
+google.system.net.XhrIo.prototype.setBinaryMode = function(binaryMode) {
+  this.binaryMode_ = binaryMode;
+};
+
+google.system.net.XhrIo.prototype.getUrl = function() {
+  return this.url_;
+};
+
+google.system.net.XhrIo.prototype.setUrl = function(url) {
+  this.url_ = url;
+};
+
+google.system.net.XhrIo.prototype.getContent = function() {
+  return this.content_;
+};
+
+google.system.net.XhrIo.prototype.setContent = function(content) {
+  this.content_ = content;
+};
+
+google.system.net.XhrIo.prototype.getHeaders = function() {
+  return this.headers_;
+};
+
+google.system.net.XhrIo.prototype.setHeaders = function(headers) {
+  this.headers_ = headers;
+};
+
+google.system.net.XhrIo.prototype.getMethod = function() {
+  return this.method_;
+};
+
+google.system.net.XhrIo.prototype.setMethod = function(method) {
+  this.method_ = method;
+};
+
+var isOnIE = (/msie/i.test(navigator.userAgent) &&
+    !/opera/i.test(navigator.userAgent));
+
+if (isOnIE) {
+  var vbScriptFunction = [
+    '<script type="text/vbscript">',
+      'Function BinaryToArray(Binary)',
+        'Dim i',
+        'ReDim byteArray(LenB(Binary))',
+        'For i = 1 To LenB(Binary)',
+          'byteArray(i-1) = AscB(MidB(Binary, i, 1))',
+        'Next',
+        'BinaryToArray = byteArray',
+      'End Function',
+    '</script>'
+  ].join('\n');
+  document.write(vbScriptFunction);
+}
+
+google.system.net.XhrIo.create = function(url, opt_callback, opt_method,
+    opt_content, opt_headers, opt_timeoutInterval) {
+  var x = new google.system.net.XhrIo();
+  goog.net.XhrIo.sendInstances_.push(x);
+
+  var mycallback = goog.bind(function(event) {
+    var response = {
+      success: event.target.isSuccess(),
+      status: event.target.getStatus(),
+      text: isOnIE? x.getRawXhr().responseBody: event.target.getResponseText()
+    };
+
+    if (this.getBinaryMode()) {
+      if (isOnIE) {
+        try {
+          response.text = BinaryToArray(response.text).toArray();
+        } catch (ex) {
+
+        }
+      } else {
+        var byteArray = [];
+        for (var i = 0, len = response.text.length; i < len; i++) {
+          byteArray.push(response.text.charCodeAt(i) & 0xff);
+        }
+        response.text = byteArray;
+      }
+    }
+    if (opt_callback) {
+      opt_callback(response);
+    }
+  }, x);
+
+  if (opt_callback) {
+    goog.events.listen(x, goog.net.EventType.COMPLETE, mycallback);
+  }
+  goog.events.listen(x,
+                     goog.net.EventType.READY,
+                     goog.partial(goog.net.XhrIo.cleanupSend_, x));
+  if (opt_timeoutInterval) {
+    x.setTimeoutInterval(opt_timeoutInterval);
+  }
+  x.setUrl(url);
+  x.setMethod(opt_method);
+  x.setContent(opt_content);
+  x.setHeaders(opt_headers);
+  return x;
+};
+
+google.system.net.XhrIo.send = function(url, opt_callback, opt_method,
+    opt_content, opt_headers, opt_timeoutInterval) {
+  var x = google.system.net.XhrIo.create(url, opt_callback, opt_method,
+      opt_content, opt_headers, opt_timeoutInterval);
+  x.send();
+};
+
+google.system.net.XhrIo.prototype.send = function() {
+  if (this.getBinaryMode()) {
+    var rawXhr = this.getRawXhr();
+    if (rawXhr.overrideMimeType) {
+      rawXhr.overrideMimeType('text/plain; charset=x-user-defined');
+    }
+  }
+  goog.net.XhrIo.prototype.send.call(this, this.getUrl(), this.getMethod(),
+      this.getContent(), this.getHeaders());
+};
+
+google.system.net.XhrIo.prototype.getRawXhr = function( ){
+  return this.xmlHttpFactory.getRawXhr();
+};

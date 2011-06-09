@@ -1,0 +1,92 @@
+/**
+ * Copyright 2011, Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * author: api.anash@gmail.com (Anash P. Oommen)
+ *
+ * Style sheet for index.htm.
+ */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#logoholder {
+  float: left;
+  padding-top: 20px;
+}
+
+#titleholder {
+  float: left;
+  padding-top: 20px;
+  margin-top: 10px;
+  margin-left: 10px;
+  color: #133BC1;
+}
+
+#titleholder h1 {
+  font-family: Arial;
+  font-weight: normal;
+  font-size: 28px;
+}
+
+body {
+  font-family: "Verdana", sans-serif;
+  font-size: 11px;
+  color: #345;
+  padding-bottom: 1em;
+}
+
+#header {
+  padding: 5px 5px 30px 10px;
+}
+
+#footer {
+  text-align: center;
+  padding: 10px 10px 10px 10px;
+}
+
+#main {
+  background-color: #FFFFFF;
+  width: 100%;
+}
+
+#leftpanel {
+  width: 25%;
+  float: left;
+}
+
+#rightpanel {
+  width: 75%;
+  float: right;
+}
+
+#leftcontainer {
+  padding: 0px 5px 0px 5px;
+}
+
+#rightcontainer {
+  padding: 0px 10px 0px 10px;
+}
+
+#maindiv {
+  padding-left: 10px;
+  padding-top: 10px;
+  background-color: #E5F2FB;
+}
+
+#results {
+  width: 100%;
+}

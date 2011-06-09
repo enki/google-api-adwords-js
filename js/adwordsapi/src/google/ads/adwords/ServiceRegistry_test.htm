@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <!--
+    Copyright 2011, Google Inc. All Rights Reserved.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    author: api.anash@gmail.com (Anash P. Oommen)
+    author: api.davidtorres@gmail.com (David Torres)
+  -->
+  <head>
+    <title>google.ads.adwords tests - google.ads.adwords.ServiceRegistry</title>
+    <script src="../../../../../closure/goog/base.js"></script>
+    <script src="../../../../../adwordsapi/src/awapi.js"></script>
+    <script>
+      goog.require('goog.array');
+      goog.require('goog.testing.jsunit');
+      goog.require('goog.testing.recordFunction');
+      goog.require('google.ads.adwords.ServiceRegistry');
+      goog.require('google.ads.adwords.ServiceSignature');
+    </script>
+  </head>
+  <body>
+    <script>
+      var registry;
+
+      function setUp() {
+        registry = google.ads.adwords.ServiceRegistry.getInstance();
+      }
+
+      function tearDown() {
+      }
+
+      function testRegisterServiceFactory() {
+        var factory = function () { };
+        var signature = registry.registerServiceFactory('v1', 'cm', 'service',
+            factory);
+
+        assertEquals('v1', signature.getVersion());
+        assertEquals('cm', signature.getGroupName());
+        assertEquals('service', signature.getServiceName());
+        assertEquals('v1.service', signature.getId());
+        assertNotNull(eval('google.ads.adwords.AdWordsService.v1.service'));
+        assertEquals(factory, registry.getServiceFactoryClass(signature));
+      }
+    </script>
+  </body>
+</html>

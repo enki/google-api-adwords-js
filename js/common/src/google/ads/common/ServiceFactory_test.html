@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <!--
+    Copyright 2011, Google Inc. All Rights Reserved.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    author: api.anash@gmail.com (Anash P. Oommen)
+  -->
+  <head>
+    <title>google.ads.common tests - google.ads.common.ServiceFactory</title>
+    <script src="../../../../../closure/goog/base.js"></script>
+    <script src="../../../../../adwordsapi/src/awapi.js"></script>
+    <script>
+      goog.require('goog.array');
+      goog.require('goog.testing.jsunit');
+      goog.require('goog.testing.recordFunction');
+
+      goog.require('google.ads.common.AppConfigBase');
+      goog.require('google.ads.common.ServiceFactory');
+    </script>
+  </head>
+  <body>
+    <script>
+      var MockAppConfigBase = function() {
+        google.ads.common.AppConfigBase.call(this);
+        this.testKey_ = null;
+      };
+      goog.inherits(MockAppConfigBase, google.ads.common.AppConfigBase);
+
+      MockAppConfigBase.prototype.getTestKey = function() {
+        return this.testKey_;
+      };
+
+      MockAppConfigBase.prototype.setTestKey = function(testKey) {
+        this.testKey_ = testKey;
+      };
+
+      var appConfig;
+
+      var config = {
+        TestKey: 'TestValue',
+        HttpWebTransport: 'google.system.net.HttpWebTransportForServerProxy',
+        HttpWebTransportSettings: {
+          ProxyUrl: '/awapijs/proxy.php'
+        }
+      };
+
+      var factory;
+
+      /**
+       * Initialize the test case.
+       */
+      function setUp() {
+        appConfig = new MockAppConfigBase();
+        factory = new google.ads.common.ServiceFactory(appConfig);
+      }
+
+      /**
+       * Cleanup the test case.
+       */
+      function tearDown() {
+      }
+
+      /*
+       * Test if we can get the config values.
+       */
+      function testGetConfig() {
+        assertObjectEquals(factory.getAppConfig(), appConfig);
+      }
+
+      /*
+       * Test if we can create a service.
+       */
+      function testCreateService() {
+        assertNull(factory.createService(null, null));
+      }
+    </script>
+  </body>
+</html>

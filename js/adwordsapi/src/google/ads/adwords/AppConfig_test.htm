@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <!--
+    Copyright 2011, Google Inc. All Rights Reserved.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    author: api.anash@gmail.com (Anash P. Oommen)
+  -->
+  <head>
+    <title>google.ads.adwords tests - google.ads.adwords.ApiException</title>
+    <script src="../../../../../closure/goog/base.js"></script>
+    <script src="../../../../../adwordsapi/src/awapi.js"></script>
+    <script>
+      goog.require('goog.array');
+      goog.require('goog.testing.jsunit');
+      goog.require('goog.testing.recordFunction');
+
+      goog.require('google.ads.adwords.AppConfig');
+    </script>
+  </head>
+  <body>
+    <script>
+      var testConfig = {
+        AdWordsApi: {
+          UserAgent: 'test useragent',
+          Email: 'test email',
+          Password: 'test password',
+          ClientEmail: 'test clientemail',
+          DeveloperToken: 'test developer token',
+          ClientCustomerId: 'test client customerid',
+          AuthToken: 'test authtoken',
+          AdWordsApiServer: 'test adwordsapi server',
+          HttpWebTransport: 'google.system.net.HttpWebTransportForServerProxy',
+          HttpWebTransportSettings: {
+            ProxyUrl: '/awapijs/proxy.php'
+          }
+        }
+      };
+
+      var config;
+
+      /**
+       * Initialize the test case.
+       */
+      function setUp() {
+        google.system.core.Runtime.getInstance().setConfig({AdWordsApi: {}});
+        config = new google.ads.adwords.AppConfig();
+      }
+
+      /**
+       * Cleanup the test case.
+       */
+      function tearDown() {
+      }
+
+      /*
+       * Test if we can set and get auth token.
+       */
+      function testSetGetAuthToken() {
+        config.setAuthToken(testConfig.AdWordsApi.AuthToken);
+        assertEquals(config.getAuthToken(), testConfig.AdWordsApi.AuthToken);
+      }
+
+      /*
+       * Test if we can set and get email.
+       */
+      function testSetGetEmail() {
+        config.setEmail(testConfig.AdWordsApi.Email);
+        assertEquals(config.getEmail(), testConfig.AdWordsApi.Email);
+      }
+
+      /*
+       * Test if we can set and get password.
+       */
+      function testSetGetPassword() {
+        config.setPassword(testConfig.AdWordsApi.Password);
+        assertEquals(config.getPassword(), testConfig.AdWordsApi.Password);
+      }
+
+      /*
+       * Test if we can set and get client email.
+       */
+      function testSetGetClientEmail() {
+        config.setClientEmail(testConfig.AdWordsApi.ClientEmail);
+        assertEquals(config.getClientEmail(),
+            testConfig.AdWordsApi.ClientEmail);
+      }
+
+      /*
+       * Test if we can set and get client customer id.
+       */
+      function testSetGetClientCustomerId() {
+        config.setClientCustomerId(testConfig.AdWordsApi.ClientCustomerId);
+        assertEquals(config.getClientCustomerId(),
+            testConfig.AdWordsApi.ClientCustomerId);
+      }
+
+      /*
+       * Test if we can set and get developer token.
+       */
+      function testSetGetDeveloperToken() {
+        config.setDeveloperToken(testConfig.AdWordsApi.DeveloperToken);
+        assertEquals(config.getDeveloperToken(),
+            testConfig.AdWordsApi.DeveloperToken);
+      }
+
+      /*
+       * Test if we can set and get user agent.
+       */
+      function testSetGetUserAgent() {
+        config.setUserAgent(testConfig.AdWordsApi.UserAgent);
+        assertEquals(config.getUserAgent(), testConfig.AdWordsApi.UserAgent);
+      }
+
+      /*
+       * Test if we can set and get legacy api server.
+       */
+      function testSetGetAdWordsApiServer() {
+        config.setAdWordsApiServer(testConfig.AdWordsApi.AdWordsApiServer);
+        assertEquals(config.getAdWordsApiServer(), testConfig.AdWordsApi.
+            AdWordsApiServer);
+      }
+
+      /*
+       * Tests passing a custom config and no config set via runtime.
+       */
+      function testCustomConfig() {
+        google.system.core.Runtime.getInstance().setConfig();
+        config = new google.ads.adwords.AppConfig();
+        config.readSettings(testConfig.AdWordsApi);
+        assertEquals(config.getAuthToken(), testConfig.AdWordsApi.AuthToken);
+        assertEquals(config.getEmail(), testConfig.AdWordsApi.Email);
+        assertEquals(config.getPassword(), testConfig.AdWordsApi.Password);
+        assertEquals(config.getClientEmail(),
+          testConfig.AdWordsApi.ClientEmail);
+        assertEquals(config.getClientCustomerId(),
+          testConfig.AdWordsApi.ClientCustomerId);
+        assertEquals(config.getDeveloperToken(),
+          testConfig.AdWordsApi.DeveloperToken);
+        assertEquals(config.getUserAgent(), testConfig.AdWordsApi.UserAgent);
+        assertEquals(config.getAdWordsApiServer(), testConfig.AdWordsApi.
+          AdWordsApiServer);
+       }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,180 @@
+AdWords API JavaScript Client Library
+=====================================
+
+Google's AdWords API service lets developers design computer programs that
+interact directly with the AdWords platform. With these applications,
+advertisers and third parties can more efficiently--and creatively--manage
+their large or complex AdWords accounts and campaigns.
+
+The AdWords API JavaScript Client Library makes it easier to write javascript
+clients (web pages, browser extensions, Gadgets) to programmatically access
+AdWords accounts. One of the main features of this client library is that it
+hides the SOAP layer from end user, which makes it much easier to interact
+with the API.
+
+The fundamental XML manipulations are based in the Closure library.
+On top of it, the library handles all the serialization/de-serialization and
+transport of entities defined in the AdWords API WSDLs.
+
+Different transport mechanisms are offered and can be configured via the
+HttpWebTransport configuration property inside config.js file. Refer to the
+"Transport mechanisms" section in this file for more information.
+
+The AdWords API JavaScript Client Library currently supports versions v201003
+and v201008 of the AdWords API, and can be used in the Production or Sandbox
+environments.
+
+Code examples, located in "js/adwordsapi/examples", demonstrate some examples of
+using client library.
+
+The client library includes a set of unit tests located along with the source
+files and based on Closure testing framework. All unit tests are (and should be)
+executed against Sandbox environment. Whenever changes are made to the client
+library, the appropriate unit test should be executed to make sure that
+everything is working as intended and no new bugs were introduced.
+
+
+Step-by-step guide for getting started:
+---------------------------------------
+
+This is a simple guide that teach you how to configure the library to run its
+examples.
+
+1) You'll need to have a web server capable of running PHP, we recommend you
+use Apache Http Server (http://httpd.apache.org/). It is outside the scope of
+this guide to explain how to install the Apache Web Server and PHP.
+
+2) Un-package the library in a folder that is shared by your web server. On
+a most default installations of Apache on Linux that folder would be /var/www.
+For the purpose of this short guide we are going to assume your installation
+folder is /var/www/awapi-js-lib.
+
+3) Un-package the Closure library, which comes with the library. It is located
+inside the js folder named closure.zip, after un-packaging it you should have
+a folder js/closure in it, that contains all Closure library files.
+
+4) Point your browser to http://<your server address>/awapi-js-lib/ (assuming
+your server is installed in the default port 80).
+
+5) Click on any of the examples and enjoy!
+
+
+Transpost mechanisms
+--------------------
+
+Along with the library a set of transport implementations are provided to allow
+you develop against the library on different enviroments. The transport in use
+is configured through the js/adwordsapi/src/config.js file by its
+HttpWebTransport property. Some transports require extra settings that get
+configured via its HttpWebTransportSettings property.
+
+This is the list of currently shipped transport implementations:
+
+- google.system.net.HttpWebTransportForServerProxy
+
+This is the default transport mechanism to be used by regular web applications,
+it uses an intermediate proxy end-point to route API calls to Google AdWords API
+servers. Along with this JavaScript implementation a proxy.php file is provided
+that contains the logic to route all requests to authorized servers.
+
+This transport uses the HttpWebTransportSettings property in the config.js to
+allow you setup the location (ProxyUrl) of the proxy.php file in your servier.
+If you have installed the library in a location other than /awapi-js-lib then
+you would need to modify this property in your config.js file.
+
+- google.system.net.HttpWebTransportForGadgetsApi
+
+Uses Google Gadgets (http://code.google.com/apis/gadgets/index.html)
+infrastructure to route API requests.
+
+No extra configuration for this transport is required if you are running your
+code inside the Google Gadgets hosted environment.
+
+- google.system.net.HttpWebTransportForExtensions
+
+When writing code for a browser extension there is no need of an intermediate
+proxy and calls can be done directly from the code to the AdWords API servers.
+
+No extra configuration is required for this transport, but keep in mind that
+every extension environment has different ways to specify authorized URLs which
+your extension can make calls against. For example in a Chrome Extension
+a permissions configuration must be given inside the manifest.json of your
+extension and that configuration will look like:
+
+{
+  "name": "<YOUR EXTENSION NAME>",
+  "version": "1.0",
+  "description": "YOUR EXTENSION DESC",
+  "browser_action": {
+    "default_icon": "<YOUR EXTENSION ICON>",
+    "popup": "<YOUR EXTENSION MAIN VIEW>"
+  },
+  "permissions": [
+    // Here you include the endpoint of every API service your code is
+    // going to call.
+    "https://adwords.google.com/api/adwords/cm/v201008/CampaignService",
+    ...
+    "https://www.google.com/select/ClientLogin",
+    "tabs"
+  ]
+}
+
+The Library and the Closure compiler
+------------------------------------
+
+The library comes with two forms of scripts: closure dependencies only files and
+compiled files. In the first case the browser will load on demand the files that
+are needed, which potentially decreases the amount of code to be transfered but
+increases the latency on requiring every file to be downloaded separately.
+In the second case the inclusion of the compiled scripts will effectively
+download all the necessary code decreasing the latency but potentially
+increasing the amount of code to be downloaded and never used.
+
+We recommend you use the dependency only files while on development so you can a
+have a friendly debugging view of the files and then switch to the compiled
+versions when running your code in production since the compiled code has been
+optimized and minified to reduce the size of download, but which causes the
+debugging to be really hard.
+
+To start using the library with the dependency only files, you need to include
+the following in your web page:
+
+<script src="<YOUR INSTALLATION PATH>/js/closure/goog/base.js"></script>
+<script src="<YOUR INSTALLATION PATH>/js/adwordsapi/src/awapi.js"></script>
+<script src="<YOUR INSTALLATION PATH>/js/adwordsapi/src/config.js"></script>
+
+To start using the compiled versions,  you need to include the following in your
+web page:
+
+<script src="<YOUR INSTALLATION PATH>/js/compiled/awapi.js"></script>
+<script src="<YOUR INSTALLATION PATH>/js/compiled/v201008.js"></script>
+<script src="<YOUR INSTALLATION PATH>/js/compiled/config.js"></script>
+
+See js/compiled/README for more details.
+
+Alternative with the library we provide a set of compilation scripts
+(based in the Closure compiler) that you can customize to generate your own
+compiled and minified version of the library along with your code if required.
+
+In order to use the compilation scripts you require to have Python and Java
+installed. See tools/scripts/build.sh for more information on compiling your own
+files.
+
+
+Where do I submit bug reports and/or feature requests?
+------------------------------------------------------
+
+Use the issue tracker at
+
+  http://code.google.com/p/google-api-adwords-js/issues/list
+
+
+External Dependencies:
+----------------------
+
+Google Closure library http://code.google.com/closure/ - Included in the js
+folder.
+
+Author:
+    anash.p.ommen (Anash P. Oommen)
+    david.t (David Torres)

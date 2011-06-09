@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <!--
+    Copyright 2011, Google Inc. All Rights Reserved.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    author: api.anash@gmail.com (Anash P. Oommen)
+    author: api.davidtorres@gmail.com (David Torres)
+  -->
+  <head>
+    <title>google.ads.common tests - google.ads.common.ServiceRegistry</title>
+    <script src="../../../../../closure/goog/base.js"></script>
+    <script src="../../../../../adwordsapi/src/awapi.js"></script>
+    <script>
+      goog.require('goog.array');
+      goog.require('goog.testing.jsunit');
+      goog.require('goog.testing.recordFunction');
+      goog.require('google.ads.common.ServiceRegistry');
+      goog.require('google.ads.common.ServiceSignature');
+    </script>
+  </head>
+  <body>
+    <script>
+      var registry;
+
+      /**
+       * Initialize the test case.
+       */
+      function setUp() {
+        registry = new google.ads.common.ServiceRegistry();
+      }
+
+      /**
+       * Cleanup the test case.
+       */
+      function tearDown() {
+      }
+
+      /**
+       * Tests if we can register a service instance.
+       */
+      function testRegisterService() {
+        var signature1 = new google.ads.common.ServiceSignature('v1', 'service',
+            'SOAP');
+        var signature2 = new google.ads.common.ServiceSignature('v2', 'service',
+            'SOAP');
+        var factory1 = function () { };
+        var factory2 = function () { };
+
+        registry.registerServiceFactory(signature1, factory1);
+        assertTrue(registry.getServiceSignatures().indexOf(signature1) > -1);
+        registry.registerServiceFactory(signature2, factory2);
+        assertTrue(registry.getServiceSignatures().indexOf(signature1) > -1);
+        assertEquals(factory1, registry.getServiceFactoryClass(signature1));
+        assertEquals(factory2, registry.getServiceFactoryClass(signature2));
+      }
+    </script>
+  </body>
+</html>

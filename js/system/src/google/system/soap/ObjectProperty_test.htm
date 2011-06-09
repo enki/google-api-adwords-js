@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <!--
+    Copyright 2011, Google Inc. All Rights Reserved.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    author: api.anash@gmail.com (Anash P. Oommen)
+    author: api.davidtorres@gmail.com (David Torres)
+  -->
+  <head>
+    <title>system.soap unit tests - google.system.soap.ObjectProperty</title>
+    <script src="../../../../../closure/goog/base.js"></script>
+    <script src="../../../../../adwordsapi/src/awapi.js"></script>
+    <script>
+      goog.require('goog.array');
+      goog.require('goog.testing.jsunit');
+      goog.require('goog.testing.recordFunction');
+      goog.require('google.system.soap.Object');
+      goog.require('google.system.soap.ObjectProperty');
+    </script>
+  </head>
+  <body>
+    <script>
+      var headers;
+      var parameters;
+      var xmlElementNameMapping;
+
+      /**
+       * Initialize the test case.
+       */
+      function setUp() {
+        headers = [{
+          direction: 'in',
+          propertyName: 'requestHeader'
+        }];
+        parameters = [{
+          typeName: 'CampaignReturnValue',
+          isArray: true,
+          isSystem: false,
+          propertyName: 'campaignReturnValue',
+          xmlElementName: 'rval'
+        }];
+        xmlElementNameMapping = [{
+          elementName: 'elementName',
+          type: 'typename'
+        }];
+      }
+
+      /**
+       * Cleanup the test case.
+       */
+      function tearDown() {
+      }
+
+      /**
+       * Test if we can create an object property.
+       */
+      function testCreateObjectProperty() {
+        var property = new google.system.soap.ObjectProperty('name',
+            'google.system.soap.Object', xmlElementNameMapping, true, false);
+
+        assertEquals(property.getName(), 'name');
+        assertEquals(property.getFullClassName(), 'google.system.soap.Object');
+        assertTrue(property.getType() == (new google.system.soap.Object()).
+            getType());
+        assertEquals(property.getSetterName(), 'setName');
+        assertEquals(property.getGetterName(), 'getName');
+        assertEquals(property.getXmlElementNameMapping().length, 1);
+        assertEquals(property.getXmlElementNameMapping()[0].elementName,
+            'elementName');
+        assertTrue(property.isArray());
+        assertTrue(!property.isSystem());
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <!--
+    Copyright 2011, Google Inc. All Rights Reserved.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    author: api.anash@gmail.com (Anash P. Oommen)
+  -->
+  <head>
+    <title>google.ads.adwords tests - google.ads.adwords.RequestHeader</title>
+    <script src="../../../../../closure/goog/base.js"></script>
+    <script src="../../../../../adwordsapi/src/awapi.js"></script>
+    <script>
+      goog.require('goog.array');
+      goog.require('goog.testing.jsunit');
+      goog.require('goog.testing.recordFunction');
+
+      goog.require('google.ads.adwords.RequestHeader');
+    </script>
+  </head>
+  <body>
+    <script>
+      var requestHeader;
+
+      authToken = 'test authtoken';
+      clientCustomerId = 'test client customer id';
+      clientEmail = 'test client email';
+      developerToken = 'test developer token';
+      userAgent = 'test userAgent';
+      validateOnly = true;
+      partialFailure = true;
+
+      /**
+       * Initialize the test case.
+       */
+      function setUp() {
+        requestHeader = new google.ads.adwords.RequestHeader();
+      }
+
+      /**
+       * Cleanup the test case.
+       */
+      function tearDown() {
+      }
+
+      /*
+       * Test if we can get and set authtoken, and that it is accessible using
+       * the authtoken field.
+       */
+      function testSetGetAuthToken() {
+        requestHeader.setAuthToken(authToken);
+        assertEquals(requestHeader.getAuthToken(), authToken);
+        assertEquals(requestHeader.authToken, authToken);
+      }
+
+      /*
+       * Test if we can get and set clientCustomerId, and that it is accessible
+       * using the clientCustomerId field.
+       */
+      function testSetGetClientCustomerId() {
+        requestHeader.setClientCustomerId(clientCustomerId);
+        assertEquals(requestHeader.getClientCustomerId(), clientCustomerId);
+        assertEquals(requestHeader.clientCustomerId, clientCustomerId);
+      }
+
+      /*
+       * Test if we can get and set clientEmail, and that it is accessible
+       * using the clientEmail field.
+       */
+      function testSetGetClientEmail() {
+        requestHeader.setClientEmail(clientEmail);
+        assertEquals(requestHeader.getClientEmail(), clientEmail);
+        assertEquals(requestHeader.clientEmail, clientEmail);
+      }
+
+      /*
+       * Test if we can get and set developerToken, and that it is accessible
+       * using the developerToken field.
+       */
+      function testSetGetDeveloperToken() {
+        requestHeader.setDeveloperToken(developerToken);
+        assertEquals(requestHeader.getDeveloperToken(), developerToken);
+        assertEquals(requestHeader.developerToken, developerToken);
+      }
+
+      /*
+       * Test if we can get and set userAgent, and that it is accessible
+       * using the userAgent field.
+       */
+      function testSetGetUserAgent() {
+        requestHeader.setUserAgent(userAgent);
+        assertEquals(requestHeader.getUserAgent(), userAgent);
+        assertEquals(requestHeader.userAgent, userAgent);
+      }
+
+      /*
+       * Test if we can get and set validateOnly, and that it is accessible
+       * using the validateOnly field.
+       */
+      function testSetGetValidateOnly() {
+        requestHeader.setValidateOnly(validateOnly);
+        assertEquals(requestHeader.getValidateOnly(), validateOnly);
+        assertEquals(requestHeader.validateOnly, validateOnly);
+      }
+
+      /*
+       * Test if we can get and set partialFailure, and that it is accessible
+       * using the partialFailure field.
+       */
+      function testSetGetPartialFailure() {
+        requestHeader.setPartialFailure(partialFailure);
+        assertEquals(requestHeader.getPartialFailure(), partialFailure);
+        assertEquals(requestHeader.partialFailure, partialFailure);
+      }
+    </script>
+  </body>
+</html>

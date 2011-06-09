@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+  <!--
+    Copyright 2011, Google Inc. All Rights Reserved.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    author: api.anash@gmail.com (Anash P. Oommen)
+    author: api.davidtorres@gmail.com (David Torres)
+  -->
+  <head>
+    <title>system.soap unit tests - google.system.soap.MethodSignature</title>
+    <script src="../../../../../closure/goog/base.js"></script>
+    <script src="../../../../../adwordsapi/src/awapi.js"></script>
+    <script>
+      goog.require('goog.array');
+      goog.require('goog.testing.jsunit');
+      goog.require('goog.testing.recordFunction');
+      goog.require('google.system.soap.MethodSignature');
+    </script>
+  </head>
+  <body>
+    <script>
+      var requestNamespace;
+      var responseNamespace;
+      var methodUse;
+      var parameterStyle;
+      var returnXmlElement;
+      var returnTypeDefinition;
+      var headers;
+      var parameters;
+
+      /**
+      * Initialize the test case.
+      */
+      function setUp() {
+        requestNamespace = 'requestne';
+        responseNamespace = 'responsene';
+        methodUse = 'use';
+        parameterStyle = 'pstyle';
+        returnXmlElement = 'returnXml';
+
+        returnTypeDefinition = {
+          typeName: 'type',
+          isArray: true,
+          isSystem: false
+        };
+
+        headers = [{
+          direction: 'in',
+          propertyName: 'requestHeader'
+        }];
+
+        parameters = [{
+          typeName: 'CampaignReturnValue',
+          isArray: true,
+          isSystem: false,
+          propertyName: 'campaignReturnValue',
+          xmlElementName: 'rval'
+        }];
+      }
+
+      /**
+      * Cleanup the test case.
+      */
+      function tearDown() {
+      }
+
+      /**
+      * Perform assertion for required parameters for a MethodSignature object.
+      *
+      * @param {google.system.soap.MethodSignature} methodSignature The method
+      * signature whose properties should be asserted.
+      */
+      function assertCommonGetters(methodSignature) {
+        assertEquals(methodSignature.getRequestNamespace(), requestNamespace);
+        assertEquals(methodSignature.getResponseNamespace(), responseNamespace);
+        assertEquals(methodSignature.getUse(), methodUse);
+        assertEquals(methodSignature.getParameterStyle(), parameterStyle);
+        assertEquals(methodSignature.getReturnXmlElement(), returnXmlElement);
+        assertObjectEquals(methodSignature.getReturnTypeDefinition(),
+            returnTypeDefinition);
+      }
+
+      /**
+      * Test if we can create a method signature without providing the optional
+      * parameters.
+      */
+      function testCreateMethodSignatureNoHeaderAndParameters() {
+        var methodSignature = new google.system.soap.MethodSignature(
+            requestNamespace, responseNamespace, methodUse, parameterStyle,
+            returnXmlElement, returnTypeDefinition);
+
+        assertCommonGetters(methodSignature);
+        assertNotNull(methodSignature.getHeaders());
+        assertEquals(methodSignature.getHeaders().length, 0);
+        assertNotNull(methodSignature.getParameters());
+        assertEquals(methodSignature.getParameters().length, 0);
+      }
+
+      /**
+      * Test if we can create a method signature when providing the optional
+      * parameters.
+      */
+      function testCreateMethodSignatureWithHeaderAndParameters() {
+        var methodSignature = new google.system.soap.MethodSignature(
+            requestNamespace, responseNamespace, methodUse, parameterStyle,
+            returnXmlElement, returnTypeDefinition, headers, parameters);
+
+        assertCommonGetters(methodSignature);
+        assertArrayEquals(methodSignature.getHeaders(), headers);
+        assertArrayEquals(methodSignature.getParameters(), parameters);
+      }
+
+      /**
+      * Test if we can add a header and retrieve it.
+      */
+      function testAddHeader() {
+        var methodSignature = new google.system.soap.MethodSignature(
+            requestNamespace, responseNamespace, methodUse, parameterStyle,
+            returnXmlElement, returnTypeDefinition);
+
+        var propertyName = 'headerProperty';
+        var direction = 'in';
+        methodSignature.addHeader(propertyName, direction);
+
+        assertNotNull(methodSignature.getHeaders());
+        assertEquals(methodSignature.getHeaders().length, 1);
+        assertEquals(methodSignature.getHeaders()[0].propertyName,
+            propertyName);
+        assertEquals(methodSignature.getHeaders()[0].direction, direction);
+      }
+
+      /**
+      * Test if we can add a parameter and retrieve it by index.
+      */
+      function testAddParameter() {
+        var methodSignature = new google.system.soap.MethodSignature(
+            requestNamespace, responseNamespace, methodUse, parameterStyle,
+            returnXmlElement, returnTypeDefinition);
+
+        var className = 'type';
+        var isArray = false;
+        var isSystem = true;
+        var name = 'name';
+        var xmlElementName = 'xmlName';
+
+        methodSignature.addParameter(className, isArray, isSystem, name,
+            xmlElementName);
+
+        assertNotNull(methodSignature.getParameters());
+        assertEquals(methodSignature.getParameters().length, 1);
+        assertEquals(methodSignature.getParameters()[0].className, className);
+        assertEquals(methodSignature.getParameters()[0].isArray, isArray);
+        assertEquals(methodSignature.getParameters()[0].isSystem, isSystem);
+        assertEquals(methodSignature.getParameters()[0].name, name);
+        assertEquals(methodSignature.getParameters()[0].xmlElementName,
+            xmlElementName);
+      }
+
+      /**
+      * Test if we can add a parameter and retrieve it by name.
+      */
+      function testGetParameterByName() {
+        var methodSignature = new google.system.soap.MethodSignature(
+            requestNamespace, responseNamespace, methodUse, parameterStyle,
+            returnXmlElement, returnTypeDefinition);
+
+        var className = 'type';
+        var isArray = false;
+        var isSystem = true;
+        var name = 'name';
+        var xmlElementName = 'xmlName';
+
+        methodSignature.addParameter(className, isArray, isSystem, name,
+            xmlElementName);
+        var parameter = methodSignature.getParameterByName('name');
+        assertNotNull(parameter);
+        assertEquals(parameter.className, className);
+        assertEquals(parameter.isArray, isArray);
+        assertEquals(parameter.isSystem, isSystem);
+        assertEquals(parameter.name, name);
+        assertEquals(parameter.xmlElementName, xmlElementName);
+      }
+
+      /**
+       * Test if we can retrieve a non-existent parameter by name.
+       */
+      function testGetParameterByName() {
+        var methodSignature = new google.system.soap.MethodSignature(
+            requestNamespace, responseNamespace, methodUse, parameterStyle,
+            returnXmlElement, returnTypeDefinition);
+
+        assertUndefined(methodSignature.getParameterByName('nosuchparameter'));
+      }
+    </script>
+  </body>
+</html>

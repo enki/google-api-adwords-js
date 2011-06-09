@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <!--
+    Copyright 2011, Google Inc. All Rights Reserved.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    author: api.anash@gmail.com (Anash P. Oommen)
+  -->
+  <head>
+    <title>system.core unit tests - google.system.core.Runtime</title>
+    <script src="../../../../../closure/goog/base.js"></script>
+    <script src="../../../../../adwordsapi/src/awapi.js"></script>
+    <script>
+      goog.require('goog.array');
+      goog.require('goog.testing.jsunit');
+      goog.require('goog.testing.recordFunction');
+      goog.require('google.system.core.Runtime');
+    </script>
+  </head>
+  <body>
+    <script>
+      var runtime;
+      var oldConfig = null;
+      var oldVersion = null;
+
+      var newConfig = {
+        key1: 'value1',
+        key2: 'value2'
+      };
+      var newVersion = "Test version";
+
+      /**
+       * Initialize the test case.
+       */
+      function setUp() {
+        runtime = google.system.core.Runtime.getInstance();
+        oldConfig = runtime.getConfig();
+        oldVersion = runtime.getVersion();
+      }
+
+      /**
+       * Cleanup the test case.
+       */
+      function tearDown() {
+        runtime.setConfig(oldConfig);
+        runtime.setVersion(oldVersion);
+      }
+
+      /**
+       * Test if we can set the runtime config and later retrieve it.
+       */
+      function testConfigSetterGetters() {
+        runtime.setConfig(newConfig);
+        var config = runtime.getConfig();
+
+        assertNotNull(config);
+
+        assertNotNull(config.key1);
+        assertEquals(config.key1, newConfig.key1);
+
+        assertNotNull(config.key2);
+        assertEquals(config.key2, newConfig.key2);
+      }
+
+      /**
+       * Test if we can set the runtime version and later retrieve it.
+       */
+      function testVersionSetterGetters() {
+        runtime.setVersion(newVersion);
+        var version = runtime.getVersion();
+        assertEquals(version, newVersion);
+      }
+    </script>
+  </body>
+</html>

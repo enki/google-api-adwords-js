@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <!--
+    Copyright 2011, Google Inc. All Rights Reserved.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    author: api.anash@gmail.com (Anash P. Oommen)
+  -->
+  <head>
+    <link type="text/css" href="css/main.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/closure/goog/base.js"></script>
+    <script type="text/javascript" src="js/adwordsapi/src/awapi.js"></script>
+    <script type="text/javascript" src="js/adwordsapi/src/config.js"></script>
+    <script type="text/javascript" src="js/adwordsapi/examples/awapi.js"></script>
+    <script type="text/javascript" src="http://www.google.com/jsapi" type="text/javascript"></script>
+    <script type="text/javascript">
+      google.load("jquery", "1.5.1");
+      goog.require('google.ads.adwords.examples.Program');
+    </script>
+    <script type="text/javascript">
+      var program = new google.ads.adwords.examples.Program('results');
+      $(document).ready(function() {
+        var html = [];
+        for (var key in program.examples) {
+          html.push("<p><a href='#' onclick='runexample(\""  +
+              program.examples[key] + "\");'>" + key + "</a></p>");
+        }
+        $("#maindiv").html(html.join('\n'));
+      });
+      function runexample(name) {
+        program.run(name);
+      };
+    </script>
+  </head>
+  <body>
+    <div id="main">
+      <div id="header">
+        <div id="logoholder"></div>
+        <div id="titleholder">
+          <h1>AdWords API JS library - code examples</h1>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+      <div id="body">
+        <div id="leftpanel">
+          <div id='leftcontainer'>
+            <div id="maindiv">
+            </div>
+          </div>
+        </div>
+        <div id='rightpanel'>
+          <div id="rightcontainer">
+            <textarea id="results" rows="30" readonly="readonly">To run a code example, click the link on the left pane.</textarea>
+          </div>
+        </div>
+        <div style="clear:both;"></div
+      </div>
+      <div id="footer">
+        <div id="elementToResize">&nbsp;</div>
+        <p>Copyright &copy; 2011 <a href="http://www.google.com">
+          <img src="images/google-small.png" style="vertical-align:middle"/></a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
