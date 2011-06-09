@@ -1,0 +1,42 @@
+// Copyright 2011, Google Inc. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/**
+ * @author api.davidtorres@gmail.com (David Torres)
+ */
+
+{
+  "name": "AdWords API Statistics Extension",
+  "version": "1.0",
+  "description": "Shows statistics reported by your AdWords API objects.",
+  "icons": {
+    "16": "images/application-default-icon-16-16.png",
+    "48": "images/application-default-icon-48-48.png",
+    "128": "images/application-default-icon-128-128.png"
+  },
+  "browser_action": {
+    "default_icon": "images/application-default-icon-22-22.png",
+    "default_title": "AdWords API Statistics Extension",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "permissions": [
+    "https://adwords.google.com/api/adwords/cm/v201008/CampaignService",
+    "https://adwords.google.com/api/adwords/cm/v201008/AdGroupService",
+    "https://adwords.google.com/api/adwords/cm/v201008/AdGroupAdService",
+    "https://adwords.google.com/api/adwords/cm/v201008/AdGroupCriterionService",
+    "https://www.google.com/accounts/ClientLogin",
+    "tabs"
+  ]
+}

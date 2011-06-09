@@ -1,0 +1,128 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="COMM">// Copyright 2011, Google Inc. All Rights Reserved.</span><span class="WHIT">
+<span class='line'>  2</span> </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>  3</span> </span><span class="COMM">// Licensed under the Apache License, Version 2.0 (the "License");</span><span class="WHIT">
+<span class='line'>  4</span> </span><span class="COMM">// you may not use this file except in compliance with the License.</span><span class="WHIT">
+<span class='line'>  5</span> </span><span class="COMM">// You may obtain a copy of the License at</span><span class="WHIT">
+<span class='line'>  6</span> </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>  7</span> </span><span class="COMM">//     http://www.apache.org/licenses/LICENSE-2.0</span><span class="WHIT">
+<span class='line'>  8</span> </span><span class="COMM">//</span><span class="WHIT">
+<span class='line'>  9</span> </span><span class="COMM">// Unless required by applicable law or agreed to in writing, software</span><span class="WHIT">
+<span class='line'> 10</span> </span><span class="COMM">// distributed under the License is distributed on an "AS IS" BASIS,</span><span class="WHIT">
+<span class='line'> 11</span> </span><span class="COMM">// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span><span class="WHIT">
+<span class='line'> 12</span> </span><span class="COMM">// See the License for the specific language governing permissions and</span><span class="WHIT">
+<span class='line'> 13</span> </span><span class="COMM">// limitations under the License.</span><span class="WHIT">
+<span class='line'> 14</span> 
+<span class='line'> 15</span> </span><span class="COMM">/**
+<span class='line'> 16</span>  * @author api.anash@gmail.com (Anash P. Oommen)
+<span class='line'> 17</span>  * @author api.davidtorres@gmail.com (David Torres)
+<span class='line'> 18</span>  */</span><span class="WHIT">
+<span class='line'> 19</span> 
+<span class='line'> 20</span> </span><span class="COMM">/**
+<span class='line'> 21</span>  * @fileoverview Defines google.system.soap.ServiceListener class.
+<span class='line'> 22</span>  */</span><span class="WHIT">
+<span class='line'> 23</span> 
+<span class='line'> 24</span> </span><span class="NAME">goog.provide</span><span class="PUNC">(</span><span class="STRN">'google.system.soap.ServiceListener'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 25</span> 
+<span class='line'> 26</span> </span><span class="COMM">/**
+<span class='line'> 27</span>  * Defines a SOAP Listener contract, basic listener object.
+<span class='line'> 28</span>  *
+<span class='line'> 29</span>  * It is meant to be specialized and its method overridden by concrete
+<span class='line'> 30</span>  * listeners.
+<span class='line'> 31</span>  *
+<span class='line'> 32</span>  * @constructor
+<span class='line'> 33</span>  */</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="NAME">google.system.soap.ServiceListener</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 35</span> 
+<span class='line'> 36</span> </span><span class="COMM">/**
+<span class='line'> 37</span>  * Method to be called before the serialization takes places. Listeners have
+<span class='line'> 38</span>  * the opportunity at this time to modify the called services and parameters.
+<span class='line'> 39</span>  *
+<span class='line'> 40</span>  * Implementation of this method is optional.
+<span class='line'> 41</span>  *
+<span class='line'> 42</span>  * @param {google.system.soap.SoapService} service Service been invoked.
+<span class='line'> 43</span>  * @param {string} methodName Method been invoked.
+<span class='line'> 44</span>  * @param {Object&lt;string,Object>} parameterValues Parameters been passed to
+<span class='line'> 45</span>  * the call.
+<span class='line'> 46</span>  * @param {function()} continueCallback Function to be called in case of
+<span class='line'> 47</span>  * success.
+<span class='line'> 48</span>  * @param {function(google.system.soap.Exception)} errorCallback Function
+<span class='line'> 49</span>  * to be called in case an error has occured a SOAP Exception object is expected
+<span class='line'> 50</span>  * by this function.
+<span class='line'> 51</span>  */</span><span class="WHIT">
+<span class='line'> 52</span> </span><span class="NAME">google.system.soap.ServiceListener.prototype.beforeSerialize</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="WHIT">    </span><span class="NAME">service</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">methodName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">parameterValues</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">continueCallback</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errorCallback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 54</span> </span><span class="WHIT">  </span><span class="NAME">continueCallback</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 55</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 56</span> 
+<span class='line'> 57</span> </span><span class="COMM">/**
+<span class='line'> 58</span>  * Method to be called after the service call gets serialized in to XML Document
+<span class='line'> 59</span>  * but before gets send to the server. Gives the oportunnity to the listener
+<span class='line'> 60</span>  * to revise the document or even modify before gets sent.
+<span class='line'> 61</span>  *
+<span class='line'> 62</span>  * Implementation of this method is optional.
+<span class='line'> 63</span>  *
+<span class='line'> 64</span>  * @param {google.system.soap.SoapService} service Service been invoked.
+<span class='line'> 65</span>  * @param {Document} document The XML document to be sent to the server.
+<span class='line'> 66</span>  * @param {function()} continueCallback Function to be called in case of
+<span class='line'> 67</span>  * success.
+<span class='line'> 68</span>  * @param {function(google.system.soap.Exception)} errorCallback Function
+<span class='line'> 69</span>  * to be called in case an error has occurred a SOAP Exception object is
+<span class='line'> 70</span>  * expected by this function.
+<span class='line'> 71</span>  */</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="NAME">google.system.soap.ServiceListener.prototype.beforeSend</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 73</span> </span><span class="WHIT">    </span><span class="NAME">service</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">document</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">continueCallback</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errorCallback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 74</span> </span><span class="WHIT">  </span><span class="NAME">continueCallback</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 75</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 76</span> 
+<span class='line'> 77</span> </span><span class="COMM">/**
+<span class='line'> 78</span>  * Method to be called after the request has been sent and a an XML response
+<span class='line'> 79</span>  * has been received. Gives the opportunity for the listener to parse and even
+<span class='line'> 80</span>  * modify the XML document if desired.
+<span class='line'> 81</span>  *
+<span class='line'> 82</span>  * Implementation of this method is optional.
+<span class='line'> 83</span>  *
+<span class='line'> 84</span>  * @param {google.system.soap.SoapService} service Service been invoked.
+<span class='line'> 85</span>  * @param {Document} responseXml The XML response document.
+<span class='line'> 86</span>  * @param {boolean} isError True if the response XML is SOAP exception returned
+<span class='line'> 87</span>  * by the server.
+<span class='line'> 88</span>  * @param {function()} continueCallback Function to be called in case of
+<span class='line'> 89</span>  * success.
+<span class='line'> 90</span>  * @param {function(google.system.soap.Exception)} errorCallback Function
+<span class='line'> 91</span>  * to be called in case an error has occurred a SOAP Exception object is
+<span class='line'> 92</span>  * expected by this function.
+<span class='line'> 93</span>  */</span><span class="WHIT">
+<span class='line'> 94</span> </span><span class="NAME">google.system.soap.ServiceListener.prototype.beforeDeserialize</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 95</span> </span><span class="WHIT">    </span><span class="NAME">service</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">responseXml</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">isError</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">continueCallback</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errorCallback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 96</span> </span><span class="WHIT">  </span><span class="NAME">continueCallback</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 97</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 98</span> 
+<span class='line'> 99</span> </span><span class="COMM">/**
+<span class='line'>100</span>  * Method to be called after the response have been parsed but before the
+<span class='line'>101</span>  * resulting object is passed back to the client code. Gives the opportunity
+<span class='line'>102</span>  * for the listener to modify the resulting object before it gets back to the
+<span class='line'>103</span>  * client.
+<span class='line'>104</span>  *
+<span class='line'>105</span>  * Implementation of this method is optional.
+<span class='line'>106</span>  *
+<span class='line'>107</span>  * @param {google.system.soap.SoapService} service Service been invoked.
+<span class='line'>108</span>  * @param {google.system.soap.SoapObject} soapObject The SOAP Object.
+<span class='line'>109</span>  * @param {boolean} isError True if the SOAP Object contains a SOAP Exception
+<span class='line'>110</span>  * returned by the server.
+<span class='line'>111</span>  * @param {function()} continueCallback Function to be called in case of
+<span class='line'>112</span>  * success.
+<span class='line'>113</span>  * @param {function(google.system.soap.Exception)} errorCallback Function
+<span class='line'>114</span>  * to be called in case an error has occurred a SOAP Exception object is
+<span class='line'>115</span>  * expected by this function.
+<span class='line'>116</span>  */</span><span class="WHIT">
+<span class='line'>117</span> </span><span class="NAME">google.system.soap.ServiceListener.prototype.beforeReturn</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'>118</span> </span><span class="WHIT">    </span><span class="NAME">service</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">soapObject</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">isError</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">continueCallback</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errorCallback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>119</span> </span><span class="WHIT">  </span><span class="NAME">continueCallback</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>120</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>121</span> </span></pre></body></html>

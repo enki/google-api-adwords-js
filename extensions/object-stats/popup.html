@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+  <!--
+    Copyright 2011, Google Inc. All Rights Reserved.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    author: api.davidtorres@gmail.com (David Torres)
+  -->
+  <head>
+    <title>AdWords API Object Statistics</title>
+    <script type="text/javascript" src="js/awapi/awapi.js"></script>
+    <script type="text/javascript" src="js/awapi/v201008.js"></script>
+
+    <script type="text/javascript" src="js/extension/extension.js"></script>
+
+    <script type="text/javascript" src="js/jquery-ui/jquery-1.5.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui/jquery-ui-1.8.11.custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui/jquery.tmpl.min.js"></script>
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    <link type="text/css" href="css/jquery-ui/awapi-theme/jquery-ui-1.8.11.custom.css" rel="stylesheet"/>
+    <link type="text/css" href="css/main.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <script type="text/javascript">
+    goog.require('google.ads.adwords.objstatsext.UIManager');
+    </script>
+    <script type="text/javascript">
+    if (google && google.load) {
+      google.load('visualization', '1', {'packages':['corechart']});
+    }
+    var uiManager = new google.ads.adwords.objstatsext.UIManager();
+    $(document).ready(function() {
+      uiManager.init();
+    });
+    </script>
+    <script id="countersTemplate" type="text/x-jquery-tmpl">
+      ${first} - ${last} of ${total}
+    </script>
+    <div id="contents" class="extension-main">
+      <div id="settingAlerts" class="errorsAlerts" style="display:none;">
+        <div id="missingSettingsAlert" class="ui-widget" style="display: none">
+          <div class="ui-state-error ui-corner-all" style="padding: 0 5px;">
+            <p>Configure your account <a href="javascript: uiManager.openSettings();">settings</a> to start using the extension.</p>
+          </div>
+        </div>
+        <div id="settingsErrorAlert" class="ui-widget" style="display: none">
+          <div class="ui-state-error ui-corner-all" style="padding: 0 5px;">
+            <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 10px;">&nbsp;</span>
+            There is an error in your account settings, check your <a href="javascript: uiManager.openSettings();">settings</a> and try again.</p>
+            <p>Error message: <span id="settingsErrorMessage" class="errorMessage"></span></p>
+          </div>
+        </div>
+      </div>
+      <div id="errors" class="errorsAlerts" style="display:none;">
+        <div id="generalErrorAlert" class="ui-widget" style="display: none">
+          <div class="ui-state-error ui-corner-all" style="padding: 0 5px;">
+            <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: 10px;">&nbsp;</span>
+            A general error has occurred, check your <a href="javascript: uiManager.openSettings();">settings</a> and try again.</p>
+            <p>Error message:</p><div id="generalErrorMessage" class="errorMessage"></div>
+            <p><span id="generalErrorDetail" style="display: none;" class="errorMessageDetail"></span></p>
+          </div>
+        </div>
+      </div>
+      <div id="extensionBody">
+        <div class="top-bar">
+          <div id="crumbtrail" class="crumbtrail"></div>
+          <div id="dateRange" class="dateRange">
+            Statistics from: <input type="text" id="fromDate" class="dateInput"> to: <input type="text" id="toDate" class="dateInput">
+            <span style="float: right;"><a href="javascript: uiManager.switchToStats()"><b>Stats</b></a> - <a href="javascript: uiManager.switchToGraph()"><b>Graph</b></a></span>
+          </div>
+        </div>
+        <div id="sectionsSlider" class="slider">
+          <div id="allCampaigns" class="panel">
+            <div class="panel-stats">
+              <div id="campaignsGraph" class="graph" style="opacity: 0;" onclick="uiManager.switchToStats();"></div>
+              <script id="campaignRowTemplate" type="text/x-jquery-tmpl">
+                <tr>
+                  <td>${id}</td>
+                  <td><a href="javascript: uiManager.selectCampaign(${id});">${name}</a></td>
+                  <td>${status}</td>
+                  <td style="text-align: right;">${budget.amount.value}</td>
+                  <td style="text-align: right;">${campaignStats.impressions}</td>
+                  <td style="text-align: right;">${campaignStats.clicks}</td>
+                  <td style="text-align: right;">${campaignStats.conversions}</td>
+                  <td style="text-align: right;">${campaignStats.cost.value}</td>
+                </tr>
+              </script>
+              <table class="dataTable" id="campaignsTable">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Budget</th>
+                    <th>Imp.</th>
+                    <th>Clicks</th>
+                    <th>Conv.</th>
+                    <th>Cost</th>
+                  </tr>
+                </thead>
+                <tbody id="campaignsResult" style="display: none;">
+                </tbody>
+                <tbody id="campaignsLoading" class="loadingTable" style="display: none;">
+                  <tr><td colspan="8"><img alt="Loading" src="images/loading.gif">&nbsp;&nbsp;<em>Loading ...</em></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div id="campaignsPagination" class="pagination" style="display: none;">
+              <a class="previous" id="previousCampaigns" href="javascript: uiManager.previousCampaigns()">&lt; previous</a>
+              <span class="counters" id="allCampaignsCounters"></span>
+              <a class="next" id="nextCampaigns" href="javascript: uiManager.nextCampaigns()">next &gt;</a>
+            </div>
+          </div>
+          <div id="campaign" class="panel">
+            <div id="campaign-details" class="object-details">
+              <div>
+                <span class="object-field long"><span class="label">Campaign:</span> <span class="value long" id="campaignName"></span></span>
+                <span class="object-field"><span class="label">Budget:</span> <span class="value" id="campaignBudget"></span></span>
+                <span class="object-field"><span class="label">Clicks:</span> <span class="value" id="campaignClicks"></span></span>
+              </div>
+              <div>
+                 <span class="object-field long"><span class="label">Impressions:</span> <span class="value long" id="campaignImpressions"></span></span>
+                 <span class="object-field"><span class="label">Cost:</span> <span class="value" id="campaignCost"></span></span>
+                 <span class="object-field"><span class="label">Conversions:</span> <span class="value" id="campaignConversions"></span></span>
+              </div>
+            </div>
+            <div class="panel-stats-2">
+              <div id="adGroupsGraph" class="graph" style="opacity: 0;" onclick="uiManager.switchToStats();"></div>
+              <script id="adGroupRowTemplate" type="text/x-jquery-tmpl">
+                <tr>
+                  <td>${id}</td>
+                  <td><a href="javascript: uiManager.selectAdGroup(${id});">${name}</a></td>
+                  <td>${status}</td>
+                  <td style="text-align: right;">${bid}</td>
+                  <td style="text-align: right;">${stats.impressions}</td>
+                  <td style="text-align: right;">${stats.clicks}</td>
+                  <td style="text-align: right;">${stats.conversions}</td>
+                  <td style="text-align: right;">${stats.cost.value}</td>
+                  <td style="text-align: right;">${stats.averagePosition}</td>
+                </tr>
+              </script>
+              <table class="dataTable" id="adGroupsTable">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Bid</th>
+                    <th>Imp.</th>
+                    <th>Clicks</th>
+                    <th>Conv.</th>
+                    <th>Cost</th>
+                    <th>Avg. Pos.</th>
+                  </tr>
+                </thead>
+                <tbody id="adGroupsResult" style="display: none;"></tbody>
+                <tbody id="adGroupsLoading" class="loadingTable" style="display: none;">
+                  <tr><td colspan="8"><img alt="Loading" src="images/loading.gif">&nbsp;&nbsp;<em>Loading ...</em></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div id="adGroupsPagination" class="pagination" style="display: none;">
+              <a class="previous" id="previousAdGroups" href="javascript: uiManager.previousAdGroups()">&lt; previous</a>
+              <span class="counters" id="adGroupsCounters"></span>
+              <a class="next" id="nextAdGroups" href="javascript: uiManager.nextAdGroups()">next &gt;</a>
+            </div>
+          </div>
+          <div id="criteria-ads" class="panel">
+            <div id="ad-group-details" class="object-details">
+              <div>
+                <span class="object-field long"><span class="label">Ad group:</span> <span class="value" id="adGroupName"></span></span>
+                <span class="object-field"><span class="label">Bid:</span> <span class="value" id="adGroupBid"></span></span>
+                <span class="object-field"><span class="label">Clicks:</span> <span class="value" id="adGroupClicks"></span></span>
+              </div>
+              <div>
+                 <span class="object-field long"><span class="label">Impressions:</span> <span class="value" id="adGroupImpressions"></span></span>
+                 <span class="object-field"><span class="label">Cost:</span> <span class="value" id="adGroupCost"></span></span>
+                 <span class="object-field"><span class="label">Conversions:</span> <span class="value" id="adGroupConversions"></span></span>
+              </div>
+            </div>
+            <div id="adGroupTabs">
+              <ul>
+                <li><a href="#criteriaTab">Criteria</a></li>
+                <li><a href="#adsTab">Ads</a></li>
+              </ul>
+              <div id="criteriaTab">
+                <script id="criteriaRowTemplate" type="text/x-jquery-tmpl">
+                  <tr>
+                    <td>${criterion.id}</td>
+                    <td>${typeTitle}</td>
+                    <td>${userStatus}</td>
+                    <td style="text-align: right;">${bid}</td>
+                    <td style="text-align: right;">${stats.impressions}</td>
+                    <td style="text-align: right;">${stats.clicks}</td>
+                    <td style="text-align: right;">${stats.conversions}</td>
+                    <td style="text-align: right;">${stats.cost.value}</td>
+                    <td style="text-align: right;">${stats.averagePosition}</td>
+                  </tr>
+                </script>
+                <div class="panel-stats-3">
+                  <div id="criteriaGraph" class="graph">
+                  </div>
+                  <table class="dataTable" id="criteriaTable">
+                    <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>Type / Text</th>
+                        <th>Status</th>
+                        <th>Bid</th>
+                        <th>Imp.</th>
+                        <th>Clicks</th>
+                        <th>Conv.</th>
+                        <th>Cost</th>
+                        <th>Avg. Pos.</th>
+                      </tr>
+                    </thead>
+                  <tbody id="criteriaResult" style="display: none;"></tbody>
+                  <tbody id="criteriaLoading" class="loadingTable" style="display: none;">
+                    <tr><td colspan="9"><img alt="Loading" src="images/loading.gif">&nbsp;&nbsp;<em>Loading ...</em></td></tr>
+                  </tbody>
+                  </table>
+                </div>
+                <div id="criteriaPagination" class="pagination">
+                  <a class="previous" id="previousCriteria" href="javascript: uiManager.previousCriteria()">&lt; previous</a>
+                  <span class="counters" id="criteriaCounters"></span>
+                  <a class="next" id="nextCriteria" href="javascript: uiManager.nextCriteria()">next &gt;</a>
+                </div>
+              </div>
+              <div id="adsTab">
+                <div class="panel-stats-3">
+                  <div id="adsGraph" class="graph">
+                  </div>
+                  <script id="adsRowTemplate" type="text/x-jquery-tmpl">
+                    <tr>
+                      <td>${ad.id}</td>
+                      <td>${typeTitle}</td>
+                      <td>${status}</td>
+                      <td style="text-align: right;">${stats.impressions}</td>
+                      <td style="text-align: right;">${stats.clicks}</td>
+                      <td style="text-align: right;">${stats.conversions}</td>
+                      <td style="text-align: right;">${stats.cost.value}</td>
+                      <td style="text-align: right;">${stats.averagePosition}</td>
+                    </tr>
+                  </script>
+                  <table class="dataTable" id="adsTable">
+                    <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>Type / Title</th>
+                        <th>Status</th>
+                        <th>Imp.</th>
+                        <th>Clicks</th>
+                        <th>Conv.</th>
+                        <th>Cost</th>
+                        <th>Avg. Pos.</th>
+                      </tr>
+                    </thead>
+                    <tbody id="adsResult" style="display: none;"></tbody>
+                    <tbody id="adsLoading" class="loadingTable" style="display: none;">
+                      <tr><td colspan="8"><img alt="Loading" src="images/loading.gif">&nbsp;&nbsp;<em>Loading ...</em></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div id="adsPagination" class="pagination">
+                  <a class="previous" id="previousAds" href="javascript: uiManager.previousAds()">&lt; previous</a>
+                  <span class="counters" id="adCounters">1 to 10 of 100 ads</span>
+                  <a class="next" id="nextAds" href="javascript: uiManager.nextAds()">next &gt;</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

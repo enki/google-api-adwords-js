@@ -1,0 +1,54 @@
+<html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"> <style>
+	.KEYW {color: #933;}
+	.COMM {color: #bbb; font-style: italic;}
+	.NUMB {color: #393;}
+	.STRN {color: #393;}
+	.REGX {color: #339;}
+	.line {border-right: 1px dotted #666; color: #666; font-style: normal;}
+	</style></head><body><pre><span class='line'>  1</span> <span class="NAME">goog.provide</span><span class="PUNC">(</span><span class="STRN">'google.ads.common.AuthTokenErrorCode'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>  2</span> 
+<span class='line'>  3</span> </span><span class="COMM">/**
+<span class='line'>  4</span>  * Class provided to encapsulate authentication errors.
+<span class='line'>  5</span>  *
+<span class='line'>  6</span>  * @constructor
+<span class='line'>  7</span>  */</span><span class="WHIT">
+<span class='line'>  8</span> </span><span class="NAME">google.ads.common.AuthTokenErrorCode</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>  9</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 10</span> 
+<span class='line'> 11</span> </span><span class="COMM">/**
+<span class='line'> 12</span>  * Code for bad authentication error.
+<span class='line'> 13</span>  */</span><span class="WHIT">
+<span class='line'> 14</span> </span><span class="NAME">google.ads.common.AuthTokenErrorCode.BadAuthentication</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'BadAuthentication'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 15</span> </span><span class="COMM">/**
+<span class='line'> 16</span>  * Code for account not verified error.
+<span class='line'> 17</span>  */</span><span class="WHIT">
+<span class='line'> 18</span> </span><span class="NAME">google.ads.common.AuthTokenErrorCode.NotVerified</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'NotVerified'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 19</span> </span><span class="COMM">/**
+<span class='line'> 20</span>  * Code for terms not agreed error.
+<span class='line'> 21</span>  */</span><span class="WHIT">
+<span class='line'> 22</span> </span><span class="NAME">google.ads.common.AuthTokenErrorCode.TermsNotAgreed</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'TermsNotAgreed'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 23</span> </span><span class="COMM">/**
+<span class='line'> 24</span>  * Code for captcha lock error.
+<span class='line'> 25</span>  */</span><span class="WHIT">
+<span class='line'> 26</span> </span><span class="NAME">google.ads.common.AuthTokenErrorCode.CaptchaRequired</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'CaptchaRequired'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 27</span> </span><span class="COMM">/**
+<span class='line'> 28</span>  * Code for unknown error.
+<span class='line'> 29</span>  */</span><span class="WHIT">
+<span class='line'> 30</span> </span><span class="NAME">google.ads.common.AuthTokenErrorCode.Unknown</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'Unknown'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 31</span> </span><span class="COMM">/**
+<span class='line'> 32</span>  * Code for account deleted error.
+<span class='line'> 33</span>  */</span><span class="WHIT">
+<span class='line'> 34</span> </span><span class="NAME">google.ads.common.AuthTokenErrorCode.AccountDeleted</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'AccountDeleted'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 35</span> </span><span class="COMM">/**
+<span class='line'> 36</span>  * Code for account disabled error.
+<span class='line'> 37</span>  */</span><span class="WHIT">
+<span class='line'> 38</span> </span><span class="NAME">google.ads.common.AuthTokenErrorCode.AccountDisabled</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'AccountDisabled'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 39</span> </span><span class="COMM">/**
+<span class='line'> 40</span>  * Code for service disabled error.
+<span class='line'> 41</span>  */</span><span class="WHIT">
+<span class='line'> 42</span> </span><span class="NAME">google.ads.common.AuthTokenErrorCode.ServiceDisabled</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'ServiceDisabled'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 43</span> </span><span class="COMM">/**
+<span class='line'> 44</span>  * Code for service unavailable error.
+<span class='line'> 45</span>  */</span><span class="WHIT">
+<span class='line'> 46</span> </span><span class="NAME">google.ads.common.AuthTokenErrorCode.ServiceUnavailable</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'ServiceUnavailable'</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 47</span> </span></pre></body></html>

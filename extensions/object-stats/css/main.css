@@ -1,0 +1,215 @@
+/*
+  Copyright 2011, Google Inc. All Rights Reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  author: api.davidtorres@gmail.com (David Torres)
+*/
+
+html {
+  height: 485px;
+}
+
+.toolbar {
+  position: absolute;
+  right: 12;
+  top: 25;
+}
+
+.extension-main {
+  font-family: arial,helvetica,sans-serif;
+  font-size: 0.75em;
+  overflow: hidden;
+  width: 500px;
+  height: 470px;
+}
+
+.extension-main a {
+  color: black;
+  text-decoration: none;
+}
+
+.extension-main a:hover {
+  text-decoration: underline;
+}
+
+.slider {
+  height: 395px;
+  width: 1500px;
+  overflow: hidden;
+  position: relative;
+}
+
+.panel {
+  float: left;
+  width: 490px;
+  height: 384px;
+  padding: 4px;
+  border: 1px solid #E5E5E5;
+}
+
+.panel-stats {
+  height: 350px;
+  overflow-y: auto;
+}
+
+.panel-stats-2 {
+  height: 308px;
+  overflow-y: auto;
+}
+
+.panel-stats-3 {
+  height: 250px;
+  overflow-y: auto;
+}
+
+.crumbtrail {
+  padding: 0px 5px 12px;
+  font-weight: bold;
+}
+
+.crumbtrail a {
+  color: #3F8BD8;
+  text-decoration: none;
+}
+
+.crumbtrail a:hover {
+  text-decoration: underline;
+}
+
+.pagination {
+  margin: 5px 5px;
+  text-align: center;
+}
+
+.pagination .previous {
+  float: left;
+}
+
+.pagination .next {
+  float: right;
+}
+
+.pagination .counters {
+
+}
+
+.object-details {
+  margin: 5px;
+}
+
+.object-field {
+  display: inline-block;
+  width: 120px;
+}
+
+.object-field.long {
+  width: 190px;
+}
+
+.object-field .label {
+  display: inline-block;
+  width: 75px;
+  vertical-align: middle;
+}
+
+.object-field .value {
+  font-weight: bold;
+  display: inline-block;
+  width: 40px;
+  height: 15px;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.object-field.long .value {
+  width: 110px;
+}
+
+.dataTable {
+  border-top: 1px solid #E5E5E5;
+  border-right: 1px solid #E5E5E5;
+  border-spacing: 0;
+  width: 100%;
+}
+
+.dataTable td, .dataTable th {
+  border-bottom: 1px solid #E5E5E5;
+  border-left: 1px solid #E5E5E5;
+  padding: 5px;
+}
+
+.dateInput {
+  width: 70px;
+  border: 0;
+}
+
+.dateInput:focus {
+  border: 1px solid black;
+}
+
+.dateRange {
+  padding: 0 5px 5px;
+}
+
+.graph {
+  margin: 5px;
+  border: 1px solid #D3D2D1;
+  opacity: 0;
+  display: none;
+  position: absolute;
+}
+
+.title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.setting {
+  width: 150px;
+  display: inline-block;
+}
+
+.settingsBox {
+  width: 460px;
+  padding-left: 15px;
+}
+
+.settingsBox input {
+  width: 300px;
+}
+
+.errorsAlerts {
+  width: 450px;
+  padding-left: 20px;
+  padding-top: 50px;
+}
+
+.errorMessage {
+  max-height: 300px;
+  overflow: auto;
+}
+
+.errorMessageDetail {
+  max-height: 300px;
+  overflow: auto;
+}
+
+.loadingTable td {
+  text-align: center;
+  padding: 30px;
+}
+
+.loadingTable img {
+  vertical-align: middle;
+}
