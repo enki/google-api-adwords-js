@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines HttpWebTransportFactory, a factory for creating
- * HttpWebTransport.
+ *     HttpWebTransport.
  */
 
 goog.provide('google.system.net.HttpWebTransportFactory');
@@ -36,15 +36,15 @@ google.system.net.HttpWebTransportFactory = function() {
  *
  * @param {string} transportName Name of the provider.
  * @param {google.system.net.HttpWebTransportSettings} settings Settings to be
- * applied.
- * @return {google.system.net.HttpWebTransport|null} A new transport object
- * already configured or null if not provided was found.
+ *     applied.
+ * @return {?google.system.net.HttpWebTransport} A new transport object
+ *     already configured or null if not provided was found.
  */
 google.system.net.HttpWebTransportFactory.create = function(transportName,
     settings) {
   var xhrProvider = goog.getObjectByName(transportName);
 
-  if (xhrProvider != null) {
+  if (!goog.isNull(xhrProvider)) {
     return new xhrProvider(settings);
   } else {
     return null;

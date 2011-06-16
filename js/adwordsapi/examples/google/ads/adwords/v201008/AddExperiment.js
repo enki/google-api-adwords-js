@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines AddExperiment, a code example that creates an
- * experiment.
+ *     experiment.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.AddExperiment');
@@ -58,6 +58,10 @@ goog.require('google.ads.adwords.v201008.Operator');
  */
 google.ads.adwords.examples.v201008.AddExperiment = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example creates an experiment using a query ' +
       'percentage of 10, which defines what fraction of auctions should go ' +
       'to the control split (90%) vs. the experiment split (10%), then adds ' +
@@ -72,9 +76,9 @@ goog.inherits(google.ads.adwords.examples.v201008.AddExperiment,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.AddExperiment.prototype.run =
     function(user, callback) {

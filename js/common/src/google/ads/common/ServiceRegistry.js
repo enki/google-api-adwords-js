@@ -19,7 +19,7 @@
 
 /**
  * @fileoverview Serves as a registry of all the services available and its
- * factories.
+ *     factories.
  */
 
 goog.provide('google.ads.common.ServiceRegistry');
@@ -32,6 +32,12 @@ goog.require('google.ads.common.ServiceSignature');
  * @constructor
  */
 google.ads.common.ServiceRegistry = function() {
+
+  /**
+   * Registry of service factories.
+   * @type {Object.<String, String>}
+   * @private
+   */
    this.serviceFactories_ = [];
 };
 
@@ -39,9 +45,9 @@ google.ads.common.ServiceRegistry = function() {
  * Registers a new service factory.
  *
  * @param {google.ads.common.ServiceSignature} signature Signature of the
- * service to register.
+ *     service to register.
  * @param {object} factoryClass The factory class in charge to create the
- * service.
+ *     service.
  */
 google.ads.common.ServiceRegistry.prototype.registerServiceFactory =
     function(signature, factoryClass) {
@@ -53,7 +59,7 @@ google.ads.common.ServiceRegistry.prototype.registerServiceFactory =
  * Gets all service signatures registered.
  *
  * @return {Array.<google.ads.common.ServiceSignature>} The registered service
- * signatures.
+ *     signatures.
  */
 google.ads.common.ServiceRegistry.prototype.getServiceSignatures = function() {
   var ret = [];
@@ -68,7 +74,7 @@ google.ads.common.ServiceRegistry.prototype.getServiceSignatures = function() {
  * Gets all service signatures registered.
  *
  * @return {Array.<google.ads.common.ServiceSignature>} The registered service
- * signatures.
+ *     signatures.
  */
 google.ads.common.ServiceRegistry.prototype.getServiceFactories = function() {
   var filterFn = function(entry, i, arr) {
@@ -81,9 +87,9 @@ google.ads.common.ServiceRegistry.prototype.getServiceFactories = function() {
  * Returns a service factory given its signature.
  *
  * @param {google.ads.common.ServiceSignature|string} signature Either the
- * service signature object or the signature id.
- * @return {object|null} The registered service factory class or null if not
- * found.
+ *     service signature object or the signature id.
+ * @return {?Object} The registered service factory class or null if not
+ *     found.
  */
 google.ads.common.ServiceRegistry.prototype.getServiceFactoryClass = function(
     signature) {

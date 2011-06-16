@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllAdGroupCriteria, a code example that gets all
- * ad group criteria in an account.
+ *     ad group criteria in an account.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.GetAllAdGroupCriteria');
@@ -52,9 +52,9 @@ goog.inherits(google.ads.adwords.examples.v201101.GetAllAdGroupCriteria,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.GetAllAdGroupCriteria.prototype.run =
     function(user, callback) {
@@ -64,7 +64,7 @@ google.ads.adwords.examples.v201101.GetAllAdGroupCriteria.prototype.run =
 
   // Create a selector.
   var selector = new google.ads.adwords.v201101.Selector();
-  selector.fields = ["Id", "AdGroupId", "KeywordText", "PlacementUrl"];
+  selector.fields = ['Id', 'AdGroupId', 'KeywordText', 'PlacementUrl'];
 
   try {
     adGroupCriterionService.get(selector,

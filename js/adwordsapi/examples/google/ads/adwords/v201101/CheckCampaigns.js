@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines CheckCampaigns, a code example that shows how to use
- * the validateOnly header to validate an API request.
+ *     the validateOnly header to validate an API request.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.CheckCampaigns');
@@ -61,9 +61,9 @@ goog.inherits(google.ads.adwords.examples.v201101.CheckCampaigns,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.CheckCampaigns.prototype.run =
     function(user, callback) {

@@ -31,15 +31,39 @@ goog.require('google.system.core.ArgumentNullException');
  * Represents an Ads API user.
  *
  * @param {google.ads.adwords.AppConfig} config AdWords configuration
- * properties.
+ *     properties.
  * @param {google.ads.adwords.AppConfig} serviceRegistry Service
- * registry the user will use to retrieve registered services.
+ *     registry the user will use to retrieve registered services.
  * @constructor
  */
 google.ads.common.AdsUser = function(config, serviceRegistry) {
+
+  /**
+   * Service listeners used to modify (I.e. attach SOAP headers) in runtime.
+   * @type {Array.<google.system.soap.ServiceListener>}
+   * @private
+   */
   this.listeners_ = [];
+
+  /**
+   * Map of service to factory class name.
+   * @type {Array.<String, String>}
+   * @private
+   */
   this.serviceFactoryMap_ = {};
+
+  /**
+   * Configuration settings.
+   * @type {google.ads.common.AppConfigBase}
+   * @private
+   */
   this.config_ = config;
+
+  /**
+   * Services registry.
+   * @type {google.ads.common.ServiceRegistry}
+   * @private
+   */
   this.serviceRegistry_ = serviceRegistry;
 };
 
@@ -48,7 +72,7 @@ google.ads.common.AdsUser = function(config, serviceRegistry) {
  * and then instanciate the factory in case of necessary and returns it.
  *
  * @param {google.ads.common.ServiceSignature} serviceSignature The service
- * signature to look up.
+ *     signature to look up.
  * @return {google.ads.common.ServiceFactory} The instanciated factory.
  * @private
  */
@@ -68,11 +92,11 @@ google.ads.common.AdsUser.prototype.getServiceFactory_ = function(
  * @param {string} serviceSignature Signature of the service being requested.
  * @param {string} serverUrl The server url for Ads service.
  * @return {google.system.soap.Service} An object of the requested
- * type of service. The caller should cast this object to the desired type.
+ *     type of service. The caller should cast this object to the desired type.
  */
 google.ads.common.AdsUser.prototype.getService = function(
     serviceSignature, serverUrl) {
-  if (serviceSignature == null) {
+  if (goog.isNull(serviceSignature)) {
     throw new google.system.core.ArgumentNullException('serviceSignature');
   }
   var factory = this.getServiceFactory_(serviceSignature);
@@ -90,7 +114,7 @@ google.ads.common.AdsUser.prototype.getService = function(
  * by this user.
  *
  * @param {google.system.soap.ServiceListener} listener Listener to be
- * registered.
+ *     registered.
  */
 google.ads.common.AdsUser.prototype.registerListener = function(
     listener) {
@@ -102,7 +126,7 @@ google.ads.common.AdsUser.prototype.registerListener = function(
  *
  * @param {google.system.soap.ServiceListener} listener Listener to be removed.
  * @return {boolean} True if the listener was found and removed, false
- * otherwise.
+ *     otherwise.
  */
 google.ads.common.AdsUser.prototype.removeListener = function(
     listener) {

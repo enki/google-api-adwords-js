@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines DeleteBulkMutateJob, a code example that deletes a
- * bulk mutate job using the 'REMOVE' operator.
+ *     bulk mutate job using the 'REMOVE' operator.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.DeleteBulkMutateJob');
@@ -45,6 +45,10 @@ goog.require('google.ads.adwords.v201008.Operator');
 google.ads.adwords.examples.v201008.DeleteBulkMutateJob =
     function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example deletes a bulk mutate job using the ' +
       '"REMOVE" operator. Jobs may only deleted if they are in the "PENDING"' +
       ' state and have not yet receieved all of their request parts. To get ' +
@@ -57,9 +61,9 @@ goog.inherits(google.ads.adwords.examples.v201008.DeleteBulkMutateJob,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.DeleteBulkMutateJob.prototype.
     run = function(user, callback) {

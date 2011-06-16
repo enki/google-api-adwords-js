@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetRelatedKeywords, a code example that retrieves
- * keywords that are related to a given keyword.
+ *     keywords that are related to a given keyword.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetRelatedKeywords');
@@ -46,6 +46,10 @@ goog.require('google.ads.adwords.v201008.TargetingIdeaService');
  */
 google.ads.adwords.examples.v201008.GetRelatedKeywords = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example retrieves keywords that are related ' +
       'to a given keyword.';
 };
@@ -56,9 +60,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetRelatedKeywords,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetRelatedKeywords.prototype.run =
     function(user, callback) {

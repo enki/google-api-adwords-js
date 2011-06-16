@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetCampaign, a code example that gets a campaign
- * by id.
+ *     by id.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.GetCampaign');
@@ -51,9 +51,9 @@ goog.inherits(google.ads.adwords.examples.v201101.GetCampaign,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.GetCampaign.prototype.run =
     function(user, callback) {

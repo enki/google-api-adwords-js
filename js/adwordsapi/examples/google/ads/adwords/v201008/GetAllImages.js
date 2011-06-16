@@ -41,6 +41,10 @@ goog.require('google.ads.adwords.v201008.Media_Size_DimensionsMapEntry');
  */
 google.ads.adwords.examples.v201008.GetAllImages = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example gets all images.';
 };
 goog.inherits(google.ads.adwords.examples.v201008.GetAllImages,
@@ -50,9 +54,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetAllImages,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetAllImages.prototype.run =
     function(user, callback) {

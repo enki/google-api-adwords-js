@@ -29,18 +29,30 @@ goog.provide('google.system.core.Exception');
  * @constructor
  * @param {string?} message An optional error message for the exception.
  * @param {Object?} innerException If this exception was thrown in response to
- * another exception, then you can wrap the original exception within this
- * exception.
+ *     another exception, then you can wrap the original exception within this
+ *     exception.
  */
 google.system.core.Exception = function(message, innerException) {
+
+  /**
+   * Exception message.
+   * @type {string}
+   * @private
+   */
   this.message_ = message;
+
+  /**
+   * Inner exception object.
+   * @type {Object}
+   * @private
+   */
   this.innerException_ = innerException;
 };
 
 /**
  * Get the exception message.
  *
- * @return {string|null} The exception message if set.
+ * @return {?string} The exception message if set.
  */
 google.system.core.Exception.prototype.getMessage = function() {
   return this.message_;
@@ -49,7 +61,7 @@ google.system.core.Exception.prototype.getMessage = function() {
 /**
  * Get the inner exception.
  *
- * @return {object|null} The inner exception of Exception type if set.
+ * @return {?Object} The inner exception of Exception type if set.
  */
 google.system.core.Exception.prototype.getInnerException = function() {
   return this.innerException_;

@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllCampaignTargets, a code example that gets all
- * campaign targets.
+ *     campaign targets.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetAllCampaignTargets');
@@ -39,6 +39,10 @@ goog.require('google.ads.adwords.v201008.CampaignTargetService');
  */
 google.ads.adwords.examples.v201008.GetAllCampaignTargets = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example adds geo, language, and network ' +
       'targeting to an existing campaign. To get a campaign, run ' +
       'GetAllCampaigns.js.';
@@ -50,9 +54,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetAllCampaignTargets,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetAllCampaignTargets.prototype.run =
     function(user, callback) {

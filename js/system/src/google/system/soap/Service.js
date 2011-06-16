@@ -28,6 +28,7 @@ goog.require('goog.dom.xml');
 goog.require('goog.json');
 
 goog.require('google.system.core.Exception');
+goog.require('google.system.core.Runtime');
 goog.require('google.system.net.HttpWebTransportFactory');
 goog.require('google.system.soap.Exception');
 goog.require('google.system.soap.Nametable');
@@ -44,9 +45,41 @@ goog.require('google.system.soap.Object');
  */
 google.system.soap.Service = function() {
   google.system.soap.Object.call(this);
+
+  /**
+   * User agent name to be sent as HTTP Header.
+   * @type {string}
+   * @private
+   */
+  this.USER_AGENT_ = 'googsoapjs/' +
+      google.system.core.Runtime.getInstance().getVersion();
+
+  /**
+   * Service XML namespaces table.
+   * @type {google.system.soap.Nametable}
+   * @private
+   */
   this.nametable_ = new google.system.soap.Nametable();
+
+  /**
+   * Service endpoint URL.
+   * @type {string}
+   * @private
+   */
   this.url_ = null;
+
+  /**
+   * Service http web transport to use.
+   * @type {google.system.net.HttpWebTransport}
+   * @private
+   */
   this.httpWebTransport_ = null;
+
+  /**
+   * Service listeners array.
+   * @type {Array.<google.system.soap.ServiceListener>}
+   * @private
+   */
   this.listeners_ = new Array();
 };
 goog.inherits(google.system.soap.Service, google.system.soap.Object);
@@ -103,15 +136,15 @@ google.system.soap.Service.prototype.setUrl = function(url) {
  * de-serialization call life-cycle.
  *
  * @param {string} methodName Name of the method in the service that is been
- * invoked.
+ *     invoked.
  * @param {Object.<String,Object>} parameterValues Parameters passed to the
- * method.
+ *     method.
  * @param {function(google.system.soap.Object)} successCallback Callback
- * function to be invoked if the request finalizes successfully, the
- * de-serialized SOAP Object gets passed to the callback.
+ *     function to be invoked if the request finalizes successfully, the
+ *     de-serialized SOAP Object gets passed to the callback.
  * @param {function(google.system.soap.Object)} failureCallback Callback
- * function to be invoked if the request finalizes with an error, the
- * de-serialized SOAP Exception gets passed to the callback.
+ *     function to be invoked if the request finalizes with an error, the
+ *     de-serialized SOAP Exception gets passed to the callback.
  */
 google.system.soap.Service.prototype.invoke = function(methodName,
     parameterValues, successCallback, failureCallback) {
@@ -131,7 +164,7 @@ google.system.soap.Service.prototype.invoke = function(methodName,
  * Registers a new SOAP listener to the service.
  *
  * @param {google.system.soap.ServiceListener} listener Listener to be
- * registered.
+ *     registered.
  */
 google.system.soap.Service.prototype.registerListener = function(
     listener) {
@@ -147,7 +180,7 @@ google.system.soap.Service.prototype.registerListener = function(
  *
  * @param {google.system.soap.ServiceListener} listener Listener to be removed.
  * @return {boolean} True if the listener was found and removed, false
- * otherwise.
+ *     otherwise.
  */
 google.system.soap.Service.prototype.removeListener = function(
     listener) {
@@ -165,15 +198,15 @@ google.system.soap.Service.prototype.removeListener = function(
  * continue.
  *
  * @param {string} methodName Name of the method in the service that is been
- * invoked.
+ *     invoked.
  * @param {Object.<String,Object>} parameterValues Parameters passed to the
- * method.
+ *     method.
  * @param {function(google.system.soap.Object)} successCallback Callback
- * function to be invoked if the request finalizes successfully, the
- * de-serialized SOAP Object gets passed to the function.
+ *     function to be invoked if the request finalizes successfully, the
+ *     de-serialized SOAP Object gets passed to the function.
  * @param {function(google.system.soap.Object)} failureCallback Callback
- * function to be invoked if the request finalizes with an error, the
- * de-serialized SOAP Exception gets passed to the function.
+ *     function to be invoked if the request finalizes with an error, the
+ *     de-serialized SOAP Exception gets passed to the function.
  * @private
  */
 google.system.soap.Service.prototype.serializeRequest_ = function(
@@ -201,14 +234,14 @@ google.system.soap.Service.prototype.serializeRequest_ = function(
  * deserializeResponse_ phase will continue.
  *
  * @param {string} methodName Name of the method in the service that is been
- * invoked.
+ *     invoked.
  * @param {Document} doc The generated XML gocument.
  * @param {function(google.system.soap.Object)} successCallback Callback
- * function to be invoked if the request finalizes successfully, the
- * de-serialized SOAP Object gets passed to the function.
+ *     function to be invoked if the request finalizes successfully, the
+ *     de-serialized SOAP Object gets passed to the function.
  * @param {function(google.system.soap.Object)} failureCallback Callback
- * function to be invoked if the request finalizes with an error, the
- * de-serialized SOAP Exception gets passed to the function.
+ *     function to be invoked if the request finalizes with an error, the
+ *     de-serialized SOAP Exception gets passed to the function.
  * @private
  */
 google.system.soap.Service.prototype.sendRequest_ = function(
@@ -250,14 +283,14 @@ google.system.soap.Service.prototype.sendRequest_ = function(
  * sucessCallback gets invoked.
  *
  * @param {string} methodName Name of the method in the service that is been
- * invoked.
+ *     invoked.
  * @param {Document} responseDocument The response XML document.
  * @param {function(google.system.soap.Object)} successCallback Callback
- * function to be invoked if the request finalizes successfully, the
- * de-serialized SOAP Object gets passed to the function.
+ *     function to be invoked if the request finalizes successfully, the
+ *     de-serialized SOAP Object gets passed to the function.
  * @param {function(google.system.soap.Object)} failureCallback Callback
- * function to be invoked if the request finalizes with an error, the
- * de-serialized SOAP Exception gets passed to the function.
+ *     function to be invoked if the request finalizes with an error, the
+ *     de-serialized SOAP Exception gets passed to the function.
  * @private
  */
 google.system.soap.Service.prototype.deserializeResponse_ = function(
@@ -290,11 +323,11 @@ google.system.soap.Service.prototype.deserializeResponse_ = function(
  *
  * @param {Document} errorDocument The response XML error document.
  * @param {function(google.system.soap.Object)} successCallback Callback
- * function to be invoked if the request finalizes successfully, the
- * de-serialized SOAP Object gets passed to the function.
+ *     function to be invoked if the request finalizes successfully, the
+ *     de-serialized SOAP Object gets passed to the function.
  * @param {function(google.system.soap.Object)} failureCallback Callback
- * function to be invoked if the request finalizes with an error, the
- * de-serialized SOAP Exception gets passed to the function.
+ *     function to be invoked if the request finalizes with an error, the
+ *     de-serialized SOAP Exception gets passed to the function.
  * @private
  */
 google.system.soap.Service.prototype.deserializeError_ = function(
@@ -321,15 +354,15 @@ google.system.soap.Service.prototype.deserializeError_ = function(
  * service call life-cycle.
  *
  * @param {Array.<google.system.soap.ServiceListener>} listeners List of
- * listeners pending to process.
+ *     listeners pending to process.
  * @param {function(google.system.soap.ServiceListener)} fnFactory Function
- * factory that generates the function to be called in the listener. E.g.
- * When on the beforeSend phase this factory generates a function that calls
- * the beforeSend method of the listener.
+ *     factory that generates the function to be called in the listener. E.g.
+ *     When on the beforeSend phase this factory generates a function that calls
+ *     the beforeSend method of the listener.
  * @param {function()} continueCallback Function to be called after all listener
- * have been successfully called.
+ *     have been successfully called.
  * @param {function(google.system.core.Exception)} failureCallback Function to
- * be called in case one of the listeners fails.
+ *     be called in case one of the listeners fails.
  * @private
  */
 google.system.soap.Service.prototype.fireListeners_ = function(
@@ -351,11 +384,11 @@ google.system.soap.Service.prototype.fireListeners_ = function(
  * in the stack.
  *
  * @param {google.system.soap.ServiceListener} listener Listener that caused
- * the failure.
+ *     the failure.
  * @param {function(google.system.core.Exception)} failureCallback Function to
- * be called in case one of the listeners fails.
+ *     be called in case one of the listeners fails.
  * @param {google.system.core.Exception} exception Exception returned by the
- * listener.
+ *     listener.
  * @private
  */
 google.system.soap.Service.prototype.listenerError_ = function(
@@ -382,7 +415,7 @@ google.system.soap.Service.prototype.createSoapRequest_ = function(
   var envelope = this.createEmptyEnvelope_(doc);
   doc.appendChild(envelope);
   var soapHeaders = this.createSoapHeader_(doc, methodName);
-  if (soapHeaders != null) {
+  if (!goog.isNull(soapHeaders)) {
     envelope.appendChild(soapHeaders);
   }
   var soapBody = this.createSoapBody_(doc, methodName, parameters,
@@ -466,7 +499,7 @@ google.system.soap.Service.prototype.createSoapHeader_ = function(
     var header = headers[i];
     var property = this.getType().getPropertyByName(header.propertyName);
 
-    if (property == null) {
+    if (goog.isNull(property)) {
       continue;
     }
     var propertyValue = this[property.getGetterName()]();
@@ -476,7 +509,7 @@ google.system.soap.Service.prototype.createSoapHeader_ = function(
     }
 
     // There is at least one soap header, so we need to create soap:Header.
-    if (headerNode == null) {
+    if (goog.isNull(headerNode)) {
       headerNode = doc.createElement('soap:Header');
     }
 
@@ -548,21 +581,23 @@ google.system.soap.Service.prototype.createSoapBody_ = function(
  *
  * @param {Document} serializedDoc The XML document to send.
  * @param {function} successCallback Callback function to be invoked in case
- * of success.
+ *     of success.
  * @param {function} failureCallback Callback function to be invoked in case
- * of failure.
+ *     of failure.
  * @private
  */
 google.system.soap.Service.prototype.postXmlToServer_ = function(
     serializedDoc, successCallback, failureCallback) {
   var thisPtr = this;
   var request = this.getHttpWebTransport();
-
   var postParams = serializedDoc;
+  var defaultHttpHeaders = {
+    'X-User-Agent': this.USER_AGENT_
+  };
 
-  if (request != null) {
-    request.send(thisPtr.url_, 'POST', postParams, null, 0, goog.bind(
-        function(response) {
+  if (!goog.isNull(request)) {
+    request.send(thisPtr.url_, 'POST', postParams, defaultHttpHeaders, 0,
+        goog.bind(function(response) {
           if (successCallback != null) {
             successCallback.call(thisPtr, response);
           }
@@ -681,17 +716,19 @@ google.system.soap.Service.prototype.parseSoapResponseBody_ = function(
  */
 google.system.soap.Service.prototype.parseSingleObject_ = function(
     responseNode, methodName, returnType) {
-  var retval = null;
   if (responseNode == null) {
-    return retval;
+    return null;
   }
+
+  var retval = null;
+
   // First, try to identify if an xsi:type is mentioned on the node. If yes,
   // see if this is a SerializableSoapObject. If so, create a retVal.
   var availableType = this.getTypeAsPerXsiType_(this.getNametable(),
       responseNode, this.getType().getNamespace());
-  if (availableType != null) {
+  if (!goog.isNull(availableType)) {
     availableType = goog.getObjectByName(availableType);
-    if (availableType != null) {
+    if (!goog.isNull(availableType)) {
       availableType = new availableType();
       if (availableType instanceof google.system.soap.Object) {
         retVal = availableType;
@@ -700,17 +737,15 @@ google.system.soap.Service.prototype.parseSingleObject_ = function(
   } else {
     // See if returnType is a SerializableSoapObject. if so, create a retval.
     var desiredType = goog.getObjectByName(returnType.className);
-    if (desiredType != null) {
+    if (!goog.isNull(desiredType)) {
       desiredType = new desiredType();
       if (desiredType instanceof google.system.soap.Object) {
         retVal = desiredType;
       }
     }
   }
-  if (retVal == null) {
-    // This means that the value returned by the method call is not a
-    // SerializableSoapObject.
-    // TODO(Anash): Figure out how to handle this.
+  if (goog.isNull(retVal)) {
+    return null;
   } else {
     retVal.deserialize(responseNode, this.getNametable());
   }

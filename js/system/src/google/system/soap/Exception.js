@@ -19,7 +19,7 @@
 
 /**
  * @fileoverview Defines a SOAP Exception, a generic exception thrown when a
- * SOAP call fails.
+ *     SOAP call fails.
  */
 
 goog.provide('google.system.soap.Exception');
@@ -36,14 +36,32 @@ goog.require('google.system.core.Exception');
  * @param {string} detail The detail for this SOAP Exception.
  * @param {?string} message An optional error message for the exception.
  * @param {?Object} innerException If this exception was thrown in response to
- * another exception, then you can wrap the original exception within this
- * exception.
+ *     another exception, then you can wrap the original exception within this
+ *     exception.
  */
 google.system.soap.Exception = function(faultCode, faultString,
     detail, message, innerException) {
   google.system.core.Exception.call(this, message, innerException);
+
+  /**
+   * SOAP Fault code.
+   * @type {string}
+   * @private
+   */
   this.faultCode_ = faultCode;
+
+  /**
+   * SOAP Fault string.
+   * @type {string}
+   * @private
+   */
   this.faultString_ = faultString;
+
+  /**
+   * SOAP Fault detail.
+   * @type {Object}
+   * @private
+   */
   this.detail_ = detail;
 };
 goog.inherits(google.system.soap.Exception, google.system.core.Exception);

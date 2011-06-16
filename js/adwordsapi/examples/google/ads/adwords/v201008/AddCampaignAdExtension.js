@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines AddCampaignAdExtension, a code example that shows how
- * to add an Ad Extension to an existing campaign.
+ *     to add an Ad Extension to an existing campaign.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.AddCampaignAdExtension');
@@ -46,6 +46,10 @@ goog.require('google.ads.adwords.v201008.LocationExtensionSource');
  */
 google.ads.adwords.examples.v201008.AddCampaignAdExtension = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example shows how to add an Ad Extension to ' +
   'an existing campaign. To create a campaign, run AddCampaign.js.';
 };
@@ -56,9 +60,9 @@ goog.inherits(google.ads.adwords.examples.v201008.AddCampaignAdExtension,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.AddCampaignAdExtension.prototype.run =
     function(user, callback) {
@@ -76,9 +80,9 @@ google.ads.adwords.examples.v201008.AddCampaignAdExtension.prototype.run =
   address1.postalCode = '94043';
   address1.countryCode = 'US';
 
-  // Add location 2: 38 avenue de l'Opéra, 75002 Paris, FR
+  // Add location 2: 38 avenue de l'Opï¿½ra, 75002 Paris, FR
   var address2 = new google.ads.adwords.v201008.Address();
-  address2.streetAddress = "38 avenue de l'Opéra";
+  address2.streetAddress = "38 avenue de l'Opï¿½ra";
   address2.cityName = 'Paris';
   address2.postalCode = '75002';
   address2.countryCode = 'FR';

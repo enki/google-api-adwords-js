@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines PromoteExperiment, a code example that promotes
- * an experiment.
+ *     an experiment.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.PromoteExperiment');
@@ -43,6 +43,10 @@ goog.require('google.ads.adwords.v201008.Operator');
  */
 google.ads.adwords.examples.v201008.PromoteExperiment = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example promotes an experiment, which ' +
       'permanently applies all the experiment changes made to its related ' +
       'ad groups, criteria and ads. To get experiments, run ' +
@@ -55,9 +59,9 @@ goog.inherits(google.ads.adwords.examples.v201008.PromoteExperiment,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.PromoteExperiment.prototype.run =
     function(user, callback) {

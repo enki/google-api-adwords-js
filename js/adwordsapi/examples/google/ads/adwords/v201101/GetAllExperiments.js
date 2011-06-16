@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllExperiments, a code example that gets all
- * experiments in a campaign.
+ *     experiments in a campaign.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.GetAllExperiments');
@@ -52,9 +52,9 @@ goog.inherits(google.ads.adwords.examples.v201101.GetAllExperiments,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.GetAllExperiments.prototype.run =
     function(user, callback) {
@@ -66,8 +66,8 @@ google.ads.adwords.examples.v201101.GetAllExperiments.prototype.run =
 
   // Create selector.
   var selector = new google.ads.adwords.v201101.Selector();
-  selector.fields = ["Name", "Id", "CampaignId", "ControlId", "AdGroupsCount",
-      "AdGroupCriteriaCount", "AdGroupAdsCount"];
+  selector.fields = ['Name', 'Id', 'CampaignId', 'ControlId', 'AdGroupsCount',
+      'AdGroupCriteriaCount', 'AdGroupAdsCount'];
 
   // Create a selector.
   var predicate = new google.ads.adwords.v201101.Predicate();

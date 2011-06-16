@@ -19,7 +19,7 @@
 
 /**
  * @fileoverview Defines Exception, the base class for all exceptions
- * specific to AdWords.
+ *     specific to AdWords.
  */
 
 goog.provide('google.ads.adwords.Exception');
@@ -33,8 +33,8 @@ goog.require('google.ads.common.AdsException');
  * @constructor
  * @param {string?} message An optional error message for the exception.
  * @param {Object?} innerException If this exception was thrown in response to
- * another exception, then you can wrap the original exception within this
- * exception.
+ *     another exception, then you can wrap the original exception within this
+ *     exception.
  */
 google.ads.adwords.Exception = function(message, innerException) {
   google.ads.common.AdsException.call(this, message, innerException);

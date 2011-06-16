@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines UpdateAdGroupCriterion, a code example that updates
- * the bid of an ad group criterion.
+ *     the bid of an ad group criterion.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.UpdateAdGroupCriterion');
@@ -55,9 +55,9 @@ goog.inherits(google.ads.adwords.examples.v201101.UpdateAdGroupCriterion,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.UpdateAdGroupCriterion.prototype.run =
     function(user, callback) {

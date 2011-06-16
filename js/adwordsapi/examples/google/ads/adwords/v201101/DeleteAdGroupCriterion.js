@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines DeleteAdGroupCriterion, a code example that deletes an
- * ad group criterion using the 'REMOVE operator.
+ *     ad group criterion using the 'REMOVE operator.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.DeleteAdGroupCriterion');
@@ -55,9 +55,9 @@ goog.inherits(google.ads.adwords.examples.v201101.DeleteAdGroupCriterion,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.DeleteAdGroupCriterion.prototype.run =
     function(user, callback) {

@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines DeleteSiteLinks, a code example that shows how to
- * delete site links from an existing campaign.
+ *     delete site links from an existing campaign.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.DeleteSiteLinks');
@@ -47,6 +47,10 @@ goog.require('google.ads.adwords.v201008.SitelinksExtension');
 
 google.ads.adwords.examples.v201008.DeleteSiteLinks = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example shows how to delete site links from ' +
       'an existing campaign. To add site links to an existing campaign, ' +
       'run AddSiteLinks.js. To get existing campaigns, run GetAllCampaigns.js.';
@@ -58,9 +62,9 @@ goog.inherits(google.ads.adwords.examples.v201008.DeleteSiteLinks,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.DeleteSiteLinks.prototype.run = function(
     user, callback) {

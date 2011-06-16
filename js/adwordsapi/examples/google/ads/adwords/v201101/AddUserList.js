@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines AddUserList, a code example that shows how to create
- * a user list.
+ *     a user list.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.AddUserList');
@@ -54,9 +54,9 @@ goog.inherits(google.ads.adwords.examples.v201101.AddUserList,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.AddUserList.prototype.run =
     function(user, callback) {
@@ -94,7 +94,7 @@ google.ads.adwords.examples.v201101.AddUserList.prototype.run =
           for (var i = 0; i < userLists.length; i++) {
             if (userLists[i].conversionTypes != null) {
               for (var j = 0; j < userLists[i].conversionTypes.length; j++) {
-                conversionIds.push("" + userLists[i].conversionTypes[j].id);
+                conversionIds.push('' + userLists[i].conversionTypes[j].id);
               }
             }
           }
@@ -105,13 +105,13 @@ google.ads.adwords.examples.v201101.AddUserList.prototype.run =
             // Create selector.
             var conversionTypePredicate =
                 new google.ads.adwords.v201101.Predicate();
-            conversionTypePredicate.field = "Id";
+            conversionTypePredicate.field = 'Id';
             conversionTypePredicate.operator =
                 google.ads.adwords.v201101.PredicateOperator.IN;
             conversionTypePredicate.values = conversionIds;
 
             var selector = new google.ads.adwords.v201101.Selector();
-            selector.fields = ["Id"];
+            selector.fields = ['Id'];
             selector.predicates = [conversionTypePredicate];
 
             // Get all conversion trackers.
@@ -126,8 +126,8 @@ google.ads.adwords.examples.v201101.AddUserList.prototype.run =
               // Display results.
               for (var i = 0; i < userLists.length; i++) {
                 var tempUserList = userLists[i];
-                this.writeOutput("User list with name '%s' and id '%s' was " +
-                    "added.", tempUserList.name, tempUserList.id);
+                this.writeOutput('User list with name \'%s\' and id \'%s\' ' +
+                    'was added.', tempUserList.name, tempUserList.id);
 
                 // Display user list associated conversion code snippets.
                 if (tempUserList.conversionTypes != null) {
@@ -136,8 +136,8 @@ google.ads.adwords.examples.v201101.AddUserList.prototype.run =
                     var tempConversionType = tempUserList.conversionTypes[j];
                     var conversionTracker =
                         conversionsMap[tempConversionType.id];
-                    this.writeOutput("Conversion type code snippet " +
-                        "associated to the list:\n%s\n",
+                    this.writeOutput('Conversion type code snippet ' +
+                        'associated to the list:\n%s\n',
                         conversionTracker.snippet);
                   }
                 }

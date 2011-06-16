@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllActiveAdGroupCriteria, a code example that gets
- * all active ad group criteria in an ad group.
+ *     all active ad group criteria in an ad group.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetAllActiveAdGroupCriteria');
@@ -45,6 +45,10 @@ goog.require('google.ads.adwords.v201008.UserStatus');
 
 google.ads.adwords.examples.v201008.GetAllActiveAdGroupCriteria = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example gets all active ad group criteria ' +
       'in an ad group. To add ad group criteria, run AddAdGroupCriteria.js. ' +
       'To get ad groups in an account, run GetAllAdGroups.js.';
@@ -56,9 +60,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetAllActiveAdGroupCriteria,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetAllActiveAdGroupCriteria.prototype.run =
     function(user, callback) {

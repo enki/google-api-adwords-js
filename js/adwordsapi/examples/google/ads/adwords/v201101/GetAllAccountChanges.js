@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllAccountChanges, a code example that gets all
- * account changes between the two dates specified, for all campaigns.
+ *     account changes between the two dates specified, for all campaigns.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.GetAllAccountChanges');
@@ -53,9 +53,9 @@ goog.inherits(google.ads.adwords.examples.v201101.GetAllAccountChanges,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.GetAllAccountChanges.prototype.run =
     function(user, callback) {
@@ -170,7 +170,7 @@ google.ads.adwords.examples.v201101.GetAllAccountChanges.prototype.
 
   // Create a selector.
   var selector = new google.ads.adwords.v201101.Selector();
-  selector.fields = ["Id"];
+  selector.fields = ['Id'];
 
   var retval = [];
   campaignService.get(selector,

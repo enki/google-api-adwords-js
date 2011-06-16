@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllAdGroupCriteria, a code example that gets all
- * ad group criteria in an account.
+ *     ad group criteria in an account.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetAllAdGroupCriteria');
@@ -42,6 +42,10 @@ goog.require('google.ads.adwords.v201008.Placement');
  */
 google.ads.adwords.examples.v201008.GetAllAdGroupCriteria = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example gets all ad group criteria in an ' +
       'account. To add ad group criteria, run AddAdGroupCriteria.js.';
 };
@@ -52,9 +56,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetAllAdGroupCriteria,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetAllAdGroupCriteria.prototype.run =
     function(user, callback) {

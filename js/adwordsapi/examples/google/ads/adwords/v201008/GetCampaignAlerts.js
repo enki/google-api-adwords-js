@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetCampaignAlerts, a code example that illustrates
- * how to retrieve campaign alerts for a user.
+ *     how to retrieve campaign alerts for a user.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetCampaignAlerts');
@@ -46,6 +46,10 @@ goog.require('google.ads.adwords.v201008.TriggerTimeSpec');
  */
 google.ads.adwords.examples.v201008.GetCampaignAlerts = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example illustrates how to retrieve campaign' +
       ' alerts for a user. The alerts are restricted to a maximum of ' +
       '10 entries.';
@@ -57,9 +61,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetCampaignAlerts,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetCampaignAlerts.prototype.run =
     function(user, callback) {

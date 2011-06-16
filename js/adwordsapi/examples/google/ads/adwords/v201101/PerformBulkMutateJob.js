@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines PerformBulkMutateJob, a code example that shows how to
- * add ads and keywords using the BulkMutateJobService.
+ *     add ads and keywords using the BulkMutateJobService.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.PerformBulkMutateJob');
@@ -66,9 +66,9 @@ goog.inherits(
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.PerformBulkMutateJob.prototype.
     run = function(user, callback) {

@@ -19,7 +19,7 @@
 
 /**
  * @fileoverview Defines AdWordsAppConfig, a class that reads the configuration
- * keys for AdWords.
+ *     keys for AdWords.
  */
 
 goog.provide('google.ads.adwords.AppConfig');
@@ -35,14 +35,60 @@ goog.require('google.ads.common.AppConfigBase');
 google.ads.adwords.AppConfig = function() {
   google.ads.common.AppConfigBase.call(this);
 
+  /**
+   * Authorization token.
+   * @type {string}
+   * @private
+   */
   this.authToken_ = null;
+
+  /**
+   * Account email.
+   * @type {string}
+   * @private
+   */
   this.email_ = null;
+
+  /**
+   * Account password.
+   * @type {string}
+   * @private
+   */
   this.password_ = null;
+
+  /**
+   * Client email.
+   * @type {string}
+   * @private
+   */
   this.clientEmail_ = null;
+
+  /**
+   * Client customer id.
+   * @type {string}
+   * @private
+   */
   this.clientCustomerId_ = null;
+
+  /**
+   * AdWords API developer token.
+   * @type {string}
+   * @private
+   */
   this.developerToken_ = null;
+
+  /**
+   * User Agent.
+   * @type {string}
+   * @private
+   */
   this.userAgent_ = null;
-  this.legacyAdWordsApiServer_ = this.DEFAULT_LEGACY_ADWORDSAPI_SERVER_;
+
+  /**
+   * AdWords API server endpoint.
+   * @type {string}
+   * @private
+   */
   this.adWordsApiServer_ = this.DEFAULT_ADWORDSAPI_SERVER_;
 
   var runtimeConfig = google.system.core.Runtime.getInstance().getConfig();

@@ -31,22 +31,53 @@ goog.provide('google.system.soap.ObjectProperty');
  * @param {string} name Name of the property.
  * @param {string} fullClassName Full class name of the property.
  * @param {(string|Object.<string, string>)} xmlElementNameMapping In general
- * this maps to a simple xmlElement name unless, it is a choice type of SOAP
- * element where multiple xml element names can be defined depending on the
- * type of the value to be serialized, so it can take the form of
- * [{elementName: 'element', className: 'fullClassName'}, ...].
+ *     this maps to a simple xmlElement name unless, it is a choice type of SOAP
+ *     element where multiple xml element names can be defined depending on the
+ *     type of the value to be serialized, so it can take the form of
+ *     [{elementName: 'element', className: 'fullClassName'}, ...].
  * @param {boolean} isArray True if is an array type of property, false
- * otherwise.
+ *     otherwise.
  * @param {boolean} isSystem True if is a system kind of property, false
- * otherwise.
+ *     otherwise.
  * @constructor
  */
 google.system.soap.ObjectProperty = function(name, fullClassName,
     xmlElementNameMapping, isArray, isSystem) {
+
+  /**
+   * Property name.
+   * @type {string}
+   * @private
+   */
   this.name_ = name;
+
+  /**
+   * Property full class name.
+   * @type {string}
+   * @private
+   */
   this.fullClassName_ = fullClassName;
+
+  /**
+   * XML element <-> property mapping.
+   * @type {string|Array.<Object>}
+   * @private
+   */
   this.xmlElementNameMapping_ = xmlElementNameMapping;
+
+  /**
+   * True if the property if of the type array, false otherwise.
+   * @type {boolean}
+   * @private
+   */
   this.isArray_ = isArray;
+
+  /**
+   * True if the property if of the type system (string, long, etc), false
+   * otherwise.
+   * @type {boolean}
+   * @private
+   */
   this.isSystem_ = isSystem;
 };
 

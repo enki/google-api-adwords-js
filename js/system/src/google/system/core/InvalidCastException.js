@@ -33,8 +33,8 @@ goog.require('google.system.core.Exception');
  * @constructor
  * @param {string?} message An optional error message for the exception.
  * @param {Object?} innerException If this exception was thrown in response to
- * another exception, then you can wrap the original exception within this
- * exception.
+ *     another exception, then you can wrap the original exception within this
+ *     exception.
  */
 google.system.core.InvalidCastException = function(message,
     innerException) {

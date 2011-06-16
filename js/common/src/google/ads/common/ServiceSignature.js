@@ -19,7 +19,8 @@
 
 /**
  * @fileoverview Defines ServiceSignature, an API signature object. This class
- * is used as a support class to assist AdsUser in creating a service object.
+ *     is used as a support class to assist AdsUser in creating a service
+ *     object.
  */
 
 goog.provide('google.ads.common.ServiceSignature');
@@ -34,8 +35,23 @@ goog.provide('google.ads.common.ServiceSignature');
  * @param {string} protocol The supported protocol.
  */
 google.ads.common.ServiceSignature = function(version, serviceName, protocol) {
+
+  /**
+   * Service version.
+   * @type {string}
+   */
   this.version = version;
+
+  /**
+   * Service name.
+   * @type {string}
+   */
   this.serviceName = serviceName;
+
+  /**
+   * Service protocol.
+   * @type {string}
+   */
   this.protocol = protocol;
 };
 

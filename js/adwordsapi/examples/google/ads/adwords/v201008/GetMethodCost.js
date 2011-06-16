@@ -18,8 +18,8 @@
 
 /**
  * @fileoverview Defines GetMethodCost, a code example that retrieves the
- * cost, in API units per operation, of the given method on a specific date
- * for the developer token being used to make this call.
+ *     cost, in API units per operation, of the given method on a specific date
+ *     for the developer token being used to make this call.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetMethodCost');
@@ -44,6 +44,10 @@ goog.require('google.ads.adwords.v201008.Operator');
  */
 google.ads.adwords.examples.v201008.GetMethodCost = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example retrieves the cost, in API units per' +
       ' operation, of the given method on a specific date for the developer ' +
       'token being used to make this call.';
@@ -55,9 +59,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetMethodCost,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetMethodCost.prototype.run =
     function(user, callback) {

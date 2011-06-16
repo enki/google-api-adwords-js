@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetRelatedPlacements, a code example that retrieves
- * urls that have content keywords related to a given website.
+ *     urls that have content keywords related to a given website.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetRelatedPlacements');
@@ -44,6 +44,10 @@ goog.require('google.ads.adwords.v201008.TargetingIdeaService');
  */
 google.ads.adwords.examples.v201008.GetRelatedPlacements = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example retrieves urls that have content ' +
       'keywords related to a given website.';
 };
@@ -54,9 +58,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetRelatedPlacements,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetRelatedPlacements.prototype.run =
     function(user, callback) {

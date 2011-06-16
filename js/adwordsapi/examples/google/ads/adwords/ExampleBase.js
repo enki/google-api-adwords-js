@@ -39,9 +39,9 @@ google.ads.adwords.examples.ExampleBase = function() {
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.ExampleBase.prototype.run =
     function(user, callback) {

@@ -19,7 +19,7 @@
 
 /**
  * @fileoverview Defines RequestHeader, the Soap Request header for AdWords
- * API services.
+ *     API services.
  */
 
 goog.provide('google.ads.adwords.RequestHeader');

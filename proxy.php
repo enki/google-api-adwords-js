@@ -53,11 +53,17 @@ function forwardCall() {
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_URL, $url);
 
-  $headers = (array) json_decode(get_magic_quotes_gpc()? 
-      stripslashes($_POST['headers']) : $_POST['headers']);
 
-  if (count($headers) > 0) {
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+  $headers = (array) json_decode(get_magic_quotes_gpc()?
+      stripslashes($_POST['headers']) : $_POST['headers'], TRUE);
+
+  $curl_headers = array();
+  foreach ($headers as $header_key => $header_value) {
+    $curl_headers[] = "$header_key: $header_value";
+  }
+
+  if (!empty($curl_headers)) {
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $curl_headers);
   }
 
   curl_setopt($ch, CURLOPT_HEADER, true);
@@ -66,7 +72,7 @@ function forwardCall() {
 
   if ($_POST['method'] == 'POST') {
     curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, stripslashes(get_magic_quotes_gpc()? 
+    curl_setopt($ch, CURLOPT_POSTFIELDS, stripslashes(get_magic_quotes_gpc()?
       stripslashes($_POST['params']) : $_POST['params']));
   }
   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);

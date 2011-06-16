@@ -40,6 +40,10 @@ goog.require('google.ads.adwords.v201008.Video');
  */
 google.ads.adwords.examples.v201008.GetAllVideos = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example gets all videos. To upload video, ' +
       'see http://adwords.google.com/support/aw/bin/answer.py?hl=en&amp;' +
       'answer=39454.';
@@ -51,9 +55,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetAllVideos,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetAllVideos.prototype.run =
     function(user, callback) {

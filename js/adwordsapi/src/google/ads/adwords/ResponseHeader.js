@@ -19,7 +19,7 @@
 
 /**
  * @fileoverview Defines ResponseHeader, the Soap Response header for AdWords
- * API services.
+ *     API services.
  */
 
 goog.provide('google.ads.adwords.ResponseHeader');
@@ -34,6 +34,12 @@ goog.require('google.system.soap.Object');
  */
 google.ads.adwords.ResponseHeader = function(version) {
   google.system.soap.Object.call(this);
+
+  /**
+   * API version.
+   * @type {string}
+   * @private
+   */
   this.version_ = version;
 };
 var type = google.system.soap.ObjectType.defineType(null,

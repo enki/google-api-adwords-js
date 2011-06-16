@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllCampaignAdExtensions, a code example that gets
- * all Ad Extensions in a campaign.
+ *     all Ad Extensions in a campaign.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.GetAllCampaignAdExtensions');
@@ -54,9 +54,9 @@ goog.inherits(google.ads.adwords.examples.v201101.GetAllCampaignAdExtensions,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.GetAllCampaignAdExtensions.prototype.run =
     function(user, callback) {
@@ -68,20 +68,20 @@ google.ads.adwords.examples.v201101.GetAllCampaignAdExtensions.prototype.run =
 
   // Create a selector.
   var selector = new google.ads.adwords.v201101.Selector();
-  selector.fields = ["AdExtensionId", "Status"];
+  selector.fields = ['AdExtensionId', 'Status'];
 
   // Create the filtering conditions.
   var campaignPredicate = new google.ads.adwords.v201101.Predicate();
   campaignPredicate.operator =
       google.ads.adwords.v201101.PredicateOperator.EQUALS;
-  campaignPredicate.field = "CampaignId";
+  campaignPredicate.field = 'CampaignId';
   campaignPredicate.values = [campaignId];
 
   selector.predicates = [campaignPredicate];
 
   // Specify the sort order.
   var orderBy = new google.ads.adwords.v201101.OrderBy();
-  orderBy.field = "AdExtensionId";
+  orderBy.field = 'AdExtensionId';
   orderBy.sortOrder = google.ads.adwords.v201101.SortOrder.ASCENDING;
   selector.ordering = [orderBy];
 

@@ -32,7 +32,17 @@ goog.require('google.system.core.Exception');
  * @constructor
  */
 google.system.core.Runtime = function() {
-  this.types_ = {};
+
+  /**
+   * System configuration. Of the form:
+   * {
+   *   moduleName: {
+   *     property: value
+   *   }
+   * }
+   * @type {Object.<String, Object>}
+   * @private
+   */
   this.config_ = {};
 };
 
@@ -49,13 +59,13 @@ google.system.core.Runtime.theInstance_ =
  *
  * @private
  */
-google.system.core.Runtime.prototype.version_ = '0.0.0';
+google.system.core.Runtime.prototype.version_ = '1.0.1';
 
 /**
  * Gets the runtime instance.
  *
  * @return {google.system.core.Runtime} The singleton instance of
- * Runtime.
+ *     Runtime.
  * @constructor
  */
 google.system.core.Runtime.getInstance = function() {

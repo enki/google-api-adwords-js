@@ -15,9 +15,11 @@
 /**
  * @author api.anash@gmail.com (Anash P. Oommen)
  * @author api.davidtorres@gmail.com (David Torres)
- *
+ */
+
+/**
  * @fileoverview Defines Type, a class to store the type of a
- * google.system.soap.Object.
+ *     google.system.soap.Object.
  */
 
 goog.provide('google.system.soap.ObjectType');
@@ -252,7 +254,7 @@ google.system.soap.ObjectType.prototype.getProperties = function(
  * @param {boolean} ignoreInheritance If true it will only look at this type
  *     direct property and not follow the inheritance path.
  * @return {google.system.soap.ObjectProperty} The property or null if not
- * property was found.
+ *     property was found.
  */
 google.system.soap.ObjectType.prototype.getPropertyByName = function(name,
     ignoreInheritance) {

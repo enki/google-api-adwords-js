@@ -29,11 +29,23 @@ goog.provide('google.system.soap.Nametable');
  * @constructor
  */
 google.system.soap.Nametable = function() {
+
+  /**
+   * Default SOAP XML namespaces table.
+   * @type {Array}
+   * @private
+   */
   this.xmlnt_ = {
     'soap': 'http://schemas.xmlsoap.org/soap/envelope/',
     'xsi': 'http://www.w3.org/2001/XMLSchema-instance',
     'xsd': 'http://www.w3.org/2001/XMLSchema'
   };
+
+  /**
+   * Service defined XML namespaces.
+   * @type {Array}
+   * @private
+   */
   this.localxmlnt_ = {};
 };
 
@@ -62,7 +74,7 @@ google.system.soap.Nametable.prototype.getNamespaceFromPrefix = function(
 /**
  * Retrieves the prefix of a given SOAP XML namespace.
  * @param {string} namespace Namespace.
- * @return {string|null} Its prefix or null if not found.
+ * @return {?string} Its prefix or null if not found.
  */
 google.system.soap.Nametable.prototype.getPrefixFromNamespace = function(
     namespace) {

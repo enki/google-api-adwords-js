@@ -26,10 +26,16 @@ goog.provide('google.system.net.HttpWebTransport');
  * This class defines a wrapper for making HTTP calls.
  *
  * @param {google.system.net.HttpWebTransportSettings} settings Settings to be
- * applied.
+ *    applied.
  * @constructor
  */
 google.system.net.HttpWebTransport = function(settings) {
+
+  /**
+   * Transport settings.
+   * @type {google.system.net.HttpWebTransportSettings}
+   * @private
+   */
   this.settings_ = settings;
 };
 
@@ -53,7 +59,7 @@ google.system.net.HttpWebTransport.prototype.send = function(url, method,
  * Retrieves the transport settings.
  *
  * @return {google.system.net.HttpWebTransportSettings} Settings of the
- * transport.
+ *     transport.
  */
 google.system.net.HttpWebTransport.prototype.getSettings = function() {
   return this.settings_;

@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllAdGroups, a code example that gets all the ad
- * groups for a campaign.
+ *     groups for a campaign.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.GetAllAdGroups');
@@ -51,9 +51,9 @@ goog.inherits(google.ads.adwords.examples.v201101.GetAllAdGroups,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.GetAllAdGroups.prototype.run =
     function(user, callback) {

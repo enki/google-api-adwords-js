@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines SetAdParams, a code example that illustrates how to
- * create a text ad with ad parameters.
+ *     create a text ad with ad parameters.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.SetAdParams');
@@ -58,9 +58,9 @@ goog.inherits(google.ads.adwords.examples.v201101.SetAdParams,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.SetAdParams.prototype.run =
     function(user, callback) {

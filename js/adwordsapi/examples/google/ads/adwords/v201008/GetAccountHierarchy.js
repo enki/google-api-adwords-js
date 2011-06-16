@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAccountHierarchy, a code example that illustrates
- * how to retrieve the account hierarchy under an account.
+ *     how to retrieve the account hierarchy under an account.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetAccountHierarchy');
@@ -42,6 +42,10 @@ goog.require('google.ads.adwords.v201008.ServicedAccountService');
  */
 google.ads.adwords.examples.v201008.GetAccountHierarchy = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example illustrates how to retrieve the ' +
       'account hierarchy under an account.';
 };
@@ -52,9 +56,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetAccountHierarchy,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetAccountHierarchy.prototype.run =
     function(user, callback) {

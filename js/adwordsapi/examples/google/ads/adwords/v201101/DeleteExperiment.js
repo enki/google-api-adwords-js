@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines DeleteExperiment, a code example that deletes an
- * experiment.
+ *     experiment.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.DeleteExperiment');
@@ -54,9 +54,9 @@ goog.inherits(google.ads.adwords.examples.v201101.DeleteExperiment,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.DeleteExperiment.prototype.run =
     function(user, callback) {

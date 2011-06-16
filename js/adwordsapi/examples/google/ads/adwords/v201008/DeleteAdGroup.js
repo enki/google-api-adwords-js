@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines DeleteAdGroup, a code example that deletes an ad group
- * by setting the status to 'DELETED'.
+ *     by setting the status to 'DELETED'.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.DeleteAdGroup');
@@ -45,6 +45,10 @@ goog.require('google.ads.adwords.v201008.Operator');
  */
 google.ads.adwords.examples.v201008.DeleteAdGroup = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example deletes an ad group by setting the ' +
       'status to "DELETED". To get ad groups, run GetAllAdGroups.js.';
 };
@@ -55,9 +59,9 @@ goog.inherits(google.ads.adwords.examples.v201008.DeleteAdGroup,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.DeleteAdGroup.prototype.run =
     function(user, callback) {

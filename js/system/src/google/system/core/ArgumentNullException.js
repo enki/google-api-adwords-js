@@ -35,12 +35,18 @@ goog.require('google.system.core.Exception');
  * @param {string} argumentName The name of argument that had a null value.
  * @param {string?} message An optional error message for the exception.
  * @param {Object?} innerException If this exception was thrown in response to
- * another exception, then you can wrap the original exception within this
- * exception.
+ *     another exception, then you can wrap the original exception within this
+ *     exception.
  */
 google.system.core.ArgumentNullException = function(argumentName,
     message, innerException) {
   google.system.core.Exception.call(this, message, innerException);
+
+  /**
+   * Argument that caused the exception.
+   * @type {string}
+   * @private
+   */
   this.argumentName_ = argumentName;
 };
 goog.inherits(google.system.core.ArgumentNullException,

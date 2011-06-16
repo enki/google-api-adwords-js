@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines DownloadReport, a code example that gets and
- * downloads a report from a report definition.
+ *     downloads a report from a report definition.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.DownloadReport');
@@ -39,6 +39,10 @@ goog.require('google.system.net.HttpWebTransportFactory');
 google.ads.adwords.examples.v201008.DownloadReport =
     function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example gets and downloads a report from a ' +
       'report definition. To get a report definition, run ' +
       'AddKeywordsPerformanceReportDefinition.js. Currently, there is only ' +
@@ -52,9 +56,9 @@ goog.inherits(
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.DownloadReport.
     prototype.run = function(user, callback) {

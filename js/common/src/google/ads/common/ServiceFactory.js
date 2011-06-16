@@ -19,7 +19,7 @@
 
 /**
  * @fileoverview Defines ServiceFactory, interface to a factory which can
- * create a particular group of services.
+ *     create a particular group of services.
  */
 
 goog.provide('google.ads.common.ServiceFactory');
@@ -28,10 +28,16 @@ goog.provide('google.ads.common.ServiceFactory');
  * Interface to a factory which can create a particular group of services.
  *
  * @param {google.ads.adwords.AppConfig} config AdWords configuration
- * properties.
+ *     properties.
  * @constructor
  */
 google.ads.common.ServiceFactory = function(config) {
+
+  /**
+   * Library configuration.
+   * @type {google.ads.common.AppConfigBase}
+   * @private
+   */
   this.config_ = config;
 };
 
@@ -48,11 +54,11 @@ google.ads.common.ServiceFactory.prototype.getAppConfig = function() {
  * Create a service object.
  *
  * @param {google.ads.common.ServiceSignature} signature Signature of
- * the service being created.
+ *     the service being created.
  * @param {string} serverUrl The server to which the
- * API calls should be made.
+ *     API calls should be made.
  * @return {google.system.soap.Service} An instance of the desired
- * service type.
+ *     service type.
  */
 google.ads.common.ServiceFactory.prototype.createService = function(
     signature, serverUrl) {

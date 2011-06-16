@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines AddAdGroupCriteria, a code example that adds a keyword
- * and a placement to an ad group.
+ *     and a placement to an ad group.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.AddAdGroupCriteria');
@@ -54,9 +54,9 @@ goog.inherits(google.ads.adwords.examples.v201101.AddAdGroupCriteria,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.AddAdGroupCriteria.prototype.run =
     function(user, callback) {

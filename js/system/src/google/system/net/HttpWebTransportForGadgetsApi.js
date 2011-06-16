@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines HttpWebTransport, a wrapper that uses Google Gadgets
- * API for making for making HTTP calls.
+ *     API for making for making HTTP calls.
  */
 
 goog.provide('google.system.net.HttpWebTransportForGadgetsApi');
@@ -30,7 +30,7 @@ goog.require('google.system.net.HttpWebTransport');
  * making HTTP calls.
  *
  * @param {google.system.net.HttpWebTransportSettings} settings Settings to be
- * applied.
+ *     applied.
  * @extends google.system.net.HttpWebTransport
  * @constructor
  */
@@ -56,6 +56,7 @@ google.system.net.HttpWebTransportForGadgetsApi.prototype.send = function(url,
   var params = {};
   params[gadgets.io.RequestParameters.METHOD] = method;
   params[gadgets.io.RequestParameters.POST_DATA] = content;
+  params[gadgets.io.RequestParameters.HEADERS] = headers;
 
   gadgets.io.makeRequest(url, goog.bind(function(response) {
     if (!response.errors.length) {

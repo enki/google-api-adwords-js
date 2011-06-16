@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllExperiments, a code example that gets all
- * experiments in a campaign.
+ *     experiments in a campaign.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetAllExperiments');
@@ -39,6 +39,10 @@ goog.require('google.ads.adwords.v201008.ExperimentService');
  */
 google.ads.adwords.examples.v201008.GetAllExperiments = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example gets all experiments in a campaign. ' +
       'To add an experiment, run AddExperiment.js. To get campaigns, run ' +
       'GetAllCampaigns.js.';
@@ -50,9 +54,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetAllExperiments,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetAllExperiments.prototype.run =
     function(user, callback) {

@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines AddNegativeCampaignCriterion, a code example that
- * creates a new negative campaign criterion.
+ *     creates a new negative campaign criterion.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.AddNegativeCampaignCriterion');
@@ -43,6 +43,10 @@ goog.require('google.ads.adwords.v201008.Operator');
  */
 google.ads.adwords.examples.v201008.AddNegativeCampaignCriterion = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example creates a new negative campaign ' +
       'criterion. To create campaign, run AddCampaign.js.';
 };
@@ -53,9 +57,9 @@ goog.inherits(google.ads.adwords.examples.v201008.AddNegativeCampaignCriterion,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.AddNegativeCampaignCriterion.prototype.run =
     function(user, callback) {

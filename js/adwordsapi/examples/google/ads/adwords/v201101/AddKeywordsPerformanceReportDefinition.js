@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines AddKeywordsPerformanceReportDefinition, a code example
- * that adds a keywords performance report.
+ *     that adds a keywords performance report.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.AddKeywordsPerformanceReportDefinition');
@@ -61,9 +61,9 @@ goog.inherits(
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.AddKeywordsPerformanceReportDefinition.
     prototype.run = function(user, callback) {

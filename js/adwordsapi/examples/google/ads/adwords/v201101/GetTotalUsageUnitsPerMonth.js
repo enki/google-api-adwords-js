@@ -18,8 +18,8 @@
 
 /**
  * @fileoverview Defines GetTotalUsageUnitsPerMonth, a code example that
- * retrieves the total number of API units for this entire month that can be
- * used by the developer token being used to make this call.
+ *     retrieves the total number of API units for this entire month that can be
+ *     used by the developer token being used to make this call.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.GetTotalUsageUnitsPerMonth');
@@ -56,9 +56,9 @@ goog.inherits(
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.GetTotalUsageUnitsPerMonth.prototype.
     run = function(user, callback) {

@@ -18,8 +18,8 @@
 
 /**
  * @fileoverview Defines GetOperationCount, a code example that retrieves the
- * number of operations recorded for the developer token being used to make
- * this call over the given date range.
+ *     number of operations recorded for the developer token being used to make
+ *     this call over the given date range.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.GetOperationCount');
@@ -55,9 +55,9 @@ goog.inherits(google.ads.adwords.examples.v201101.GetOperationCount,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.GetOperationCount.prototype.run =
     function(user, callback) {

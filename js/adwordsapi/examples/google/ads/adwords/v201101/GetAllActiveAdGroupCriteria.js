@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllActiveAdGroupCriteria, a code example that gets
- * all active ad group criteria in an ad group.
+ *     all active ad group criteria in an ad group.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.GetAllActiveAdGroupCriteria');
@@ -56,9 +56,9 @@ goog.inherits(google.ads.adwords.examples.v201101.GetAllActiveAdGroupCriteria,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.GetAllActiveAdGroupCriteria.prototype.run =
     function(user, callback) {
@@ -70,17 +70,17 @@ google.ads.adwords.examples.v201101.GetAllActiveAdGroupCriteria.prototype.run =
 
   // Create a selector.
   var selector = new google.ads.adwords.v201101.Selector();
-  selector.fields = ["Id", "AdGroupId", "KeywordText", "Status",
-      "KeywordMatchType", "PlacementUrl"];
+  selector.fields = ['Id', 'AdGroupId', 'KeywordText', 'Status',
+      'KeywordMatchType', 'PlacementUrl'];
 
   // Set filter conditions.
   var adGroupPredicate = new google.ads.adwords.v201101.Predicate();
-  adGroupPredicate.field = "AdGroupId";
+  adGroupPredicate.field = 'AdGroupId';
   adGroupPredicate.operator = google.ads.adwords.v201101.PredicateOperator.IN;
   adGroupPredicate.values = [adGroupId];
 
   var statusPredicate = new google.ads.adwords.v201101.Predicate();
-  statusPredicate.field = "Status";
+  statusPredicate.field = 'Status';
   statusPredicate.operator =
       google.ads.adwords.v201101.PredicateOperator.EQUALS;
   statusPredicate.values = [google.ads.adwords.v201101.UserStatus.ACTIVE];

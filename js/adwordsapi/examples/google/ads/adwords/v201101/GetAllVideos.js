@@ -53,9 +53,9 @@ goog.inherits(google.ads.adwords.examples.v201101.GetAllVideos,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.GetAllVideos.prototype.run =
     function(user, callback) {

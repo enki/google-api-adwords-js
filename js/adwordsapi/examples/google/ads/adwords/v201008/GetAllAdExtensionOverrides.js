@@ -18,8 +18,8 @@
 
 /**
  * @fileoverview Defines GetAllAdExtensionOverrides, a code example that
- * illustrates how to retrieve all the ad extension overrides for an existing
- * campaign.
+ *     illustrates how to retrieve all the ad extension overrides for an
+ *     existing campaign.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetAllAdExtensionOverrides');
@@ -45,6 +45,10 @@ goog.require('google.ads.adwords.v201008.Operator');
 
 google.ads.adwords.examples.v201008.GetAllAdExtensionOverrides = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example illustrates how to retrieve all the ' +
       'ad extension overrides for an existing campaign. To create an ad ' +
       'extension override run AddAdExtensionOverride.js.';
@@ -56,9 +60,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetAllAdExtensionOverrides,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetAllAdExtensionOverrides.prototype.run =
     function(user, callback) {

@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines UpdateAdGroup, a code example that updates an ad group,
- * setting its status to 'PAUSED'.
+ *     setting its status to 'PAUSED'.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.UpdateAdGroup');
@@ -42,6 +42,10 @@ goog.require('google.ads.adwords.v201008.Operator');
  */
 google.ads.adwords.examples.v201008.UpdateAdGroup = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example illustrates how to update an ad ' +
     'group, setting its status to "PAUSED". To create an ad group, run ' +
     'AddAdGroup.js.';
@@ -53,9 +57,9 @@ goog.inherits(google.ads.adwords.examples.v201008.UpdateAdGroup,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.UpdateAdGroup.prototype.run =
     function(user, callback) {

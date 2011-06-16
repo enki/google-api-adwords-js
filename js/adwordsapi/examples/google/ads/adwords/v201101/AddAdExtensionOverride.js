@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines AddAdExtensionOverride, a code example that shows how
- * to override a campaign ad extension.
+ *     to override a campaign ad extension.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.AddAdExtensionOverride');
@@ -57,9 +57,9 @@ goog.inherits(google.ads.adwords.examples.v201101.AddAdExtensionOverride,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.AddAdExtensionOverride.prototype.run =
     function(user, callback) {

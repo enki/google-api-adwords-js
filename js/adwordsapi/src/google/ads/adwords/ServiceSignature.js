@@ -19,7 +19,7 @@
 
 /**
  * @fileoverview Defines AdWordsServiceFactory, that provides service creation
- * params for AdWords API family of services.
+ *     params for AdWords API family of services.
  */
 
 goog.provide('google.ads.adwords.ServiceSignature');
@@ -41,6 +41,11 @@ google.ads.adwords.ServiceSignature = function(version, groupName,
     serviceName) {
   google.ads.common.ServiceSignature.call(this, version, serviceName,
       google.ads.common.ServiceSignature.SupportedProtocols.SOAP);
+
+  /**
+   * API group name (E.g. cm or o).
+   * @type {string}
+   */
   this.groupName = groupName;
 };
 goog.inherits(google.ads.adwords.ServiceSignature,

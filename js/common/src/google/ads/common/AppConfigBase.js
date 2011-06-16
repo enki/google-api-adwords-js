@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines AppConfigBase, the base class for all configuration
- * readers.
+ *     readers.
  */
 
 goog.provide('google.ads.common.AppConfigBase');
@@ -31,11 +31,47 @@ goog.require('google.system.net.HttpWebTransportSettings');
  * @constructor
  */
 google.ads.common.AppConfigBase = function() {
+
+  /**
+   * Proxy URL key constant.
+   * @type {string}
+   * @private
+   */
   this.PROXY_URL_ = 'ProxyUrl';
+
+  /**
+   * Library short name to be attached to the user agent.
+   * @type {string}
+   * @private
+   */
   this.shortName_ = null;
+
+  /**
+   * Web Transport key constant.
+   * @type {string}
+   * @private
+   */
   this.HTTP_WEBTRANSPORT_ = 'HttpWebTransport';
+
+  /**
+   * Web transport class name.
+   * @type {string}
+   * @private
+   */
   this.HTTPWebTransport_ = null;
+
+  /**
+   * Web Transport settings key constant.
+   * @type {string}
+   * @private
+   */
   this.HTTP_WEBTRANSPORT_SETTINGS_ = 'HttpWebTransportSettings';
+
+  /**
+   * Web transport settings map.
+   * @type {Object<String, String>}
+   * @private
+   */
   this.HTTPWebTransportSettings_ = null;
 };
 
@@ -123,7 +159,7 @@ google.ads.common.AppConfigBase.prototype.readSettings = function(
 /**
  * Retrieves a configuration value based on its name.
  * @param {string} key The name of the configuration property.
- * @return {object|null} The value or null if does not exists.
+ * @return {?object} The value or null if does not exists.
  */
 google.ads.common.AppConfigBase.prototype.getConfigValue = function(key) {
   var getter = 'get' + key.substr(0, 1).toUpperCase() + key.substr(1);

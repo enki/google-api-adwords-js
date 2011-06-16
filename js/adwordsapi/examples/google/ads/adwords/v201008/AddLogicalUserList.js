@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines AddLogicalUserList, a code example that shows how to
- * create a logical user list.
+ *     create a logical user list.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.AddLogicalUserList');
@@ -47,6 +47,10 @@ goog.require('google.ads.adwords.v201008.UserListService');
  */
 google.ads.adwords.examples.v201008.AddLogicalUserList = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example illustrates how to create a logical ' +
       'user list.';
 };
@@ -57,9 +61,9 @@ goog.inherits(google.ads.adwords.examples.v201008.AddLogicalUserList,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.AddLogicalUserList.prototype.run =
     function(user, callback) {

@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllBulkMutateJobs, a code example that
- * gets all bulk mutate jobs in the account.
+ *     gets all bulk mutate jobs in the account.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetAllBulkMutateJobs');
@@ -42,6 +42,10 @@ goog.require('google.ads.adwords.v201008.BulkMutateJobService');
 google.ads.adwords.examples.v201008.GetAllBulkMutateJobs =
     function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example gets all bulk mutate jobs in the ' +
       'account. To add a bulk mutate job, run PerformBulkMutateJob.js.';
 };
@@ -53,9 +57,9 @@ goog.inherits(
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetAllBulkMutateJobs.prototype.
     run = function(user, callback) {

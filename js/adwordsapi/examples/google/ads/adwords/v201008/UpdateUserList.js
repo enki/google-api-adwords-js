@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines UpdateUserList, a code example that shows how to update
- * a user list, setting its description.
+ *     a user list, setting its description.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.UpdateUserList');
@@ -43,6 +43,10 @@ goog.require('google.ads.adwords.v201008.UserListService');
  */
 google.ads.adwords.examples.v201008.UpdateUserList = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example illustrates how to update a user ' +
       'list, setting its description. To create a user list, run ' +
       'UpdateUserList.js.';
@@ -54,9 +58,9 @@ goog.inherits(google.ads.adwords.examples.v201008.UpdateUserList,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.UpdateUserList.prototype.run =
     function(user, callback) {

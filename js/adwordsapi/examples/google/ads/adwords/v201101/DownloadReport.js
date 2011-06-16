@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines DownloadReport, a code example that gets and
- * downloads a report from a report definition.
+ *     downloads a report from a report definition.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.DownloadReport');
@@ -52,9 +52,9 @@ goog.inherits(
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.DownloadReport.
     prototype.run = function(user, callback) {

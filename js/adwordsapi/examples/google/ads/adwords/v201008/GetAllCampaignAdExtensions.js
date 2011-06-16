@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllCampaignAdExtensions, a code example that gets
- * all Ad Extensions in a campaign.
+ *     all Ad Extensions in a campaign.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetAllCampaignAdExtensions');
@@ -40,6 +40,10 @@ goog.require('google.ads.adwords.v201008.Paging');
  */
 google.ads.adwords.examples.v201008.GetAllCampaignAdExtensions = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example shows how to retrieve all Ad ' +
       'Extensions in a Campaign. To create a Campaign Ad Extension, run ' +
       'AddCampaignAdExtensionOverride.js.';
@@ -51,9 +55,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetAllCampaignAdExtensions,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetAllCampaignAdExtensions.prototype.run =
     function(user, callback) {

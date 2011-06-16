@@ -19,7 +19,7 @@
 
 /**
  * @fileoverview Defines AdWords Service, the base class for all SOAP services
- * supported by this library.
+ *     supported by this library.
  */
 
 goog.provide('google.ads.common.Service');
@@ -42,15 +42,15 @@ goog.inherits(google.ads.common.Service, google.system.soap.Service);
  * Overriden soap.Service method to handle ads specific exceptions.
  *
  * @param {string} methodName Name of the method in the service that is been
- * invoked.
+ *     invoked.
  * @param {Object.<String,Object>} parameterValues Parameters passed to the
- * method.
+ *     method.
  * @param {function(google.system.soap.Object)} successCallback Callback
- * function to be invoked if the request finalizes successfully, the
- * de-serialized SOAP Object gets passed to the callback.
+ *     function to be invoked if the request finalizes successfully, the
+ *     de-serialized SOAP Object gets passed to the callback.
  * @param {function(google.system.soap.Object)} failureCallback Callback
- * function to be invoked if the request finalizes with an error, the
- * de-serialized SOAP Exception gets passed to the callback.
+ *     function to be invoked if the request finalizes with an error, the
+ *     de-serialized SOAP Exception gets passed to the callback.
  */
 google.ads.common.Service.prototype.invoke = function(methodName,
     parameterValues, successCallback, failureCallback) {
@@ -70,8 +70,8 @@ google.ads.common.Service.prototype.invoke = function(methodName,
  *
  * @param {google.system.soap.SoapException} ex The SOAP exception.
  * @return {google.system.core.Exception} A custom exception object
- * that wraps the SOAP exception. The exact type depends on what the overriding
- * service deserializes the fault xml into.
+ *     that wraps the SOAP exception. The exact type depends on what the
+ *     overriding service deserializes the fault xml into.
  * @private
  */
 google.ads.common.Service.prototype.getCustomException_ =

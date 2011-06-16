@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines AddSiteLinks, a code example that shows how to add
- * site links to an existing campaign.
+ *     site links to an existing campaign.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.AddSiteLinks');
@@ -51,9 +51,9 @@ goog.inherits(google.ads.adwords.examples.v201101.AddSiteLinks,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.AddSiteLinks.prototype.run = function(
     user, callback) {

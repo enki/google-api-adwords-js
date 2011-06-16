@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines HttpWebTransportForServerProxy, a wrapper that uses a
- * server proxy for making HTTP calls.
+ *     server proxy for making HTTP calls.
  */
 
 goog.provide('google.system.net.HttpWebTransportForServerProxy');
@@ -30,7 +30,7 @@ goog.require('google.system.net.HttpWebTransport');
  * This class defines a wrapper that uses a server proxy for making HTTP calls.
  *
  * @param {google.system.net.HttpWebTransportSettings} settings Setting to be
- * applied.
+ *     applied.
  * @extends google.system.net.HttpWebTransport
  * @constructor
  */

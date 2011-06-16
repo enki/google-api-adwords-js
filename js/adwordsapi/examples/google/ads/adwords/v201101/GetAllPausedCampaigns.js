@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllPausedCampaigns, a code example that gets all
- * paused campaigns.
+ *     paused campaigns.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.GetAllPausedCampaigns');
@@ -52,9 +52,9 @@ goog.inherits(google.ads.adwords.examples.v201101.GetAllPausedCampaigns,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.GetAllPausedCampaigns.prototype.run =
     function(user, callback) {
@@ -64,12 +64,12 @@ google.ads.adwords.examples.v201101.GetAllPausedCampaigns.prototype.run =
 
   // Create a selector.
   var selector = new google.ads.adwords.v201101.Selector();
-  selector.fields = ["Id", "Name", "Status"];
+  selector.fields = ['Id', 'Name', 'Status'];
 
   // Create a filter.
   var predicate = new google.ads.adwords.v201101.Predicate();
   predicate.operator = google.ads.adwords.v201101.PredicateOperator.EQUALS;
-  predicate.field = "Status";
+  predicate.field = 'Status';
   predicate.values = [google.ads.adwords.v201101.CampaignStatus.PAUSED];
 
   selector.predicates = [predicate];

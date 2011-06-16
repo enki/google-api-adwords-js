@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllCampaignTargets, a code example that gets all
- * campaign targets.
+ *     campaign targets.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.GetAllCampaignTargets');
@@ -50,9 +50,9 @@ goog.inherits(google.ads.adwords.examples.v201101.GetAllCampaignTargets,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.GetAllCampaignTargets.prototype.run =
     function(user, callback) {

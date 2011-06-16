@@ -19,7 +19,7 @@
 
 /**
  * @fileoverview Defines AdWordsUser, a class that represents an AdWords
- * API user.
+ *     API user.
  */
 
 goog.provide('google.ads.adwords.User');
@@ -30,8 +30,8 @@ goog.require('google.ads.common.AdsUser');
 /**
  * Service creation params for AdWords API family of services.
  *
- * @param {google.ads.adwords.AppConfig} config AdWords configuration
- * properties.
+ * @param {?google.ads.adwords.AppConfig} config AdWords configuration
+ *     properties.
  * @extends google.ads.common.AdsUser
  * @constructor
  */

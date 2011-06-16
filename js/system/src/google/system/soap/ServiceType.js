@@ -34,7 +34,7 @@ goog.require('google.system.soap.ObjectType');
  * @param {string} xmlNamespace Xml namespace of the service.
  * @param {string} fullClassName Full class name of the service.
  * @param {string} fullBaseClassName Full class name of the base class for the
- * service.
+ *     service.
  * @extends google.system.soap.ObjectType
  * @constructor
  */
@@ -42,6 +42,12 @@ google.system.soap.ServiceType = function(xmlNamespace, fullClassName,
     fullBaseClassName) {
   google.system.soap.ObjectType.call(this, xmlNamespace, fullClassName, false,
       fullBaseClassName);
+
+  /**
+   * Service list of methods.
+   * @type {Array.<google.system.soap.MethodSignature>}
+   * @private
+   */
   this.methods_ = [];
 };
 goog.inherits(google.system.soap.ServiceType, google.system.soap.ObjectType);
@@ -52,7 +58,7 @@ goog.inherits(google.system.soap.ServiceType, google.system.soap.ObjectType);
  * @param {string} xmlNamespace XML namespace.
  * @param {string} fullClassName Full class name of the service.
  * @param {string} fullBaseClassName Full class name of the base class for
- * the service.
+ *     the service.
  * @return {google.system.soap.ServiceType} The new service type.
  */
 google.system.soap.ServiceType.defineService = function(
@@ -82,7 +88,7 @@ google.system.soap.ServiceType.getServiceTypeByName = function(fullClassName) {
  * @param {string} use The use of the method literal/encoded.
  * @param {string} parameterStyle The parameter style wrapped or non-wrapped.
  * @param {string} returnXmlElement The XML element to start the deserialization
- * with.
+ *     with.
  * @param {Object} returnTypeDefinition The return definition type.
  * @param {Array} headers The Headers configured for the service.
  * @param {Array} parameters The parameters that the service takes.

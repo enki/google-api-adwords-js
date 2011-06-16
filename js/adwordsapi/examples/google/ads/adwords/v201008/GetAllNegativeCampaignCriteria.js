@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllNegativeCampaignCriteria, a code example that
- * gets all negative campaign criteria in an account.
+ *     gets all negative campaign criteria in an account.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetAllNegativeCampaignCriteria');
@@ -42,6 +42,10 @@ goog.require('google.ads.adwords.v201008.Placement');
 google.ads.adwords.examples.v201008.GetAllNegativeCampaignCriteria =
     function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example retrieves all negative campaign ' +
       'criteria in an account. To add a negative campaign criterion, run ' +
       'AddNegativeCampaignCriterion.js.';
@@ -54,9 +58,9 @@ goog.inherits(
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetAllNegativeCampaignCriteria.prototype.
     run = function(user, callback) {

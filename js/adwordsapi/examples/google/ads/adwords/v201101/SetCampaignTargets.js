@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines SetCampaignTargets, a code example that adds geo,
- * language, and network targeting to an existing campaign.
+ *     language, and network targeting to an existing campaign.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.SetCampaignTargets');
@@ -55,9 +55,9 @@ goog.inherits(google.ads.adwords.examples.v201101.SetCampaignTargets,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.SetCampaignTargets.prototype.run =
     function(user, callback) {

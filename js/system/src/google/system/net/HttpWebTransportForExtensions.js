@@ -18,8 +18,8 @@
 
 /**
  * @fileoverview Defines HttpWebTransportForExtensions, a wrapper that uses a
- * direct ajax call to the server. Cross domain xhr permissions are defined
- * in manifest.json.
+ *     direct ajax call to the server. Cross domain xhr permissions are defined
+ *     in manifest.json.
  */
 
 goog.provide('google.system.net.HttpWebTransportForExtensions');
@@ -31,7 +31,7 @@ goog.require('google.system.net.HttpWebTransport');
  * This class defines a wrapper that uses a server proxy for making HTTP calls.
  *
  * @param {google.system.net.HttpWebTransportSettings} settings Setting to be
- * applied.
+ *     applied.
  * @extends google.system.net.HttpWebTransport
  * @constructor
  */

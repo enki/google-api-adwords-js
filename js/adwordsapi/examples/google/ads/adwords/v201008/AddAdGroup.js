@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines AddAdGroup, a code example that shows how to create
- * an ad group.
+ *     an ad group.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.AddAdGroup');
@@ -45,6 +45,10 @@ goog.require('google.ads.adwords.v201008.Operator');
  */
 google.ads.adwords.examples.v201008.AddAdGroup = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example shows how to create an ad group. ' +
       'To create a campaign, run AddCampaign.js.';
 };
@@ -55,9 +59,9 @@ goog.inherits(google.ads.adwords.examples.v201008.AddAdGroup,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.AddAdGroup.prototype.run =
     function(user, callback) {

@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines AddKeywordsPerformanceReportDefinition, a code example
- * that adds a keywords performance report.
+ *     that adds a keywords performance report.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.AddKeywordsPerformanceReportDefinition');
@@ -49,6 +49,10 @@ goog.require('google.ads.adwords.v201008.Selector');
 google.ads.adwords.examples.v201008.AddKeywordsPerformanceReportDefinition =
     function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example adds a keywords performance report. ' +
       'To get ad groups, run GetAllAdGroups.js. To get report fields, run ' +
       'GetReportFields.js.';
@@ -61,9 +65,9 @@ goog.inherits(
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.AddKeywordsPerformanceReportDefinition.
     prototype.run = function(user, callback) {

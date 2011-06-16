@@ -42,12 +42,12 @@ google.system.soap.ServiceListener = function() {};
  * @param {google.system.soap.SoapService} service Service been invoked.
  * @param {string} methodName Method been invoked.
  * @param {Object<string,Object>} parameterValues Parameters been passed to
- * the call.
+ *     the call.
  * @param {function()} continueCallback Function to be called in case of
- * success.
+ *     success.
  * @param {function(google.system.soap.Exception)} errorCallback Function
- * to be called in case an error has occured a SOAP Exception object is expected
- * by this function.
+ *     to be called in case an error has occured a SOAP Exception object is
+ *     expected by this function.
  */
 google.system.soap.ServiceListener.prototype.beforeSerialize = function(
     service, methodName, parameterValues, continueCallback, errorCallback) {
@@ -64,10 +64,10 @@ google.system.soap.ServiceListener.prototype.beforeSerialize = function(
  * @param {google.system.soap.SoapService} service Service been invoked.
  * @param {Document} document The XML document to be sent to the server.
  * @param {function()} continueCallback Function to be called in case of
- * success.
+ *     success.
  * @param {function(google.system.soap.Exception)} errorCallback Function
- * to be called in case an error has occurred a SOAP Exception object is
- * expected by this function.
+ *     to be called in case an error has occurred a SOAP Exception object is
+ *     expected by this function.
  */
 google.system.soap.ServiceListener.prototype.beforeSend = function(
     service, document, continueCallback, errorCallback) {
@@ -84,12 +84,12 @@ google.system.soap.ServiceListener.prototype.beforeSend = function(
  * @param {google.system.soap.SoapService} service Service been invoked.
  * @param {Document} responseXml The XML response document.
  * @param {boolean} isError True if the response XML is SOAP exception returned
- * by the server.
+ *     by the server.
  * @param {function()} continueCallback Function to be called in case of
- * success.
+ *     success.
  * @param {function(google.system.soap.Exception)} errorCallback Function
- * to be called in case an error has occurred a SOAP Exception object is
- * expected by this function.
+ *     to be called in case an error has occurred a SOAP Exception object is
+ *     expected by this function.
  */
 google.system.soap.ServiceListener.prototype.beforeDeserialize = function(
     service, responseXml, isError, continueCallback, errorCallback) {
@@ -107,12 +107,12 @@ google.system.soap.ServiceListener.prototype.beforeDeserialize = function(
  * @param {google.system.soap.SoapService} service Service been invoked.
  * @param {google.system.soap.SoapObject} soapObject The SOAP Object.
  * @param {boolean} isError True if the SOAP Object contains a SOAP Exception
- * returned by the server.
+ *     returned by the server.
  * @param {function()} continueCallback Function to be called in case of
- * success.
+ *     success.
  * @param {function(google.system.soap.Exception)} errorCallback Function
- * to be called in case an error has occurred a SOAP Exception object is
- * expected by this function.
+ *     to be called in case an error has occurred a SOAP Exception object is
+ *     expected by this function.
  */
 google.system.soap.ServiceListener.prototype.beforeReturn = function(
     service, soapObject, isError, continueCallback, errorCallback) {

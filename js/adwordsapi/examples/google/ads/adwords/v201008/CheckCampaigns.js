@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines CheckCampaigns, a code example that shows how to use
- * the validateOnly header to validate an API request.
+ *     the validateOnly header to validate an API request.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.CheckCampaigns');
@@ -50,6 +50,10 @@ goog.require('google.ads.adwords.v201008.RequestHeader');
  */
 google.ads.adwords.examples.v201008.CheckCampaigns = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example shows how to use the validateOnly ' +
       'header to validate an API request. No objects will be created, but ' +
       'exceptions will still be thrown.';
@@ -61,9 +65,9 @@ goog.inherits(google.ads.adwords.examples.v201008.CheckCampaigns,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.CheckCampaigns.prototype.run =
     function(user, callback) {

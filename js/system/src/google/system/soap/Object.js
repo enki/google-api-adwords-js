@@ -231,7 +231,7 @@ google.system.soap.Object.prototype.getXsiPrefixForNode_ = function(
   var node = childNode;
   var requiredNs = xmlnt.getNamespaceFromPrefix('xsi');
 
-  while (this.getNodeName_(node) != null) {
+  while (!goog.isNull(this.getNodeName_(node))) {
     var foundNs = false;
     var xsiPrefix;
     for (var i = 0; i < node.attributes.length; i++) {
@@ -274,7 +274,7 @@ google.system.soap.Object.prototype.getTypeAsPerXsiType_ = function(
   var xsiType = null;
 
   var xsiPrefix = this.getXsiPrefixForNode_(childNode, xmlnt);
-  if (goog.isNull(xsiPrefix)) {
+  if (xsiPrefix == null) {
     // we walked all the way to the root without finding any xsi namespace.
     return null;
   }
@@ -348,7 +348,7 @@ google.system.soap.Object.prototype.getNodeName_ = function(node) {
   // IE stores nodename in node.baseName, whereas Firefox, Chrome and related
   // browsers store them in node.localName.
   var nodeName = node.localName || node.baseName;
-  if (nodeName == '') {
+  if (nodeName == null || nodeName == '') {
     return null;
   } else {
     return nodeName;

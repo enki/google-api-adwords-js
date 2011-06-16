@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines DeleteAd, a code example that deletes an ad using the
- * 'REMOVE' operator.
+ *     'REMOVE' operator.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.DeleteAd');
@@ -42,6 +42,10 @@ goog.require('google.ads.adwords.v201008.TextAd');
  */
 google.ads.adwords.examples.v201008.DeleteAd = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example deletes an ad using the "REMOVE" ' +
       'operator. To get ads, run GetAllAds.js.';
 };
@@ -52,9 +56,9 @@ goog.inherits(google.ads.adwords.examples.v201008.DeleteAd,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.DeleteAd.prototype.run =
     function(user, callback) {

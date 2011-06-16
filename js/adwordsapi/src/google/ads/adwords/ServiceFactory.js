@@ -19,7 +19,7 @@
 
 /**
  * @fileoverview Defines AdWordsServiceFactory, the factory class for all
- * AdWords API services.
+ *     AdWords API services.
  */
 
 goog.provide('google.ads.adwords.ServiceFactory');
@@ -43,7 +43,7 @@ goog.require('google.system.net.HttpWebTransportFactory');
  * @extends google.ads.common.ServiceFactory
  * @constructor
  * @param {google.ads.adwords.AppConfig} config AdWords configuration
- * properties.
+ *    properties.
  */
 google.ads.adwords.ServiceFactory = function(config) {
   google.ads.common.ServiceFactory.call(this, config);
@@ -66,10 +66,10 @@ google.ads.adwords.ServiceFactory.prototype.getUseragent =
  * Create a service object.
  *
  * @param {google.ads.common.ServiceSignature} signature Signature of
- * the service being created.
+ *     the service being created.
  * @param {string} serverUrl The server to which the API calls should be made.
  * @return {google.system.soap.Service} An instance of the desired
- * service type.
+ *     service type.
  */
 google.ads.adwords.ServiceFactory.prototype.createService = function(
     signature, serverUrl) {
@@ -77,7 +77,7 @@ google.ads.adwords.ServiceFactory.prototype.createService = function(
     serverUrl = this.config_.getAdWordsApiServer();
   }
 
-  if (signature == null) {
+  if (goog.isNull(signature)) {
     throw new google.system.core.ArgumentNullException('signature');
   }
 

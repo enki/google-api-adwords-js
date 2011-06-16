@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllAds, a code example that gets
- * all ads given an existing ad group.
+ *     all ads given an existing ad group.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.GetAllAds');
@@ -56,9 +56,9 @@ goog.inherits(google.ads.adwords.examples.v201101.GetAllAds,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.GetAllAds.prototype.run =
     function(user, callback) {
@@ -72,17 +72,17 @@ google.ads.adwords.examples.v201101.GetAllAds.prototype.run =
   var selector = new google.ads.adwords.v201101.Selector();
 
   // Set the fields to select.
-  selector.fields = ["Id", "Status"];
+  selector.fields = ['Id', 'Status'];
 
   // Set the sort order.
   var orderBy = new google.ads.adwords.v201101.OrderBy();
-  orderBy.field = "Id";
+  orderBy.field = 'Id';
   orderBy.sortOrder = google.ads.adwords.v201101.SortOrder.ASCENDING;
   selector.ordering = [orderBy];
 
   // Restrict the fetch to only the selected AdGroupId.
   var adGroupPredicate = new google.ads.adwords.v201101.Predicate();
-  adGroupPredicate.field = "AdGroupId";
+  adGroupPredicate.field = 'AdGroupId';
   adGroupPredicate.operator =
       google.ads.adwords.v201101.PredicateOperator.EQUALS;
   adGroupPredicate.values = [adGroupId];
@@ -90,7 +90,7 @@ google.ads.adwords.examples.v201101.GetAllAds.prototype.run =
   // By default disabled ads aren't returned by the selector. To return
   // them include the DISABLED status in the statuses field.
   var statusPredicate = new google.ads.adwords.v201101.Predicate();
-  statusPredicate.field = "Status";
+  statusPredicate.field = 'Status';
   statusPredicate.operator = google.ads.adwords.v201101.PredicateOperator.IN;
   statusPredicate.values = [
       google.ads.adwords.v201101.AdGroupAdStatus.ENABLED,

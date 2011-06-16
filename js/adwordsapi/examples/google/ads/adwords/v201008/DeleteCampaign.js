@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines DeleteCampaign, a code example that deletes a campaign
- * by setting the status to 'DELETED'.
+ *     by setting the status to 'DELETED'.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.DeleteCampaign');
@@ -47,6 +47,10 @@ goog.require('google.ads.adwords.v201008.Operator');
  */
 google.ads.adwords.examples.v201008.DeleteCampaign = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example deletes a campaign by setting the ' +
       'status to "DELETED". To get campaigns, run GetAllCampaigns.js.';
 };
@@ -57,9 +61,9 @@ goog.inherits(google.ads.adwords.examples.v201008.DeleteCampaign,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.DeleteCampaign.prototype.run =
     function(user, callback) {

@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetCampaignAlerts, a code example that illustrates
- * how to retrieve campaign alerts for a user.
+ *     how to retrieve campaign alerts for a user.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.GetCampaignAlerts');
@@ -57,9 +57,9 @@ goog.inherits(google.ads.adwords.examples.v201101.GetCampaignAlerts,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.GetCampaignAlerts.prototype.run =
     function(user, callback) {

@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines HandlePartialFailures, a code example that shows how
- * to handle partial failures.
+ *     to handle partial failures.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.HandlePartialFailures');
@@ -45,6 +45,10 @@ goog.require('google.ads.adwords.v201008.RequestHeader');
 google.ads.adwords.examples.v201008.HandlePartialFailures =
     function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example demonstrates how to handle partial' +
       ' failures.';
 };
@@ -55,9 +59,9 @@ goog.inherits(google.ads.adwords.examples.v201008.HandlePartialFailures,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.HandlePartialFailures.prototype.
     run = function(user, callback) {
@@ -155,7 +159,7 @@ google.ads.adwords.examples.v201008.HandlePartialFailures.prototype.
  * Gets the operation index from fieldPath.
  *
  * @param {string} fieldPath The fieldPath string returned by the server.
- * example.
+ *     example.
  * @return {int} The operation index or -1 if the index cannot be retrieved.
  */
 google.ads.adwords.examples.v201008.HandlePartialFailures.prototype.

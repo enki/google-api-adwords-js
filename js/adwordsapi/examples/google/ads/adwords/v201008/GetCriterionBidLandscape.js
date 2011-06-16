@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetCriterionBidLandscape, a code example that gets a
- * bid landscape for an ad group and a criterion.
+ *     bid landscape for an ad group and a criterion.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetCriterionBidLandscape');
@@ -42,6 +42,10 @@ goog.require('google.ads.adwords.v201008.CriterionBidLandscapeSelector');
  */
 google.ads.adwords.examples.v201008.GetCriterionBidLandscape = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example gets a bid landscape for an ad group' +
       ' and a criterion. To get ad groups, run GetAllAdGroups.js. To get ' +
       'criteria, run GetAllAdGroupCriteria.js.';
@@ -53,9 +57,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetCriterionBidLandscape,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetCriterionBidLandscape.prototype.run =
     function(user, callback) {

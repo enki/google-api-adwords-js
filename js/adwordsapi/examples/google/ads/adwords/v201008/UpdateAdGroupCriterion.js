@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines UpdateAdGroupCriterion, a code example that updates
- * the bid of an ad group criterion.
+ *     the bid of an ad group criterion.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.UpdateAdGroupCriterion');
@@ -45,6 +45,10 @@ goog.require('google.ads.adwords.v201008.Operator');
  */
 google.ads.adwords.examples.v201008.UpdateAdGroupCriterion = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example updates the bid of an ad group ' +
       'criterion. To get ad group criteria, run GetAllAdGroupCriteria.js.';
 };
@@ -55,9 +59,9 @@ goog.inherits(google.ads.adwords.examples.v201008.UpdateAdGroupCriterion,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.UpdateAdGroupCriterion.prototype.run =
     function(user, callback) {

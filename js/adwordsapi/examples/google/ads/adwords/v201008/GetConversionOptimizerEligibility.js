@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetConversionOptimizerEligibility, a code example that
- * shows how to check if a campaign is eligible for conversion optimizer.
+ *     shows how to check if a campaign is eligible for conversion optimizer.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetConversionOptimizerEligibility');
@@ -43,6 +43,10 @@ goog.require('google.ads.adwords.v201008.Operator');
 google.ads.adwords.examples.v201008.GetConversionOptimizerEligibility =
     function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example shows how to check if a campaign is ' +
       'eligible for conversion optimizer.';
 };
@@ -54,9 +58,9 @@ goog.inherits(
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetConversionOptimizerEligibility.prototype.
     run = function(user, callback) {

@@ -29,35 +29,89 @@ goog.provide('google.system.soap.MethodSignature');
  * parameters, etc.
  *
  * @param {string} requestNamespace Xml namespace of the request of this
- * service method.
+ *     service method.
  * @param {string} responseNamespace Xml namespace of the response of this
- * service method.
+ *     service method.
  * @param {string} methodUse Use either literal or encoded.
  * @param {string} parameterStyle Either wrapped or non-wrapped.
  * @param {string} returnXmlElement Xml namespace of the response of this
- * service method.
+ *     service method.
  * @param {Object} returnTypeDefinition A definition of the return type as
- * follows {className: className, isArray: [true|false],
- * isSystem: [true|false]}.
+ *     follows {className: className, isArray: [true|false],
+ *     isSystem: [true|false]}.
  * @param {Array.<Object>} headers An array of header
- * definitions, every headers is defined as follows {direction: [in|out],
- * propertyName: propertyName}.
+ *     definitions, every headers is defined as follows {direction: [in|out],
+ *     propertyName: propertyName}.
  * @param {Array.<Object>} parameters An array of parameter
- * definitions, every parameter is defined as follows {className: className,
- * isArray: [true|false], isSystem: [true|false], propertyName: name,
- * xmlElementName: xmlName}.
+ *     definitions, every parameter is defined as follows {className: className,
+ *     isArray: [true|false], isSystem: [true|false], propertyName: name,
+ *     xmlElementName: xmlName}.
  * @constructor
  */
 google.system.soap.MethodSignature = function(requestNamespace,
     responseNamespace, methodUse, parameterStyle, returnXmlElement,
     returnTypeDefinition, headers, parameters) {
+
+  /**
+   * XML request namespace.
+   * @type {string}
+   * @private
+   */
   this.requestNamespace_ = requestNamespace;
+
+  /**
+   * XML response namespace.
+   * @type {string}
+   * @private
+   */
   this.responseNamespace_ = responseNamespace;
+
+  /**
+   * SOAP method use (literal|encoded).
+   * @type {string}
+   * @private
+   */
   this.use_ = methodUse;
+
+  /**
+   * SOAP parameter style (wrapped|non-wrapped).
+   * @type {string}
+   * @private
+   */
   this.parameterStyle_ = parameterStyle;
+
+  /**
+   * XML element to be extracted from as the response.
+   * @type {string}
+   * @private
+   */
   this.returnXmlElement_ = returnXmlElement;
+
+  /**
+   * Definition of the return type. A return type definition
+   * is of the form {className: className, isArray: [true|false],
+   * isSystem: [true|false]}.
+   * @type {Object}
+   * @private
+   */
   this.returnTypeDefinition_ = returnTypeDefinition;
+
+  /**
+   * Parameter definitions array. Parameters are of the form of
+   * {className: className, isArray: isArray,
+   *  isSystem: isSystem, name: name, xmlElementName: xmlElementName}
+   * @type {Array.<Object>}
+   * @private
+   */
   this.parameters_ = parameters || [];
+
+  /**
+   * Arrays of service method expected header definitions. Header definitions
+   * are of the form {direction: ['in'|'out'],
+   * propertyName: propertyName}
+   * @type {Array.<Object>}
+   * @private
+   */
   this.headers_ = headers || [];
 };
 
@@ -142,7 +196,7 @@ google.system.soap.MethodSignature.prototype.getParameters = function() {
  *
  * @param {string} name Name of the requested parameter.
  * @return {Array.<Object>} The requested parameter definition or null if does
- * not exists.
+ *     not exists.
  */
 google.system.soap.MethodSignature.prototype.getParameterByName = function(
     name) {
@@ -157,10 +211,10 @@ google.system.soap.MethodSignature.prototype.getParameterByName = function(
  * Adds a header to the list of expected headers for this service method.
  *
  * @param {string} propertyName Property within the service that holds the
- * header object.
+ *     header object.
  * @param {?string} direction Direction of the header either 'in' for headers
- * going to the server or 'out' for headers coming from the server. If not
- * supplied, 'in' will be used.
+ *     going to the server or 'out' for headers coming from the server. If not
+ *     supplied, 'in' will be used.
  */
 google.system.soap.MethodSignature.prototype.addHeader = function(propertyName,
     direction) {
@@ -173,9 +227,9 @@ google.system.soap.MethodSignature.prototype.addHeader = function(propertyName,
  *
  * @param {string} className Full class name of the parameter.
  * @param {boolean} isArray True if it is expected to be an array, false
- * otherwise.
+ *     otherwise.
  * @param {boolean} isSystem True if it is system kind of property, false
- * otherwise.
+ *     otherwise.
  * @param {string} name Parameter name.
  * @param {string} xmlElementName Name of XML how to serialize this property.
  */

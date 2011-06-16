@@ -1,3 +1,7 @@
+1.0.1
+- Miscelaneous documentation fixes.
+- Adding default user agent identifiers to SOAP and HTTP layers.
+
 1.0.0
 - Initial release.
 - Support for AdWords API v20103, v201008 and code examples.

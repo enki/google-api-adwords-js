@@ -45,6 +45,10 @@ goog.require('google.ads.adwords.v201008.Operator');
  */
 google.ads.adwords.examples.v201008.AddCampaign = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example adds a campaign. To get campaigns, ' +
       'run GetAllCampaigns.js';
 };
@@ -55,9 +59,9 @@ goog.inherits(google.ads.adwords.examples.v201008.AddCampaign,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.AddCampaign.prototype.run =
     function(user, callback) {

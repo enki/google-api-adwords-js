@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllDisapprovedAds, a code example that gets all
- * the disapproved ads in a given campaign.
+ *     the disapproved ads in a given campaign.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.GetAllDisapprovedAds');
@@ -53,9 +53,9 @@ goog.inherits(google.ads.adwords.examples.v201101.GetAllDisapprovedAds,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.GetAllDisapprovedAds.prototype.run =
     function(user, callback) {
@@ -67,12 +67,12 @@ google.ads.adwords.examples.v201101.GetAllDisapprovedAds.prototype.run =
 
   // Create a selector.
   var selector = new google.ads.adwords.v201101.Selector();
-  selector.fields = ["Id", "CreativeApprovalStatus", "DisapprovalReasons"];
+  selector.fields = ['Id', 'CreativeApprovalStatus', 'DisapprovalReasons'];
 
   // Create a filter.
   var predicate = new google.ads.adwords.v201101.Predicate();
   predicate.operator = google.ads.adwords.v201101.PredicateOperator.EQUALS;
-  predicate.field = "CampaignId";
+  predicate.field = 'CampaignId';
   predicate.values = [campaignId];
 
   selector.predicates = [predicate];

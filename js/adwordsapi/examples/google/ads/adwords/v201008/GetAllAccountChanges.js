@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllAccountChanges, a code example that gets all
- * account changes between the two dates specified, for all campaigns.
+ *     account changes between the two dates specified, for all campaigns.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetAllAccountChanges');
@@ -43,6 +43,10 @@ goog.require('google.ads.adwords.v201008.DateTimeRange');
  */
 google.ads.adwords.examples.v201008.GetAllAccountChanges = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example gets all account changes between the ' +
       'two dates specified, for all campaigns.';
 };
@@ -53,9 +57,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetAllAccountChanges,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetAllAccountChanges.prototype.run =
     function(user, callback) {

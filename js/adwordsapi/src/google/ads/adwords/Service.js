@@ -19,7 +19,7 @@
 
 /**
  * @fileoverview Defines AdWords Service, the class that defines SOAP services
- * specific to AdWords.
+ *     specific to AdWords.
  */
 
 goog.provide('google.ads.adwords.Service');
@@ -44,7 +44,7 @@ goog.inherits(google.ads.adwords.Service, google.ads.common.Service);
  *
  * @param {google.system.soap.Exception} ex The SOAP exception.
  * @return {google.system.core.Exception} A custom exception object
- * that wraps the SOAP exception.
+ *     that wraps the SOAP exception.
  * @private
  */
 google.ads.adwords.Service.prototype.getCustomException_ =

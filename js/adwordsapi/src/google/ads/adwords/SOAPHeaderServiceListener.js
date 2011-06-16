@@ -19,13 +19,14 @@
 
 /**
  * @fileoverview Defines SOAPHeaderServiceListener, a service listener in
- * charge of injecting AdWords API SOAP headers before a request gets sent
- * to the servers.
+ *     charge of injecting AdWords API SOAP headers before a request gets sent
+ *     to the servers.
  */
 
 goog.provide('google.ads.adwords.SOAPHeaderServiceListener');
 
 goog.require('google.ads.adwords.RequestHeader');
+goog.require('google.system.core.Runtime');
 goog.require('google.system.soap.ServiceListener');
 
 /**
@@ -33,13 +34,27 @@ goog.require('google.system.soap.ServiceListener');
  * before a request gets sent to the servers.
  *
  * @param {google.ads.adwords.AppConfig} config AdWords configuration
- * properties.
+ *     properties.
  * @extends google.system.soap.ServiceListener
  * @constructor
  */
 google.ads.adwords.SOAPHeaderServiceListener = function(
     config) {
   google.system.soap.ServiceListener.call(this);
+
+  /**
+   * SOAP User Agent.
+   * @type {string}
+   * @private
+   */
+  this.USER_AGENT_PREFIX_ = 'AwApi-Js-' +
+      google.system.core.Runtime.getInstance().getVersion();
+
+  /**
+   * Library configuration.
+   * @type {google.ads.adwords.AppConfig}
+   * @private
+   */
   this.config_ = config;
 };
 goog.inherits(google.ads.adwords.SOAPHeaderServiceListener,
@@ -54,8 +69,8 @@ goog.inherits(google.ads.adwords.SOAPHeaderServiceListener,
  * @param {Array.<Object>} parameterValues Parameters passed to the method.
  * @param {function} successCallback Function to be called in case of sucesss.
  * @param {function(google.system.core.Exception)} failureCallback Function to
- * be called in case of an error occurred, an exception is expected by the
- * function.
+ *     be called in case of an error occurred, an exception is expected by the
+ *     function.
  */
 google.ads.adwords.SOAPHeaderServiceListener.prototype.beforeSerialize =
     function(service, methodName, parameterValues, successCallback,
@@ -71,7 +86,7 @@ google.ads.adwords.SOAPHeaderServiceListener.prototype.beforeSerialize =
  * @param {google.system.soap.SoapService} service Service object been invoked.
  * @param {function} successCallback Function to be called in case of sucesss.
  * @param {function(google.system.core.Exception)} failureCallback Function to
- * call in case of a error, expects an exception to be passed to it.
+ *     call in case of a error, expects an exception to be passed to it.
  * @param {google.ads.adwords.RequestHeader} header Header to be set.
  * @private
  */
@@ -88,11 +103,11 @@ google.ads.adwords.SOAPHeaderServiceListener.prototype.setHeader_ = function(
  *
  * @param {google.system.soap.SoapService} service Service object been invoked.
  * @param {Object.<string, string>} config A dictionary of configuration,
- * parameters.
+ *     parameters.
  * @param {function} callback A function to be called with the generated
- * RequestHeader object, to be injected in the called service.
+ *     RequestHeader object, to be injected in the called service.
  * @param {function} failureCallback A function to be called when an error is
- * encountered.
+ *     encountered.
  * @private
  */
 google.ads.adwords.SOAPHeaderServiceListener.prototype.makeRequestHeader_ =
@@ -103,7 +118,7 @@ google.ads.adwords.SOAPHeaderServiceListener.prototype.makeRequestHeader_ =
     var fullType = service.getType().getPropertyByName('requestHeader').
         getFullClassName();
     availableType = goog.getObjectByName(fullType);
-    if (availableType != null) {
+    if (!goog.isNull(availableType)) {
       requestHeader = new availableType();
     }
   }
@@ -130,7 +145,7 @@ google.ads.adwords.SOAPHeaderServiceListener.prototype.makeRequestHeader_ =
       config.setConfigValue('authToken', token);
       requestHeader.setAuthToken(token);
       callback(requestHeader);
-    }, function (exception) {
+    }, function(exception) {
       failureCallback(exception);
     });
   } else {
@@ -142,9 +157,9 @@ google.ads.adwords.SOAPHeaderServiceListener.prototype.makeRequestHeader_ =
  * Reads the headers from Application configuration.
  *
  * @param {google.ads.common.AppConfigBase} config The configuration
- * class.
+ *     class.
  * @return {Object.<string, string>} An object, with key-value pairs as
- * headername, headervalue.
+ *     headername, headervalue.
  * @private
  */
 google.ads.adwords.SOAPHeaderServiceListener.prototype.readHeadersFromConfig_ =
@@ -155,6 +170,13 @@ google.ads.adwords.SOAPHeaderServiceListener.prototype.readHeadersFromConfig_ =
 
   for (var i = 0; i < headerKeys.length; i++) {
     var value = config.getConfigValue(headerKeys[i]);
+
+    // Special treatment to the userAgent header, prepending our library
+    // identifier.
+    if (headerKeys[i] == 'userAgent')
+        value = this.USER_AGENT_PREFIX_ +
+            (goog.string.isEmptySafe(value) ? '' : '|' + value);
+
     if (!goog.string.isEmptySafe(value)) {
       configHeaders[headerKeys[i]] = value;
     }

@@ -43,14 +43,44 @@ goog.require('google.system.net.HttpWebTransportFactory');
  */
 google.ads.common.AuthToken = function(config, service, email,
     password) {
-  if (config == null) {
+  if (goog.isNull(config)) {
     throw new google.system.core.ArgumentNullException('config');
   }
 
+  /**
+   * Service name to include in the request.
+   * @type {string}
+   * @private
+   */
   this.service_ = service;
+
+  /**
+   * Account email address.
+   * @type {string}
+   * @private
+   */
   this.email_ = email;
+
+  /**
+   * Account password.
+   * @type {string}
+   * @private
+   */
   this.password_ = password;
+
+  /**
+   * Library configuration. Used to obtain the library configured Http
+   * transport.
+   * @type {string}
+   * @private
+   */
   this.config_ = config;
+
+  /**
+   * Source to report request the token.
+   * @type {string}
+   * @private
+   */
   this.SOURCE_ = 'Google-' + this.config_.getSignature();
 };
 
@@ -81,9 +111,9 @@ google.ads.common.AuthToken.prototype.ACCOUNT_TYPE_ = 'GOOGLE';
  * Obtains a ClientLogin token for use with various Ads APIs.
  *
  * @param {function} onSuccess Callback function to be invoked in case of
- * success. The authtoken gets passed to the function.
+ *     success. The authtoken gets passed to the function.
  * @param {function} onError Callback function to be invoked in case of
- * error. The authentication exception is passed to the function.
+ *     error. The authentication exception is passed to the function.
  */
 google.ads.common.AuthToken.prototype.getToken = function(
     onSuccess, onError) {
@@ -98,7 +128,7 @@ google.ads.common.AuthToken.prototype.getToken = function(
       this.config_.getHttpWebTransport(),
       this.config_.getHttpWebTransportSettings());
 
-  if (transport != null) {
+  if (!goog.isNull(transport)) {
     transport.send(this.URL_, 'POST', postParams, null, 0, goog.bind(
         function(response) {
           var objResponse = this.parseResponse_(response);
@@ -124,7 +154,7 @@ google.ads.common.AuthToken.prototype.getToken = function(
  *
  * @param {string} response The Http web response.
  * @return {google.ads.common.AuthTokenException} An AuthTokenException
- * that corresponds to the parsed error response.
+ *     that corresponds to the parsed error response.
  * @private
  */
 google.ads.common.AuthToken.prototype.extractException_ = function(

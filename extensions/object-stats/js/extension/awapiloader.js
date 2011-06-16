@@ -18,8 +18,8 @@
 
 /**
  * @fileoverview Defines AwApiLoader, a class in charge of loading data from the
- * AdWords API. Defines AwApiCache, a class used to cache results coming from
- * the API to avoid excessive API requests.
+ *     AdWords API. Defines AwApiCache, a class used to cache results coming
+ *     from the API to avoid excessive API requests.
  */
 
 goog.provide('google.ads.adwords.objstatsext.AwApiLoader');
@@ -67,7 +67,8 @@ google.ads.adwords.objstatsext.AwApiLoader.prototype.setConfig =
       Email: config.email,
       Password: config.password,
       DeveloperToken: config.developerToken,
-      HttpWebTransport: 'google.system.net.HttpWebTransportForExtensions'
+      HttpWebTransport: 'google.system.net.HttpWebTransportForExtensions',
+      UserAgent: 'awapi-object-stats-extension'
   };
   if (config.clientId.indexOf('@') >= 0) {
     settings.ClientEmail = config.clientId;
@@ -156,9 +157,9 @@ google.ads.adwords.objstatsext.AwApiLoader.prototype.formatDecimal_ =
  *
  * @param {number} campaignId Campaign id to retrieve.
  * @param {function(google.ads.adwords.v201008.Campaign)} callback Callback
- * function to be called.
+ *     function to be called.
  * @param {function(exception)} errorCallback Error callback to be called in
- * case a communication problem has occurred.
+ *     case a communication problem has occurred.
  */
 google.ads.adwords.objstatsext.AwApiLoader.prototype.getCampaign =
     function(campaignId, callback, errorCallback) {
@@ -183,9 +184,9 @@ google.ads.adwords.objstatsext.AwApiLoader.prototype.getCampaign =
  * @param {number} offset Starting index of results.
  * @param {number} numberResults Total entries to retrieve.
  * @param {function(google.ads.adwords.v201008.CampaignPage)} callback Function
- * to receive the page of results.
+ *     to receive the page of results.
  * @param {function(exception)} errorCallback Function to be called in case of
- * a communication problem.
+ *     a communication problem.
  */
 google.ads.adwords.objstatsext.AwApiLoader.prototype.getCampaigns =
     function(offset, numberResults, callback, errorCallback) {
@@ -240,9 +241,9 @@ google.ads.adwords.objstatsext.AwApiLoader.prototype.getCampaigns =
  *
  * @param {number} adGroupId Id of the ad group to retrieve.
  * @param {function(google.ads.adwords.v201008.AdGroup)} callback Function to
- * be called with the ad group.
+ *     be called with the ad group.
  * @param {function(exception)} errorCallback Function to be called in case a
- * communication error has occurred.
+ *     communication error has occurred.
  */
 google.ads.adwords.objstatsext.AwApiLoader.prototype.getAdGroup =
     function(adGroupId, callback, errorCallback) {
@@ -269,9 +270,9 @@ google.ads.adwords.objstatsext.AwApiLoader.prototype.getAdGroup =
  * @param {number} offset Starting index of results.
  * @param {number} numberResults Total entries to retrieve.
  * @param {function(google.ads.adwords.v201008.AdGroupPage)} callback Function
- * to receive the page of results.
+ *     to receive the page of results.
  * @param {function(exception)} errorCallback Function to be called in case of
- * a communication problem.
+ *     a communication problem.
  */
 google.ads.adwords.objstatsext.AwApiLoader.prototype.getAdGroups =
     function(campaignId, offset, numberResults, callback, errorCallback) {
@@ -339,9 +340,9 @@ google.ads.adwords.objstatsext.AwApiLoader.prototype.getAdGroups =
  * @param {number} offset Starting index of results.
  * @param {number} numberResults Total entries to retrieve.
  * @param {function(google.ads.adwords.v201008.AdPage)} callback Function
- * to receive the page of results.
+ *     to receive the page of results.
  * @param {function(exception)} errorCallback Function to be called in case of
- * a communication problem.
+ *     a communication problem.
  */
 google.ads.adwords.objstatsext.AwApiLoader.prototype.getAds =
     function(adGroupId, offset, numberResults, callback, errorCallback) {
@@ -426,9 +427,9 @@ google.ads.adwords.objstatsext.AwApiLoader.prototype.getAds =
  * @param {number} offset Starting index of results.
  * @param {number} numberResults Total entries to retrieve.
  * @param {function(google.ads.adwords.v201008.CriterionPage)} callback Function
- * to receive the page of results.
+ *     to receive the page of results.
  * @param {function(exception)} errorCallback Function to be called in case of
- * a communication problem.
+ *     a communication problem.
  */
 google.ads.adwords.objstatsext.AwApiLoader.prototype.getCriteria =
     function(adGroupId, offset, numberResults, callback, errorCallback) {

@@ -19,7 +19,7 @@
 
 /**
  * @fileoverview Defines AdsClient, the base class for all exceptions thrown
- * by the library related to an Ads API call.
+ *     by the library related to an Ads API call.
  */
 
 goog.provide('google.ads.common.AdsException');
@@ -34,8 +34,8 @@ goog.require('google.system.core.Exception');
  * @constructor
  * @param {string?} message An optional error message for the exception.
  * @param {Object?} innerException If this exception was thrown in response to
- * another exception, then you can wrap the original exception within this
- * exception.
+ *     another exception, then you can wrap the original exception within this
+ *     exception.
  */
 google.ads.common.AdsException = function(message, innerException) {
   google.system.core.Exception.call(this, message, innerException);

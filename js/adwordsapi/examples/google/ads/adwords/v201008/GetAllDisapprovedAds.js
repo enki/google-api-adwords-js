@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllDisapprovedAds, a code example that gets all
- * the disapproved ads in a given campaign.
+ *     the disapproved ads in a given campaign.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetAllDisapprovedAds');
@@ -41,6 +41,10 @@ goog.require('google.ads.adwords.v201008.TextAd');
  */
 google.ads.adwords.examples.v201008.GetAllDisapprovedAds = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example retrieves all the disapproved ads ' +
       'in a given campaign.';
 };
@@ -51,9 +55,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetAllDisapprovedAds,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetAllDisapprovedAds.prototype.run =
     function(user, callback) {

@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines DeleteSiteLinks, a code example that shows how to
- * delete site links from an existing campaign.
+ *     delete site links from an existing campaign.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.DeleteSiteLinks');
@@ -61,9 +61,9 @@ goog.inherits(google.ads.adwords.examples.v201101.DeleteSiteLinks,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.DeleteSiteLinks.prototype.run = function(
     user, callback) {
@@ -80,19 +80,19 @@ google.ads.adwords.examples.v201101.DeleteSiteLinks.prototype.run = function(
   var campaignPredicate = new google.ads.adwords.v201101.Predicate();
   campaignPredicate.operator =
       google.ads.adwords.v201101.PredicateOperator.EQUALS;
-  campaignPredicate.field = "CampaignId";
+  campaignPredicate.field = 'CampaignId';
   campaignPredicate.values = [campaignId];
 
   var statusPredicate = new google.ads.adwords.v201101.Predicate();
   statusPredicate.operator =
       google.ads.adwords.v201101.PredicateOperator.EQUALS;
-  statusPredicate.field = "Status";
+  statusPredicate.field = 'Status';
   statusPredicate.values = [
       google.ads.adwords.v201101.CampaignAdExtensionStatus.ACTIVE
   ];
 
   selector.predicates = [campaignPredicate, statusPredicate];
-  selector.fields = ["AdExtensionId", "Status"];
+  selector.fields = ['AdExtensionId', 'Status'];
 
   try {
     campaignAdExtensionService.get(selector,

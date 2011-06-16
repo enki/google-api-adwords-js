@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines UpdateAd, a code example that updates an ad's
- * status given an existing ad group and ad.
+ *     status given an existing ad group and ad.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.UpdateAd');
@@ -41,6 +41,10 @@ goog.require('google.ads.adwords.v201008.Operator');
  */
 google.ads.adwords.examples.v201008.UpdateAd = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example updates an ad\'s status given an ' +
       'existing ad group and ad.';
 };
@@ -51,9 +55,9 @@ goog.inherits(google.ads.adwords.examples.v201008.UpdateAd,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.UpdateAd.prototype.run =
     function(user, callback) {

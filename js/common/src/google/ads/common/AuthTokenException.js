@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines AuthTokenException, an exception class that represents
- * an exception thrown by ClientLogin API.
+ *     an exception thrown by ClientLogin API.
  */
 
 goog.provide('google.ads.common.AuthTokenException');
@@ -33,21 +33,46 @@ goog.require('google.ads.common.AdsException');
  * @param {number} errorCode The error code associated with this Auth Exception.
  * @param {string} errorUrl The url that describes this error.
  * @param {string} captchaToken The token associated with the captcha, if a
- * Require Captcha error is triggered.
+ *     Require Captcha error is triggered.
  * @param {string} captchaUrl The url for the captcha. If Require Captcha error
- * is triggered, then this url should be presented to the users to unlock their
- * accounts.
+ *     is triggered, then this url should be presented to the users to unlock
+ *     their accounts.
  * @param {string?} message An optional error message for the exception.
  * @param {Object?} innerException If this exception was thrown in response to
- * another exception, then you can wrap the original exception within this
- * exception.
+ *     another exception, then you can wrap the original exception within this
+ *     exception.
  */
 google.ads.common.AuthTokenException = function(errorCode,
     errorUrl, captchaToken, captchaUrl, message, innerException) {
   google.ads.common.AdsException.call(this, message, innerException);
+
+  /**
+   * Authentication error code.
+   * @type {string}
+   * @private
+   */
   this.errorCode_ = errorCode;
+
+  /**
+   * Error url.
+   * @type {string}
+   * @private
+   */
   this.errorUrl_ = errorUrl;
+
+  /**
+   * Captcha token, populated in case a captcha challenge is needed to be
+   * addressed.
+   * @type {string}
+   * @private
+   */
   this.captchaToken_ = captchaToken;
+
+  /**
+   * Captcha Url.
+   * @type {string}
+   * @private
+   */
   this.captchaUrl_ = captchaUrl;
 };
 goog.inherits(google.ads.common.AuthTokenException,

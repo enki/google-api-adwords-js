@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines UpdateAdGroup, a code example that updates an ad group,
- * setting its status to 'PAUSED'.
+ *     setting its status to 'PAUSED'.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.UpdateAdGroup');
@@ -53,9 +53,9 @@ goog.inherits(google.ads.adwords.examples.v201101.UpdateAdGroup,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.UpdateAdGroup.prototype.run =
     function(user, callback) {

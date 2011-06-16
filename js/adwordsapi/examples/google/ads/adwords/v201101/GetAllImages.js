@@ -52,9 +52,9 @@ goog.inherits(google.ads.adwords.examples.v201101.GetAllImages,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.GetAllImages.prototype.run =
     function(user, callback) {
@@ -64,12 +64,12 @@ google.ads.adwords.examples.v201101.GetAllImages.prototype.run =
 
   // Create a selector.
   var selector = new google.ads.adwords.v201101.Selector();
-  selector.fields = ["MediaId", "Width", "Height", "MimeType"];
+  selector.fields = ['MediaId', 'Width', 'Height', 'MimeType'];
 
   // Create a filter.
   var predicate = new google.ads.adwords.v201101.Predicate();
   predicate.operator = google.ads.adwords.v201101.PredicateOperator.EQUALS;
-  predicate.field = "Type";
+  predicate.field = 'Type';
   predicate.values = [google.ads.adwords.v201101.MediaMediaType.IMAGE];
 
   selector.predicates = [predicate];

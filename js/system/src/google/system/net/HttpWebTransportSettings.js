@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines HttpWebTransportSettings, settings for creating a
- * HttpWebTransport.
+ *     HttpWebTransport.
  */
 
 goog.provide('google.system.net.HttpWebTransportSettings');
@@ -30,6 +30,12 @@ goog.provide('google.system.net.HttpWebTransportSettings');
  * @constructor
  */
 google.system.net.HttpWebTransportSettings = function(settings) {
+
+  /**
+   * Settings map.
+   * @type {Object.<string, string>}
+   * @private
+   */
   this.settings_ = settings || {};
 };
 

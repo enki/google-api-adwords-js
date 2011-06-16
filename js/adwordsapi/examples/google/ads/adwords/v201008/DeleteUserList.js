@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines DeleteUserList, a code example that deletes a user
- * list by setting the status to 'CLOSED'.
+ *     list by setting the status to 'CLOSED'.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.DeleteUserList');
@@ -43,6 +43,10 @@ goog.require('google.ads.adwords.v201008.UserListService');
  */
 google.ads.adwords.examples.v201008.DeleteUserList = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example deletes a user list by setting the ' +
       'status to "CLOSED". To get user lists, run GetAllUserLists.js.';
 };
@@ -53,9 +57,9 @@ goog.inherits(google.ads.adwords.examples.v201008.DeleteUserList,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.DeleteUserList.prototype.run =
     function(user, callback) {

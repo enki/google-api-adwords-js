@@ -19,7 +19,7 @@
 
 /**
  * @fileoverview Defines ApiException, a custom exception class for
- * wrapping AdWords API SOAP exceptions.
+ *     wrapping AdWords API SOAP exceptions.
  */
 
 goog.provide('google.ads.adwords.ApiException');
@@ -32,15 +32,20 @@ goog.require('google.ads.adwords.Exception');
  * @extends google.ads.adwords.Exception
  * @constructor
  * @param {Object} apiException The original ApiException object from
- * AdWords API.
+ *     AdWords API.
  * @param {string?} message An optional error message for the exception.
  * @param {Object?} innerException If this exception was thrown in response to
- * another exception, then you can wrap the original exception within this
- * exception.
+ *     another exception, then you can wrap the original exception within this
+ *     exception.
  */
 google.ads.adwords.ApiException = function(apiException, message,
     innerException) {
   google.ads.adwords.Exception.call(this, message, innerException);
+
+  /**
+   * Internal API exception.
+   * @type {Object}
+   */
   this.apiException = apiException;
 };
 goog.inherits(google.ads.adwords.ApiException, google.ads.adwords.Exception);

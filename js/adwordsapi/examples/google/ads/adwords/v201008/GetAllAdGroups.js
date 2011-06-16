@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllAdGroups, a code example that gets all the ad
- * groups for a campaign.
+ *     groups for a campaign.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetAllAdGroups');
@@ -39,6 +39,10 @@ goog.require('google.ads.adwords.v201008.AdGroupService');
  */
 google.ads.adwords.examples.v201008.GetAllAdGroups = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example illustrates how to retrieve all the ' +
       'ad groups for a campaign. To create an ad group, run AddAdGroup.js.';
 };
@@ -49,9 +53,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetAllAdGroups,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetAllAdGroups.prototype.run =
     function(user, callback) {

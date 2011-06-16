@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllUserLists, a code example that gets all the user
- * lists for an account.
+ *     lists for an account.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.GetAllUserLists');
@@ -49,9 +49,9 @@ goog.inherits(google.ads.adwords.examples.v201101.GetAllUserLists,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.GetAllUserLists.prototype.run =
     function(user, callback) {
@@ -60,7 +60,7 @@ google.ads.adwords.examples.v201101.GetAllUserLists.prototype.run =
       google.ads.adwords.AdWordsService.v201101.UserListService);
 
   var selector = new google.ads.adwords.v201101.Selector();
-  selector.fields = ["Id", "Name", "Status", "Size"];
+  selector.fields = ['Id', 'Name', 'Status', 'Size'];
 
   try {
     userListService.get(selector,

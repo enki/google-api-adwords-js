@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetGeoLocationInfo, a code example that gets geo
- * location information for addresses.
+ *     location information for addresses.
  */
 
 goog.provide('google.ads.adwords.examples.v201101.GetGeoLocationInfo');
@@ -50,9 +50,9 @@ goog.inherits(google.ads.adwords.examples.v201101.GetGeoLocationInfo,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201101.GetGeoLocationInfo.prototype.run =
     function(user, callback) {

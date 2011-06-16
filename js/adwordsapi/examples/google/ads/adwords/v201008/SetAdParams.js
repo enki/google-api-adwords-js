@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines SetAdParams, a code example that illustrates how to
- * create a text ad with ad parameters.
+ *     create a text ad with ad parameters.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.SetAdParams');
@@ -47,6 +47,10 @@ goog.require('google.ads.adwords.v201008.TextAd');
  */
 google.ads.adwords.examples.v201008.SetAdParams = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example illustrates how to create a text ad ' +
       'with ad parameters. To add an ad group, run AddAdGroup.js. To add an ' +
       'ad group criterion, run AddAdGroupCriterion.js.';
@@ -58,9 +62,9 @@ goog.inherits(google.ads.adwords.examples.v201008.SetAdParams,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.SetAdParams.prototype.run =
     function(user, callback) {

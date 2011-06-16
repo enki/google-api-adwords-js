@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllPausedCampaigns, a code example that gets all
- * paused campaigns.
+ *     paused campaigns.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetAllPausedCampaigns');
@@ -40,6 +40,10 @@ goog.require('google.ads.adwords.v201008.CampaignStatus');
  */
 google.ads.adwords.examples.v201008.GetAllPausedCampaigns = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example gets all paused campaigns. To add a ' +
       'campaign, run AddCampaign.js.';
 };
@@ -50,9 +54,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetAllPausedCampaigns,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetAllPausedCampaigns.prototype.run =
     function(user, callback) {

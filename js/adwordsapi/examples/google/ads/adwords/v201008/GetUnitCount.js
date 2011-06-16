@@ -18,8 +18,8 @@
 
 /**
  * @fileoverview Defines GetUnitCount, a code example that retrieves the
- * number of API units recorded for the developer token being used to make
- * this call over the given date range.
+ *     number of API units recorded for the developer token being used to make
+ *     this call over the given date range.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetUnitCount');
@@ -44,6 +44,10 @@ goog.require('google.ads.adwords.v201008.RequestHeader');
  */
 google.ads.adwords.examples.v201008.GetUnitCount = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example retrieves the number of API units ' +
       'recorded for the developer token being used to make this call over ' +
       'the given date range.';
@@ -55,9 +59,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetUnitCount,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetUnitCount.prototype.run =
     function(user, callback) {

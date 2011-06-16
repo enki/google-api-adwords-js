@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllAds, a code example that gets
- * all ads given an existing ad group.
+ *     all ads given an existing ad group.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetAllAds');
@@ -42,6 +42,10 @@ goog.require('google.ads.adwords.v201008.TextAd');
  */
 google.ads.adwords.examples.v201008.GetAllAds = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example retrieves all ads given an existing' +
   ' ad group. To add ads to an existing ad group, run AddAds.js.';
 };
@@ -52,9 +56,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetAllAds,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetAllAds.prototype.run =
     function(user, callback) {

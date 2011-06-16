@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetTrafficEstimates, a code example that gets
- * keyword traffic estimates.
+ *     keyword traffic estimates.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetTrafficEstimates');
@@ -46,6 +46,10 @@ goog.require('google.ads.adwords.v201008.TrafficEstimatorService');
  */
 google.ads.adwords.examples.v201008.GetTrafficEstimates = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example gets keyword traffic estimates.';
 };
 goog.inherits(google.ads.adwords.examples.v201008.GetTrafficEstimates,
@@ -55,9 +59,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetTrafficEstimates,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetTrafficEstimates.prototype.run =
     function(user, callback) {

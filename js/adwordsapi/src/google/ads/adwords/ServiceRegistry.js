@@ -59,7 +59,7 @@ google.ads.adwords.ServiceRegistry.getInstance = function() {
  * @param {string} serviceName Service name.
  * @param {object} factoryClass The factory class.
  * @return {google.ads.adwords.ServiceRegistrySignature} A service
- * creation parameter defining this service.
+ *     creation parameter defining this service.
  */
 google.ads.adwords.ServiceRegistry.prototype.registerServiceFactory = function(
     version, groupName, serviceName, factoryClass) {

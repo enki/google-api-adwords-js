@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetReportFields, a code example that gets report
- * fields.
+ *     fields.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetReportFields');
@@ -37,6 +37,10 @@ goog.require('google.ads.adwords.v201008.ReportDefinitionService');
  */
 google.ads.adwords.examples.v201008.GetReportFields = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example gets report fields.';
 };
 goog.inherits(google.ads.adwords.examples.v201008.GetReportFields,
@@ -46,9 +50,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetReportFields,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetReportFields.prototype.run =
     function(user, callback) {

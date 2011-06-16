@@ -18,7 +18,7 @@
 
 /**
  * @fileoverview Defines GetAllReportDefinitions, a code example that all report
- * definitions.
+ *     definitions.
  */
 
 goog.provide('google.ads.adwords.examples.v201008.GetAllReportDefinitions');
@@ -39,6 +39,10 @@ goog.require('google.ads.adwords.v201008.ReportDefinitionService');
  */
 google.ads.adwords.examples.v201008.GetAllReportDefinitions = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
+  /**
+  * Example description.
+  * @type {string}
+  */
   this.description = 'This code example gets all report definitions. To add ' +
       'a report definition, run AddKeywordsPerformanceReportDefinition.js.';
 };
@@ -49,9 +53,9 @@ goog.inherits(google.ads.adwords.examples.v201008.GetAllReportDefinitions,
  * Runs the code example.
  *
  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
- * example.
+ *     example.
  * @param {function} callback the callback method to be called once this example
- * is complete.
+ *     is complete.
  */
 google.ads.adwords.examples.v201008.GetAllReportDefinitions.prototype.run =
     function(user, callback) {
