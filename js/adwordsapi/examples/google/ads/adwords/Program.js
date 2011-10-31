@@ -151,6 +151,76 @@ goog.require('google.ads.adwords.examples.v201101.UpdateAdGroup');
 goog.require('google.ads.adwords.examples.v201101.UpdateAdGroupCriterion');
 goog.require('google.ads.adwords.examples.v201101.UpdateCampaign');
 goog.require('google.ads.adwords.examples.v201101.UpdateUserList');
+goog.require('google.ads.adwords.examples.v201109.AddAdExtensionOverride');
+goog.require('google.ads.adwords.examples.v201109.AddAdGroup');
+goog.require('google.ads.adwords.examples.v201109.AddAdGroupCriteria');
+goog.require('google.ads.adwords.examples.v201109.AddAds');
+goog.require('google.ads.adwords.examples.v201109.AddCampaign');
+goog.require('google.ads.adwords.examples.v201109.AddCampaignAdExtension');
+goog.require('google.ads.adwords.examples.v201109.AddCampaignTargetingCriteria');
+goog.require('google.ads.adwords.examples.v201109.AddExperiment');
+goog.require('google.ads.adwords.examples.v201109.AddLogicalUserList');
+goog.require('google.ads.adwords.examples.v201109.AddNegativeCampaignCriterion');
+goog.require('google.ads.adwords.examples.v201109.AddSiteLinks');
+goog.require('google.ads.adwords.examples.v201109.AddUserList');
+goog.require('google.ads.adwords.examples.v201109.CheckCampaigns');
+goog.require('google.ads.adwords.examples.v201109.DeleteAd');
+goog.require('google.ads.adwords.examples.v201109.DeleteAdGroup');
+goog.require('google.ads.adwords.examples.v201109.DeleteAdGroupCriterion');
+goog.require('google.ads.adwords.examples.v201109.DeleteBulkMutateJob');
+goog.require('google.ads.adwords.examples.v201109.DeleteCampaign');
+goog.require('google.ads.adwords.examples.v201109.DeleteExperiment');
+goog.require('google.ads.adwords.examples.v201109.DeleteSiteLinks');
+goog.require('google.ads.adwords.examples.v201109.DeleteUserList');
+goog.require('google.ads.adwords.examples.v201109.DownloadAdHocReport');
+goog.require('google.ads.adwords.examples.v201109.DownloadReport');
+goog.require('google.ads.adwords.examples.v201109.GetAccountHierarchy');
+goog.require('google.ads.adwords.examples.v201109.GetAllAccountChanges');
+goog.require('google.ads.adwords.examples.v201109.GetAllActiveAdGroupCriteria');
+goog.require('google.ads.adwords.examples.v201109.GetAllAdExtensionOverrides');
+goog.require('google.ads.adwords.examples.v201109.GetAllAdGroupCriteria');
+goog.require('google.ads.adwords.examples.v201109.GetAllAdGroups');
+goog.require('google.ads.adwords.examples.v201109.GetAllAds');
+goog.require('google.ads.adwords.examples.v201109.GetAllBulkMutateJobs');
+goog.require('google.ads.adwords.examples.v201109.GetAllCampaignAdExtensions');
+goog.require('google.ads.adwords.examples.v201109.GetAllCampaignTargets');
+goog.require('google.ads.adwords.examples.v201109.GetAllCampaigns');
+goog.require('google.ads.adwords.examples.v201109.GetAllCarriers');
+goog.require('google.ads.adwords.examples.v201109.GetAllDisapprovedAds');
+goog.require('google.ads.adwords.examples.v201109.GetAllExperiments');
+goog.require('google.ads.adwords.examples.v201109.GetAllImages');
+goog.require('google.ads.adwords.examples.v201109.GetAllLanguages');
+goog.require('google.ads.adwords.examples.v201109.GetAllNegativeCampaignCriteria');
+goog.require('google.ads.adwords.examples.v201109.GetAllPausedCampaigns');
+goog.require('google.ads.adwords.examples.v201109.GetAllReportDefinitions');
+goog.require('google.ads.adwords.examples.v201109.GetAllUserLists');
+goog.require('google.ads.adwords.examples.v201109.GetAllVideos');
+goog.require('google.ads.adwords.examples.v201109.GetCampaign');
+goog.require('google.ads.adwords.examples.v201109.GetCampaignAlerts');
+goog.require('google.ads.adwords.examples.v201109.GetClientCustomerId');
+goog.require('google.ads.adwords.examples.v201109.GetConversionOptimizerEligibility');
+goog.require('google.ads.adwords.examples.v201109.GetCriterionBidLandscape');
+goog.require('google.ads.adwords.examples.v201109.GetGeoLocationInfo');
+goog.require('google.ads.adwords.examples.v201109.GetMethodCost');
+goog.require('google.ads.adwords.examples.v201109.GetLocationCriteria');
+goog.require('google.ads.adwords.examples.v201109.GetOperationCount');
+goog.require('google.ads.adwords.examples.v201109.GetRelatedKeywords');
+goog.require('google.ads.adwords.examples.v201109.GetRelatedPlacements');
+goog.require('google.ads.adwords.examples.v201109.GetReportFields');
+goog.require('google.ads.adwords.examples.v201109.GetTotalUsageUnitsPerMonth');
+goog.require('google.ads.adwords.examples.v201109.GetTrafficEstimates');
+goog.require('google.ads.adwords.examples.v201109.GetUnitCount');
+goog.require('google.ads.adwords.examples.v201109.HandlePartialFailures');
+goog.require('google.ads.adwords.examples.v201109.HandleTwoFactorAuthorizationError');
+goog.require('google.ads.adwords.examples.v201109.PerformBulkMutateJob');
+goog.require('google.ads.adwords.examples.v201109.PerformMutateJob');
+goog.require('google.ads.adwords.examples.v201109.PromoteExperiment');
+goog.require('google.ads.adwords.examples.v201109.SetAdParams');
+goog.require('google.ads.adwords.examples.v201109.UpdateAd');
+goog.require('google.ads.adwords.examples.v201109.UpdateAdGroup');
+goog.require('google.ads.adwords.examples.v201109.UpdateAdGroupCriterion');
+goog.require('google.ads.adwords.examples.v201109.UpdateCampaign');
+goog.require('google.ads.adwords.examples.v201109.UpdateUserList');
 
 /**
  * Defines all the code examples supported in the library.
@@ -164,6 +234,102 @@ google.ads.adwords.examples.Program = function(divId) {
   this.examples = {};
   this.divId = divId;
 
+  // v201109 examples.
+  this.examples['v201109.AddAdExtensionOverride'] =
+      'v201109.AddAdExtensionOverride';
+  this.examples['v201109.AddAdGroup'] = 'v201109.AddAdGroup';
+  this.examples['v201109.AddAdGroupCriteria'] = 'v201109.AddAdGroupCriteria';
+  this.examples['v201109.AddAds'] = 'v201109.AddAds';
+  this.examples['v201109.AddCampaign'] = 'v201109.AddCampaign';
+  this.examples['v201109.AddCampaignAdExtension'] =
+      'v201109.AddCampaignAdExtension';
+  this.examples['v201109.AddCampaignTargetingCriteria'] =
+      'v201109.AddCampaignTargetingCriteria';
+  this.examples['v201109.AddExperiment'] = 'v201109.AddExperiment';
+  this.examples['v201109.AddLogicalUserList'] = 'v201109.AddLogicalUserList';
+  this.examples['v201109.AddNegativeCampaignCriterion'] =
+      'v201109.AddNegativeCampaignCriterion';
+  this.examples['v201109.AddSiteLinks'] = 'v201109.AddSiteLinks';
+  this.examples['v201109.AddUserList'] = 'v201109.AddUserList';
+  this.examples['v201109.CheckCampaigns'] = 'v201109.CheckCampaigns';
+  this.examples['v201109.DeleteAd'] = 'v201109.DeleteAd';
+  this.examples['v201109.DeleteAdGroup'] = 'v201109.DeleteAdGroup';
+  this.examples['v201109.DeleteAdGroupCriterion'] =
+      'v201109.DeleteAdGroupCriterion';
+  this.examples['v201109.DeleteBulkMutateJob'] = 'v201109.DeleteBulkMutateJob';
+  this.examples['v201109.DeleteCampaign'] = 'v201109.DeleteCampaign';
+  this.examples['v201109.DeleteExperiment'] = 'v201109.DeleteExperiment';
+  this.examples['v201109.DeleteSiteLinks'] = 'v201109.DeleteSiteLinks';
+  this.examples['v201109.DeleteUserList'] = 'v201109.DeleteUserList';
+  this.examples['v201109.DownloadAdHocReport'] = 'v201109.DownloadAdHocReport';
+  this.examples['v201109.DownloadReport'] = 'v201109.DownloadReport';
+  this.examples['v201109.GetAccountHierarchy'] = 'v201109.GetAccountHierarchy';
+  this.examples['v201109.GetAllAccountChanges'] =
+      'v201109.GetAllAccountChanges';
+  this.examples['v201109.GetAllActiveAdGroupCriteria'] =
+      'v201109.GetAllActiveAdGroupCriteria';
+  this.examples['v201109.GetAllAdExtensionOverrides'] =
+      'v201109.GetAllAdExtensionOverrides';
+  this.examples['v201109.GetAllAdGroupCriteria'] =
+      'v201109.GetAllAdGroupCriteria';
+  this.examples['v201109.GetAllAdGroups'] = 'v201109.GetAllAdGroups';
+  this.examples['v201109.GetAllAds'] = 'v201109.GetAllAds';
+  this.examples['v201109.GetAllBulkMutateJobs'] =
+      'v201109.GetAllBulkMutateJobs';
+  this.examples['v201109.GetAllCampaignAdExtensions'] =
+      'v201109.GetAllCampaignAdExtensions';
+  this.examples['v201109.GetAllCampaigns'] = 'v201109.GetAllCampaigns';
+  this.examples['v201109.GetAllCampaignTargets'] =
+      'v201109.GetAllCampaignTargets';
+  this.examples['v201109.GetAllCarriers'] = 'v201109.GetAllCarriers';
+  this.examples['v201109.GetAllDisapprovedAds'] =
+      'v201109.GetAllDisapprovedAds';
+  this.examples['v201109.GetAllExperiments'] = 'v201109.GetAllExperiments';
+  this.examples['v201109.GetAllImages'] = 'v201109.GetAllImages';
+  this.examples['v201109.GetAllLanguages'] = 'v201109.GetAllLanguages';
+  this.examples['v201109.GetAllPausedCampaigns'] =
+      'v201109.GetAllPausedCampaigns';
+  this.examples['v201109.GetAllReportDefinitions'] =
+      'v201109.GetAllReportDefinitions';
+  this.examples['v201109.GetAllUserLists'] = 'v201109.GetAllUserLists';
+  this.examples['v201109.GetAllVideos'] = 'v201109.GetAllVideos';
+  this.examples['v201109.GetCampaign'] = 'v201109.GetCampaign';
+  this.examples['v201109.GetCampaignAlerts'] = 'v201109.GetCampaignAlerts';
+  this.examples['v201109.GetClientCustomerId'] = 'v201109.GetClientCustomerId';
+  this.examples['v201109.GetConversionOptimizerEligibility'] =
+      'v201109.GetConversionOptimizerEligibility';
+  this.examples['v201109.GetCriterionBidLandscape'] =
+      'v201109.GetCriterionBidLandscape';
+  this.examples['v201109.GetGeoLocationInfo'] = 'v201109.GetGeoLocationInfo';
+  this.examples['v201109.GetLocationCriteria'] = 'v201109.GetLocationCriteria';
+  this.examples['v201109.GetMethodCost'] = 'v201109.GetMethodCost';
+  this.examples['v201109.GetAllNegativeCampaignCriteria'] =
+      'v201109.GetAllNegativeCampaignCriteria';
+  this.examples['v201109.GetOperationCount'] = 'v201109.GetOperationCount';
+  this.examples['v201109.GetRelatedKeywords'] = 'v201109.GetRelatedKeywords';
+  this.examples['v201109.GetRelatedPlacements'] =
+      'v201109.GetRelatedPlacements';
+  this.examples['v201109.GetReportFields'] = 'v201109.GetReportFields';
+  this.examples['v201109.GetTotalUsageUnitsPerMonth'] =
+      'v201109.GetTotalUsageUnitsPerMonth';
+  this.examples['v201109.GetTrafficEstimates'] = 'v201109.GetTrafficEstimates';
+  this.examples['v201109.GetUnitCount'] = 'v201109.GetUnitCount';
+  this.examples['v201109.HandlePartialFailures'] =
+      'v201109.HandlePartialFailures';
+  this.examples['v201109.HandleTwoFactorAuthorizationError'] =
+      'v201109.HandleTwoFactorAuthorizationError';
+  this.examples['v201109.PerformBulkMutateJob'] =
+      'v201109.PerformBulkMutateJob';
+  this.examples['v201109.PerformMutateJob'] = 'v201109.PerformMutateJob';
+  this.examples['v201109.PromoteExperiment'] = 'v201109.PromoteExperiment';
+  this.examples['v201109.SetAdParams'] = 'v201109.SetAdParams';
+  this.examples['v201109.UpdateAd'] = 'v201109.UpdateAd';
+  this.examples['v201109.UpdateAdGroup'] = 'v201109.UpdateAdGroup';
+  this.examples['v201109.UpdateAdGroupCriterion'] =
+      'v201109.UpdateAdGroupCriterion';
+  this.examples['v201109.UpdateCampaign'] = 'v201109.UpdateCampaign';
+  this.examples['v201109.UpdateUserList'] = 'v201109.UpdateUserList';
+
   // v201101 examples.
   this.examples['v201101.AddAdExtensionOverride'] =
       'v201101.AddAdExtensionOverride';
@@ -175,17 +341,17 @@ google.ads.adwords.examples.Program = function(divId) {
       'v201101.AddCampaignAdExtension';
   this.examples['v201101.AddExperiment'] = 'v201101.AddExperiment';
   this.examples['v201101.AddKeywordsPerformanceReportDefinition'] =
-   'v201101.AddKeywordsPerformanceReportDefinition';
+      'v201101.AddKeywordsPerformanceReportDefinition';
   this.examples['v201101.AddLogicalUserList'] = 'v201101.AddLogicalUserList';
   this.examples['v201101.AddNegativeCampaignCriterion'] =
-   'v201101.AddNegativeCampaignCriterion';
+      'v201101.AddNegativeCampaignCriterion';
   this.examples['v201101.AddSiteLinks'] = 'v201101.AddSiteLinks';
   this.examples['v201101.AddUserList'] = 'v201101.AddUserList';
   this.examples['v201101.CheckCampaigns'] = 'v201101.CheckCampaigns';
   this.examples['v201101.DeleteAd'] = 'v201101.DeleteAd';
   this.examples['v201101.DeleteAdGroup'] = 'v201101.DeleteAdGroup';
   this.examples['v201101.DeleteAdGroupCriterion'] =
-   'v201101.DeleteAdGroupCriterion';
+      'v201101.DeleteAdGroupCriterion';
   this.examples['v201101.DeleteBulkMutateJob'] = 'v201101.DeleteBulkMutateJob';
   this.examples['v201101.DeleteCampaign'] = 'v201101.DeleteCampaign';
   this.examples['v201101.DeleteExperiment'] = 'v201101.DeleteExperiment';
@@ -264,17 +430,17 @@ google.ads.adwords.examples.Program = function(divId) {
       'v201008.AddCampaignAdExtension';
   this.examples['v201008.AddExperiment'] = 'v201008.AddExperiment';
   this.examples['v201008.AddKeywordsPerformanceReportDefinition'] =
-   'v201008.AddKeywordsPerformanceReportDefinition';
+      'v201008.AddKeywordsPerformanceReportDefinition';
   this.examples['v201008.AddLogicalUserList'] = 'v201008.AddLogicalUserList';
   this.examples['v201008.AddNegativeCampaignCriterion'] =
-   'v201008.AddNegativeCampaignCriterion';
+      'v201008.AddNegativeCampaignCriterion';
   this.examples['v201008.AddSiteLinks'] = 'v201008.AddSiteLinks';
   this.examples['v201008.AddUserList'] = 'v201008.AddUserList';
   this.examples['v201008.CheckCampaigns'] = 'v201008.CheckCampaigns';
   this.examples['v201008.DeleteAd'] = 'v201008.DeleteAd';
   this.examples['v201008.DeleteAdGroup'] = 'v201008.DeleteAdGroup';
   this.examples['v201008.DeleteAdGroupCriterion'] =
-   'v201008.DeleteAdGroupCriterion';
+      'v201008.DeleteAdGroupCriterion';
   this.examples['v201008.DeleteBulkMutateJob'] = 'v201008.DeleteBulkMutateJob';
   this.examples['v201008.DeleteCampaign'] = 'v201008.DeleteCampaign';
   this.examples['v201008.DeleteExperiment'] = 'v201008.DeleteExperiment';
@@ -357,6 +523,9 @@ google.ads.adwords.examples.Program.prototype.run = function(key) {
     results.innerHTML = example.description + '\n\n';
   } else {
     alert(example.description);
+  }
+  if (results) {
+    results.innerHTML += 'Running...\n';
   }
   example.run(this.user, function() {
     if (results) {

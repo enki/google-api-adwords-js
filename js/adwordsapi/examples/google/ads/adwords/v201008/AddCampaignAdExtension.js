@@ -80,9 +80,9 @@ google.ads.adwords.examples.v201008.AddCampaignAdExtension.prototype.run =
   address1.postalCode = '94043';
   address1.countryCode = 'US';
 
-  // Add location 2: 38 avenue de l'Op�ra, 75002 Paris, FR
+  // Add location 2: 38 avenue de l'Opéra, 75002 Paris, FR
   var address2 = new google.ads.adwords.v201008.Address();
-  address2.streetAddress = "38 avenue de l'Op�ra";
+  address2.streetAddress = "38 avenue de l'Opéra";
   address2.cityName = 'Paris';
   address2.postalCode = '75002';
   address2.countryCode = 'FR';

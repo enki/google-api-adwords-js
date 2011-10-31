@@ -13,7 +13,7 @@
 // limitations under the License.
 
 /**
- * @author api.anash@gmail.com (Anash P. Oommen)
+ * @author api.davidtorres@gmail.com (David Torres)
  */
 
 /**
@@ -21,19 +21,19 @@
  *     to add an Ad Extension to an existing campaign.
  */
 
-goog.provide('google.ads.adwords.examples.v201101.AddCampaignAdExtension');
+goog.provide('google.ads.adwords.examples.v201109.AddCampaignAdExtension');
 
-goog.require('google.ads.adwords.AdWordsService.v201101');
+goog.require('google.ads.adwords.AdWordsService.v201109');
 goog.require('google.ads.adwords.examples.ExampleBase');
-goog.require('google.ads.adwords.v201101.Address');
-goog.require('google.ads.adwords.v201101.CampaignAdExtension');
-goog.require('google.ads.adwords.v201101.CampaignAdExtensionOperation');
-goog.require('google.ads.adwords.v201101.CampaignAdExtensionService');
-goog.require('google.ads.adwords.v201101.CampaignAdExtensionStatus');
-goog.require('google.ads.adwords.v201101.GeoLocationSelector');
-goog.require('google.ads.adwords.v201101.GeoLocationService');
-goog.require('google.ads.adwords.v201101.LocationExtension');
-goog.require('google.ads.adwords.v201101.LocationExtensionSource');
+goog.require('google.ads.adwords.v201109.Address');
+goog.require('google.ads.adwords.v201109.CampaignAdExtension');
+goog.require('google.ads.adwords.v201109.CampaignAdExtensionOperation');
+goog.require('google.ads.adwords.v201109.CampaignAdExtensionService');
+goog.require('google.ads.adwords.v201109.CampaignAdExtensionStatus');
+goog.require('google.ads.adwords.v201109.GeoLocationSelector');
+goog.require('google.ads.adwords.v201109.GeoLocationService');
+goog.require('google.ads.adwords.v201109.LocationExtension');
+goog.require('google.ads.adwords.v201109.LocationExtensionSource');
 
 /**
  * This code example shows how to add an Ad Extension to an existing
@@ -44,12 +44,12 @@ goog.require('google.ads.adwords.v201101.LocationExtensionSource');
  * @extends google.ads.adwords.examples.ExampleBase
  * @constructor
  */
-google.ads.adwords.examples.v201101.AddCampaignAdExtension = function() {
+google.ads.adwords.examples.v201109.AddCampaignAdExtension = function() {
   google.ads.adwords.examples.ExampleBase.call(this);
   this.description = 'This code example shows how to add an Ad Extension to ' +
   'an existing campaign. To create a campaign, run AddCampaign.js.';
 };
-goog.inherits(google.ads.adwords.examples.v201101.AddCampaignAdExtension,
+goog.inherits(google.ads.adwords.examples.v201109.AddCampaignAdExtension,
     google.ads.adwords.examples.ExampleBase);
 
 /**
@@ -60,16 +60,16 @@ goog.inherits(google.ads.adwords.examples.v201101.AddCampaignAdExtension,
  * @param {function} callback the callback method to be called once this example
  *     is complete.
  */
-google.ads.adwords.examples.v201101.AddCampaignAdExtension.prototype.run =
+google.ads.adwords.examples.v201109.AddCampaignAdExtension.prototype.run =
     function(user, callback) {
   // Get the CampaignAdExtensionService.
   var campaignExtensionService = user.getService(
-      google.ads.adwords.AdWordsService.v201101.CampaignAdExtensionService);
+      google.ads.adwords.AdWordsService.v201109.CampaignAdExtensionService);
 
   var campaignId = this._T('INSERT_CAMPAIGN_ID_HERE');
 
   // Add location 1: 1600 Amphitheatre Pkwy, Mountain View, US.
-  var address1 = new google.ads.adwords.v201101.Address();
+  var address1 = new google.ads.adwords.v201109.Address();
   address1.streetAddress = '1600 Amphitheatre Parkway';
   address1.cityName = 'Mountain View';
   address1.provinceCode = 'CA';
@@ -77,16 +77,16 @@ google.ads.adwords.examples.v201101.AddCampaignAdExtension.prototype.run =
   address1.countryCode = 'US';
 
   // Add location 2: 38 avenue de l'Opéra, 75002 Paris, FR
-  var address2 = new google.ads.adwords.v201101.Address();
+  var address2 = new google.ads.adwords.v201109.Address();
   address2.streetAddress = "38 avenue de l'Opéra";
   address2.cityName = 'Paris';
   address2.postalCode = '75002';
   address2.countryCode = 'FR';
 
   var geoService = user.getService(
-      google.ads.adwords.AdWordsService.v201101.GeoLocationService);
+      google.ads.adwords.AdWordsService.v201109.GeoLocationService);
 
-  var selector = new google.ads.adwords.v201101.GeoLocationSelector();
+  var selector = new google.ads.adwords.v201109.GeoLocationSelector();
   selector.addresses = [address1, address2];
 
   try {
@@ -96,22 +96,22 @@ google.ads.adwords.examples.v201101.AddCampaignAdExtension.prototype.run =
         for (var i = 0, len = retval.value.length; i < len; i++) {
           var location = retval[i];
           var locationExtension =
-              new google.ads.adwords.v201101.LocationExtension();
+              new google.ads.adwords.v201109.LocationExtension();
           locationExtension.address = location.address;
           locationExtension.geoPoint = location.geoPoint;
           locationExtension.encodedLocation = location.encodedLocation;
-          locationExtension.source = google.ads.adwords.v201101.
+          locationExtension.source = google.ads.adwords.v201109.
               LocationExtensionSource.ADWORDS_FRONTEND;
 
-          var extension = new google.ads.adwords.v201101.CampaignAdExtension();
+          var extension = new google.ads.adwords.v201109.CampaignAdExtension();
           extension.campaignId = campaignId;
-          extension.status = google.ads.adwords.v201101.
+          extension.status = google.ads.adwords.v201109.
               CampaignAdExtensionStatus.ACTIVE;
           extension.adExtension = locationExtension;
 
           var operation =
-              new google.ads.adwords.v201101.CampaignAdExtensionOperation();
-          operation.operator = google.ads.adwords.v201101.Operator.ADD;
+              new google.ads.adwords.v201109.CampaignAdExtensionOperation();
+          operation.operator = google.ads.adwords.v201109.Operator.ADD;
           operation.operand = extension;
 
           operations.push(operation);
