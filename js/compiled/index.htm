@@ -25,7 +25,7 @@
     <script type="text/javascript" src="awapi.js"></script>
     <!-- Version-specific stub. Include the file for the API version you wish
          to use. -->
-    <script type="text/javascript" src="v201008.js"></script>
+    <script type="text/javascript" src="v201109.js"></script>
     <!-- Configuration file for the client library. Your Adwords API
          credentials should go in this file, unless you plan on using the
          constructor parameters for google.ads.adwords.User. -->
@@ -48,9 +48,10 @@
       function GetAllCampaigns() {
         // Get the CampaignService.
         var campaignService = user.getService(
-            google.ads.adwords.AdWordsService.v201008.CampaignService);
+            google.ads.adwords.AdWordsService.v201109.CampaignService);
 
-        var selector = new google.ads.adwords.v201008.CampaignSelector();
+        var selector = new google.ads.adwords.v201109.Selector();
+        selector.fields = ['Id', 'Name', 'Status'];
 
         try {
           campaignService.get(selector,

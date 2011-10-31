@@ -21,6 +21,7 @@
 
 # Generate a deps script for entire library.
 
+echo Generating dependencies for entire library.
 rm -f ../../js/adwordsapi/src/awapi.js
 python ../../js/closure/bin/calcdeps.py -p ../../js/adwordsapi/src/ -p \
     ../../js/common/src -p ../../js/system/src -o deps -d \
@@ -30,6 +31,7 @@ echo "goog.require('google.system.core.Runtime');" \
 
 # Generate a deps script for code examples.
 
+echo Generating dependencies for examples.
 rm -f ../../js/adwordsapi/examples/awapi.js
 python ../../js/closure/bin/calcdeps.py -p ../../js/adwordsapi/examples \
     -o deps -d ../../js/closure/goog > ../../js/adwordsapi/examples/awapi.js
@@ -44,6 +46,7 @@ python ../../js/closure/bin/calcdeps.py -p ../../js/closure/goog -i \
     -e ../../js/adwordsapi/src/google/ads/adwords/v201003/AdWordsApi.js \
     -e ../../js/adwordsapi/src/google/ads/adwords/v201008/AdWordsApi.js \
     -e ../../js/adwordsapi/src/google/ads/adwords/v201101/AdWordsApi.js \
+    -e ../../js/adwordsapi/src/google/ads/adwords/v201109/AdWordsApi.js \
     -o compiled \
     -f "--compilation_level=SIMPLE_OPTIMIZATIONS" \
     -c ../../js/closure/bin/compiler.jar > ../../js/compiled/awapi.js
@@ -67,6 +70,12 @@ java -jar ../../js/closure/bin/compiler.jar \
     --compilation_level WHITESPACE_ONLY \
     --js ../../js/adwordsapi/src/google/ads/adwords/v201101/AdWordsApi.js \
     --js_output_file ../../js/compiled/v201101.js
+
+echo Compiling v201109 version.
+java -jar ../../js/closure/bin/compiler.jar \
+    --compilation_level WHITESPACE_ONLY \
+    --js ../../js/adwordsapi/src/google/ads/adwords/v201101/AdWordsApi.js \
+    --js_output_file ../../js/compiled/v201109.js
 
 cp ../../js/adwordsapi/src/config.js ../../js/compiled/config.js
 

@@ -20,9 +20,9 @@ Different transport mechanisms are offered and can be configured via the
 HttpWebTransport configuration property inside config.js file. Refer to the
 "Transport mechanisms" section in this file for more information.
 
-The AdWords API JavaScript Client Library currently supports versions v201003
-and v201008 of the AdWords API, and can be used in the Production or Sandbox
-environments.
+The AdWords API JavaScript Client Library currently supports versions v201003,
+v201008, v201101 and v201109 of the AdWords API, and can be used in the
+Production or Sandbox environments.
 
 Code examples, located in "js/adwordsapi/examples", demonstrate some examples of
 using client library.
@@ -59,7 +59,7 @@ your server is installed in the default port 80).
 5) Click on any of the examples and enjoy!
 
 
-Transport mechanisms
+Transpost mechanisms
 --------------------
 
 Along with the library a set of transport implementations are provided to allow
