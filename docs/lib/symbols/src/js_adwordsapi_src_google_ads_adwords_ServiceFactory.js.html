@@ -26,7 +26,7 @@
 <span class='line'> 19</span> 
 <span class='line'> 20</span> </span><span class="COMM">/**
 <span class='line'> 21</span>  * @fileoverview Defines AdWordsServiceFactory, the factory class for all
-<span class='line'> 22</span>  * AdWords API services.
+<span class='line'> 22</span>  *     AdWords API services.
 <span class='line'> 23</span>  */</span><span class="WHIT">
 <span class='line'> 24</span> 
 <span class='line'> 25</span> </span><span class="NAME">goog.provide</span><span class="PUNC">(</span><span class="STRN">'google.ads.adwords.ServiceFactory'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
@@ -50,7 +50,7 @@
 <span class='line'> 43</span>  * @extends google.ads.common.ServiceFactory
 <span class='line'> 44</span>  * @constructor
 <span class='line'> 45</span>  * @param {google.ads.adwords.AppConfig} config AdWords configuration
-<span class='line'> 46</span>  * properties.
+<span class='line'> 46</span>  *    properties.
 <span class='line'> 47</span>  */</span><span class="WHIT">
 <span class='line'> 48</span> </span><span class="NAME">google.ads.adwords.ServiceFactory</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">config</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 49</span> </span><span class="WHIT">  </span><span class="NAME">google.ads.common.ServiceFactory.call</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">config</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
@@ -73,10 +73,10 @@
 <span class='line'> 66</span>  * Create a service object.
 <span class='line'> 67</span>  *
 <span class='line'> 68</span>  * @param {google.ads.common.ServiceSignature} signature Signature of
-<span class='line'> 69</span>  * the service being created.
+<span class='line'> 69</span>  *     the service being created.
 <span class='line'> 70</span>  * @param {string} serverUrl The server to which the API calls should be made.
 <span class='line'> 71</span>  * @return {google.system.soap.Service} An instance of the desired
-<span class='line'> 72</span>  * service type.
+<span class='line'> 72</span>  *     service type.
 <span class='line'> 73</span>  */</span><span class="WHIT">
 <span class='line'> 74</span> </span><span class="NAME">google.ads.adwords.ServiceFactory.prototype.createService</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT">
 <span class='line'> 75</span> </span><span class="WHIT">    </span><span class="NAME">signature</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">serverUrl</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
@@ -84,7 +84,7 @@
 <span class='line'> 77</span> </span><span class="WHIT">    </span><span class="NAME">serverUrl</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">this.config_.getAdWordsApiServer</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 78</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
 <span class='line'> 79</span> 
-<span class='line'> 80</span> </span><span class="WHIT">  </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">signature</span><span class="WHIT"> </span><span class="PUNC">==</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 80</span> </span><span class="WHIT">  </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="NAME">goog.isNull</span><span class="PUNC">(</span><span class="NAME">signature</span><span class="PUNC">)</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 81</span> </span><span class="WHIT">    </span><span class="KEYW">throw</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">google.system.core.ArgumentNullException</span><span class="PUNC">(</span><span class="STRN">'signature'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 82</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="WHIT">
 <span class='line'> 83</span> 

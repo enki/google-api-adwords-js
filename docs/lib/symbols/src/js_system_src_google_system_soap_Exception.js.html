@@ -26,7 +26,7 @@
 <span class='line'> 19</span> 
 <span class='line'> 20</span> </span><span class="COMM">/**
 <span class='line'> 21</span>  * @fileoverview Defines a SOAP Exception, a generic exception thrown when a
-<span class='line'> 22</span>  * SOAP call fails.
+<span class='line'> 22</span>  *     SOAP call fails.
 <span class='line'> 23</span>  */</span><span class="WHIT">
 <span class='line'> 24</span> 
 <span class='line'> 25</span> </span><span class="NAME">goog.provide</span><span class="PUNC">(</span><span class="STRN">'google.system.soap.Exception'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
@@ -43,42 +43,60 @@
 <span class='line'> 36</span>  * @param {string} detail The detail for this SOAP Exception.
 <span class='line'> 37</span>  * @param {?string} message An optional error message for the exception.
 <span class='line'> 38</span>  * @param {?Object} innerException If this exception was thrown in response to
-<span class='line'> 39</span>  * another exception, then you can wrap the original exception within this
-<span class='line'> 40</span>  * exception.
+<span class='line'> 39</span>  *     another exception, then you can wrap the original exception within this
+<span class='line'> 40</span>  *     exception.
 <span class='line'> 41</span>  */</span><span class="WHIT">
 <span class='line'> 42</span> </span><span class="NAME">google.system.soap.Exception</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">faultCode</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">faultString</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'> 43</span> </span><span class="WHIT">    </span><span class="NAME">detail</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">message</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">innerException</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 44</span> </span><span class="WHIT">  </span><span class="NAME">google.system.core.Exception.call</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">message</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">innerException</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 45</span> </span><span class="WHIT">  </span><span class="NAME">this.faultCode_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">faultCode</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 46</span> </span><span class="WHIT">  </span><span class="NAME">this.faultString_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">faultString</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 47</span> </span><span class="WHIT">  </span><span class="NAME">this.detail_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">detail</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 48</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 49</span> </span><span class="NAME">goog.inherits</span><span class="PUNC">(</span><span class="NAME">google.system.soap.Exception</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">google.system.core.Exception</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 50</span> 
-<span class='line'> 51</span> </span><span class="COMM">/**
-<span class='line'> 52</span>  * Get the SOAP fault code.
-<span class='line'> 53</span>  *
-<span class='line'> 54</span>  * @return {string} The SOAP fault code.
-<span class='line'> 55</span>  */</span><span class="WHIT">
-<span class='line'> 56</span> </span><span class="NAME">google.system.core.Exception.prototype.getFaultCode</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 57</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.faultCode_</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 58</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 45</span> 
+<span class='line'> 46</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 47</span>    * SOAP Fault code.
+<span class='line'> 48</span>    * @type {string}
+<span class='line'> 49</span>    * @private
+<span class='line'> 50</span>    */</span><span class="WHIT">
+<span class='line'> 51</span> </span><span class="WHIT">  </span><span class="NAME">this.faultCode_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">faultCode</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 52</span> 
+<span class='line'> 53</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 54</span>    * SOAP Fault string.
+<span class='line'> 55</span>    * @type {string}
+<span class='line'> 56</span>    * @private
+<span class='line'> 57</span>    */</span><span class="WHIT">
+<span class='line'> 58</span> </span><span class="WHIT">  </span><span class="NAME">this.faultString_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">faultString</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 59</span> 
-<span class='line'> 60</span> </span><span class="COMM">/**
-<span class='line'> 61</span>  * Get the SOAP fault string.
-<span class='line'> 62</span>  *
-<span class='line'> 63</span>  * @return {string} The SOAP fault string.
-<span class='line'> 64</span>  */</span><span class="WHIT">
-<span class='line'> 65</span> </span><span class="NAME">google.system.core.Exception.prototype.getFaultString</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 66</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.faultString_</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 67</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 60</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 61</span>    * SOAP Fault detail.
+<span class='line'> 62</span>    * @type {Object}
+<span class='line'> 63</span>    * @private
+<span class='line'> 64</span>    */</span><span class="WHIT">
+<span class='line'> 65</span> </span><span class="WHIT">  </span><span class="NAME">this.detail_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">detail</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 66</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="NAME">goog.inherits</span><span class="PUNC">(</span><span class="NAME">google.system.soap.Exception</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">google.system.core.Exception</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 68</span> 
 <span class='line'> 69</span> </span><span class="COMM">/**
-<span class='line'> 70</span>  * Get the SOAP fault detail.
+<span class='line'> 70</span>  * Get the SOAP fault code.
 <span class='line'> 71</span>  *
-<span class='line'> 72</span>  * @return {string} The SOAP fault detail.
+<span class='line'> 72</span>  * @return {string} The SOAP fault code.
 <span class='line'> 73</span>  */</span><span class="WHIT">
-<span class='line'> 74</span> </span><span class="NAME">google.system.core.Exception.prototype.getDetail</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 75</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.detail_</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 74</span> </span><span class="NAME">google.system.core.Exception.prototype.getFaultCode</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 75</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.faultCode_</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 76</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 77</span> </span></pre></body></html>
+<span class='line'> 77</span> 
+<span class='line'> 78</span> </span><span class="COMM">/**
+<span class='line'> 79</span>  * Get the SOAP fault string.
+<span class='line'> 80</span>  *
+<span class='line'> 81</span>  * @return {string} The SOAP fault string.
+<span class='line'> 82</span>  */</span><span class="WHIT">
+<span class='line'> 83</span> </span><span class="NAME">google.system.core.Exception.prototype.getFaultString</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 84</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.faultString_</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 85</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 86</span> 
+<span class='line'> 87</span> </span><span class="COMM">/**
+<span class='line'> 88</span>  * Get the SOAP fault detail.
+<span class='line'> 89</span>  *
+<span class='line'> 90</span>  * @return {string} The SOAP fault detail.
+<span class='line'> 91</span>  */</span><span class="WHIT">
+<span class='line'> 92</span> </span><span class="NAME">google.system.core.Exception.prototype.getDetail</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 93</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.detail_</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 94</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 95</span> </span></pre></body></html>

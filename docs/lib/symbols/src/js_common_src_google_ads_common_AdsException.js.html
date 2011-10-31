@@ -26,7 +26,7 @@
 <span class='line'> 19</span> 
 <span class='line'> 20</span> </span><span class="COMM">/**
 <span class='line'> 21</span>  * @fileoverview Defines AdsClient, the base class for all exceptions thrown
-<span class='line'> 22</span>  * by the library related to an Ads API call.
+<span class='line'> 22</span>  *     by the library related to an Ads API call.
 <span class='line'> 23</span>  */</span><span class="WHIT">
 <span class='line'> 24</span> 
 <span class='line'> 25</span> </span><span class="NAME">goog.provide</span><span class="PUNC">(</span><span class="STRN">'google.ads.common.AdsException'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
@@ -41,8 +41,8 @@
 <span class='line'> 34</span>  * @constructor
 <span class='line'> 35</span>  * @param {string?} message An optional error message for the exception.
 <span class='line'> 36</span>  * @param {Object?} innerException If this exception was thrown in response to
-<span class='line'> 37</span>  * another exception, then you can wrap the original exception within this
-<span class='line'> 38</span>  * exception.
+<span class='line'> 37</span>  *     another exception, then you can wrap the original exception within this
+<span class='line'> 38</span>  *     exception.
 <span class='line'> 39</span>  */</span><span class="WHIT">
 <span class='line'> 40</span> </span><span class="NAME">google.ads.common.AdsException</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">message</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">innerException</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 41</span> </span><span class="WHIT">  </span><span class="NAME">google.system.core.Exception.call</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">message</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">innerException</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">

@@ -318,7 +318,7 @@ ul.inheritsList
               <td class="attributes">&nbsp;</td>
               <td class="nameDescription" >
                 <div class="fixedFont">
-                  <b><a href="../symbols/google.ads.common.AuthTokenException.html#constructor">google.ads.common.AuthTokenException</a></b>(errorCode, errorUrl, captchaToken, captchaUrl, message, innerException)
+                  <b><a href="../symbols/google.ads.common.AuthTokenException.html#constructor">google.ads.common.AuthTokenException</a></b>(errorCode, errorUrl, captchaToken, captchaUrl, message, innerException, innerException)
                 </div>
                 <div class="description">An exception class that represents an exception thrown by ClientLogin API.</div>
               </td>
@@ -383,6 +383,15 @@ ul.inheritsList
               <tr>
                 <td class="attributes">&nbsp;</td>
                 <td class="nameDescription">
+                  <div class="fixedFont"><b><a href="../symbols/google.ads.common.AuthTokenException.html#getInfo">getInfo</a></b>()
+                  </div>
+                  <div class="description">Gets the error info.</div>
+                </td>
+              </tr>
+            
+              <tr>
+                <td class="attributes">&nbsp;</td>
+                <td class="nameDescription">
                   <div class="fixedFont"><b><a href="../symbols/google.ads.common.AuthTokenException.html#setCaptchaToken">setCaptchaToken</a></b>(captchaToken)
                   </div>
                   <div class="description">Sets the captcha token.</div>
@@ -416,6 +425,15 @@ ul.inheritsList
                 </td>
               </tr>
             
+              <tr>
+                <td class="attributes">&nbsp;</td>
+                <td class="nameDescription">
+                  <div class="fixedFont"><b><a href="../symbols/google.ads.common.AuthTokenException.html#setInfo">setInfo</a></b>(info)
+                  </div>
+                  <div class="description">Sets the error info.</div>
+                </td>
+              </tr>
+            
             </tbody>
           </table>
           
@@ -437,7 +455,7 @@ ul.inheritsList
           </div>
 
           <div class="fixedFont">
-              <b>google.ads.common.AuthTokenException</b>(errorCode, errorUrl, captchaToken, captchaUrl, message, innerException)
+              <b>google.ads.common.AuthTokenException</b>(errorCode, errorUrl, captchaToken, captchaUrl, message, innerException, innerException)
           </div>
 
           <div class="description">
@@ -469,15 +487,15 @@ ul.inheritsList
                   
                 </dt>
                   <dd>The token associated with the captcha, if a
-Require Captcha error is triggered.</dd>
+    Require Captcha error is triggered.</dd>
               
                 <dt>
                   <span class="light fixedFont">{string}</span>  <b>captchaUrl</b>
                   
                 </dt>
                   <dd>The url for the captcha. If Require Captcha error
-is triggered, then this url should be presented to the users to unlock their
-accounts.</dd>
+    is triggered, then this url should be presented to the users to unlock
+    their accounts.</dd>
               
                 <dt>
                   <span class="light fixedFont">{string?}</span>  <b>message</b>
@@ -490,8 +508,14 @@ accounts.</dd>
                   
                 </dt>
                   <dd>If this exception was thrown in response to
-another exception, then you can wrap the original exception within this
-exception.</dd>
+    another exception, then you can wrap the original exception within this
+    exception.</dd>
+              
+                <dt>
+                   <b>innerException</b>
+                  
+                </dt>
+                  <dd></dd>
               
               </dl>
             
@@ -642,6 +666,38 @@ exception.</dd>
 
             <hr />
           
+            <a name="getInfo"> </a>
+            <div class="fixedFont">
+
+            <span class="light">{number}</span>
+            <b>getInfo</b>()
+
+            </div>
+            <div class="description">
+              Gets the error info.
+              
+              
+            </div>
+
+            
+
+              
+              
+              
+              
+              
+                <dl class="detailList">
+                <dt class="heading">Returns:</dt>
+                
+                  <dd><span class="light fixedFont">{number}</span> The error info.</dd>
+                
+                </dl>
+              
+              
+              
+
+            <hr />
+          
             <a name="setCaptchaToken"> </a>
             <div class="fixedFont">
 
@@ -784,6 +840,42 @@ exception.</dd>
               
               
 
+            <hr />
+          
+            <a name="setInfo"> </a>
+            <div class="fixedFont">
+
+            
+            <b>setInfo</b>(info)
+
+            </div>
+            <div class="description">
+              Sets the error info.
+              
+              
+            </div>
+
+            
+
+              
+                <dl class="detailList">
+                <dt class="heading">Parameters:</dt>
+                
+                  <dt>
+                    <span class="light fixedFont">{string}</span> <b>info</b>
+                    
+                  </dt>
+                  <dd>The error info.</dd>
+                
+                </dl>
+              
+              
+              
+              
+              
+              
+              
+
             
           
         
@@ -799,7 +891,7 @@ exception.</dd>
 <!-- ============================== footer ================================= -->
 		<div class="fineprint" style="clear:both">
 			
-			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Thu Jun 09 2011 10:25:24 GMT+0530 (IST)
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Mon Oct 31 2011 18:13:05 GMT-0400 (EDT)
 		</div>
 	</body>
 </html>

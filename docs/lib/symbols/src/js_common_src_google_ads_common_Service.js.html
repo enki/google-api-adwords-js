@@ -26,7 +26,7 @@
 <span class='line'> 19</span> 
 <span class='line'> 20</span> </span><span class="COMM">/**
 <span class='line'> 21</span>  * @fileoverview Defines AdWords Service, the base class for all SOAP services
-<span class='line'> 22</span>  * supported by this library.
+<span class='line'> 22</span>  *     supported by this library.
 <span class='line'> 23</span>  */</span><span class="WHIT">
 <span class='line'> 24</span> 
 <span class='line'> 25</span> </span><span class="NAME">goog.provide</span><span class="PUNC">(</span><span class="STRN">'google.ads.common.Service'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
@@ -49,15 +49,15 @@
 <span class='line'> 42</span>  * Overriden soap.Service method to handle ads specific exceptions.
 <span class='line'> 43</span>  *
 <span class='line'> 44</span>  * @param {string} methodName Name of the method in the service that is been
-<span class='line'> 45</span>  * invoked.
+<span class='line'> 45</span>  *     invoked.
 <span class='line'> 46</span>  * @param {Object.&lt;String,Object>} parameterValues Parameters passed to the
-<span class='line'> 47</span>  * method.
+<span class='line'> 47</span>  *     method.
 <span class='line'> 48</span>  * @param {function(google.system.soap.Object)} successCallback Callback
-<span class='line'> 49</span>  * function to be invoked if the request finalizes successfully, the
-<span class='line'> 50</span>  * de-serialized SOAP Object gets passed to the callback.
+<span class='line'> 49</span>  *     function to be invoked if the request finalizes successfully, the
+<span class='line'> 50</span>  *     de-serialized SOAP Object gets passed to the callback.
 <span class='line'> 51</span>  * @param {function(google.system.soap.Object)} failureCallback Callback
-<span class='line'> 52</span>  * function to be invoked if the request finalizes with an error, the
-<span class='line'> 53</span>  * de-serialized SOAP Exception gets passed to the callback.
+<span class='line'> 52</span>  *     function to be invoked if the request finalizes with an error, the
+<span class='line'> 53</span>  *     de-serialized SOAP Exception gets passed to the callback.
 <span class='line'> 54</span>  */</span><span class="WHIT">
 <span class='line'> 55</span> </span><span class="NAME">google.ads.common.Service.prototype.invoke</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">methodName</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'> 56</span> </span><span class="WHIT">    </span><span class="NAME">parameterValues</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">successCallback</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">failureCallback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
@@ -77,8 +77,8 @@
 <span class='line'> 70</span>  *
 <span class='line'> 71</span>  * @param {google.system.soap.SoapException} ex The SOAP exception.
 <span class='line'> 72</span>  * @return {google.system.core.Exception} A custom exception object
-<span class='line'> 73</span>  * that wraps the SOAP exception. The exact type depends on what the overriding
-<span class='line'> 74</span>  * service deserializes the fault xml into.
+<span class='line'> 73</span>  *     that wraps the SOAP exception. The exact type depends on what the
+<span class='line'> 74</span>  *     overriding service deserializes the fault xml into.
 <span class='line'> 75</span>  * @private
 <span class='line'> 76</span>  */</span><span class="WHIT">
 <span class='line'> 77</span> </span><span class="NAME">google.ads.common.Service.prototype.getCustomException_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT">

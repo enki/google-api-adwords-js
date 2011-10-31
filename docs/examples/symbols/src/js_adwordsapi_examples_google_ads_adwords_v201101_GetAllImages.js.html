@@ -59,9 +59,9 @@
 <span class='line'> 52</span>  * Runs the code example.
 <span class='line'> 53</span>  *
 <span class='line'> 54</span>  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
-<span class='line'> 55</span>  * example.
+<span class='line'> 55</span>  *     example.
 <span class='line'> 56</span>  * @param {function} callback the callback method to be called once this example
-<span class='line'> 57</span>  * is complete.
+<span class='line'> 57</span>  *     is complete.
 <span class='line'> 58</span>  */</span><span class="WHIT">
 <span class='line'> 59</span> </span><span class="NAME">google.ads.adwords.examples.v201101.GetAllImages.prototype.run</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT">
 <span class='line'> 60</span> </span><span class="WHIT">    </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">user</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">callback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
@@ -71,12 +71,12 @@
 <span class='line'> 64</span> 
 <span class='line'> 65</span> </span><span class="WHIT">  </span><span class="COMM">// Create a selector.</span><span class="WHIT">
 <span class='line'> 66</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">selector</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">google.ads.adwords.v201101.Selector</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 67</span> </span><span class="WHIT">  </span><span class="NAME">selector.fields</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">"MediaId"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"Width"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"Height"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"MimeType"</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="WHIT">  </span><span class="NAME">selector.fields</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'MediaId'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'Width'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'Height'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'MimeType'</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 68</span> 
 <span class='line'> 69</span> </span><span class="WHIT">  </span><span class="COMM">// Create a filter.</span><span class="WHIT">
 <span class='line'> 70</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">predicate</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">google.ads.adwords.v201101.Predicate</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 71</span> </span><span class="WHIT">  </span><span class="NAME">predicate.operator</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">google.ads.adwords.v201101.PredicateOperator.EQUALS</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 72</span> </span><span class="WHIT">  </span><span class="NAME">predicate.field</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"Type"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 72</span> </span><span class="WHIT">  </span><span class="NAME">predicate.field</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'Type'</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 73</span> </span><span class="WHIT">  </span><span class="NAME">predicate.values</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="NAME">google.ads.adwords.v201101.MediaMediaType.IMAGE</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 74</span> 
 <span class='line'> 75</span> </span><span class="WHIT">  </span><span class="NAME">selector.predicates</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="NAME">predicate</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">

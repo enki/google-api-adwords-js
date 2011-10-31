@@ -25,7 +25,7 @@
 <span class='line'> 18</span> 
 <span class='line'> 19</span> </span><span class="COMM">/**
 <span class='line'> 20</span>  * @fileoverview Defines DeleteSiteLinks, a code example that shows how to
-<span class='line'> 21</span>  * delete site links from an existing campaign.
+<span class='line'> 21</span>  *     delete site links from an existing campaign.
 <span class='line'> 22</span>  */</span><span class="WHIT">
 <span class='line'> 23</span> 
 <span class='line'> 24</span> </span><span class="NAME">goog.provide</span><span class="PUNC">(</span><span class="STRN">'google.ads.adwords.examples.v201101.DeleteSiteLinks'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
@@ -68,9 +68,9 @@
 <span class='line'> 61</span>  * Runs the code example.
 <span class='line'> 62</span>  *
 <span class='line'> 63</span>  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
-<span class='line'> 64</span>  * example.
+<span class='line'> 64</span>  *     example.
 <span class='line'> 65</span>  * @param {function} callback the callback method to be called once this example
-<span class='line'> 66</span>  * is complete.
+<span class='line'> 66</span>  *     is complete.
 <span class='line'> 67</span>  */</span><span class="WHIT">
 <span class='line'> 68</span> </span><span class="NAME">google.ads.adwords.examples.v201101.DeleteSiteLinks.prototype.run</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT">
 <span class='line'> 69</span> </span><span class="WHIT">    </span><span class="NAME">user</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">callback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
@@ -87,19 +87,19 @@
 <span class='line'> 80</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">campaignPredicate</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">google.ads.adwords.v201101.Predicate</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 81</span> </span><span class="WHIT">  </span><span class="NAME">campaignPredicate.operator</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT">
 <span class='line'> 82</span> </span><span class="WHIT">      </span><span class="NAME">google.ads.adwords.v201101.PredicateOperator.EQUALS</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 83</span> </span><span class="WHIT">  </span><span class="NAME">campaignPredicate.field</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"CampaignId"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 83</span> </span><span class="WHIT">  </span><span class="NAME">campaignPredicate.field</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'CampaignId'</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 84</span> </span><span class="WHIT">  </span><span class="NAME">campaignPredicate.values</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="NAME">campaignId</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 85</span> 
 <span class='line'> 86</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">statusPredicate</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">google.ads.adwords.v201101.Predicate</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 87</span> </span><span class="WHIT">  </span><span class="NAME">statusPredicate.operator</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT">
 <span class='line'> 88</span> </span><span class="WHIT">      </span><span class="NAME">google.ads.adwords.v201101.PredicateOperator.EQUALS</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 89</span> </span><span class="WHIT">  </span><span class="NAME">statusPredicate.field</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"Status"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 89</span> </span><span class="WHIT">  </span><span class="NAME">statusPredicate.field</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'Status'</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 90</span> </span><span class="WHIT">  </span><span class="NAME">statusPredicate.values</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="WHIT">
 <span class='line'> 91</span> </span><span class="WHIT">      </span><span class="NAME">google.ads.adwords.v201101.CampaignAdExtensionStatus.ACTIVE</span><span class="WHIT">
 <span class='line'> 92</span> </span><span class="WHIT">  </span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 93</span> 
 <span class='line'> 94</span> </span><span class="WHIT">  </span><span class="NAME">selector.predicates</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="NAME">campaignPredicate</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">statusPredicate</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 95</span> </span><span class="WHIT">  </span><span class="NAME">selector.fields</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">"AdExtensionId"</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">"Status"</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 95</span> </span><span class="WHIT">  </span><span class="NAME">selector.fields</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="STRN">'AdExtensionId'</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="STRN">'Status'</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 96</span> 
 <span class='line'> 97</span> </span><span class="WHIT">  </span><span class="KEYW">try</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 98</span> </span><span class="WHIT">    </span><span class="NAME">campaignAdExtensionService.get</span><span class="PUNC">(</span><span class="NAME">selector</span><span class="PUNC">,</span><span class="WHIT">

@@ -49,12 +49,12 @@
 <span class='line'> 42</span>  * @param {google.system.soap.SoapService} service Service been invoked.
 <span class='line'> 43</span>  * @param {string} methodName Method been invoked.
 <span class='line'> 44</span>  * @param {Object&lt;string,Object>} parameterValues Parameters been passed to
-<span class='line'> 45</span>  * the call.
+<span class='line'> 45</span>  *     the call.
 <span class='line'> 46</span>  * @param {function()} continueCallback Function to be called in case of
-<span class='line'> 47</span>  * success.
+<span class='line'> 47</span>  *     success.
 <span class='line'> 48</span>  * @param {function(google.system.soap.Exception)} errorCallback Function
-<span class='line'> 49</span>  * to be called in case an error has occured a SOAP Exception object is expected
-<span class='line'> 50</span>  * by this function.
+<span class='line'> 49</span>  *     to be called in case an error has occured a SOAP Exception object is
+<span class='line'> 50</span>  *     expected by this function.
 <span class='line'> 51</span>  */</span><span class="WHIT">
 <span class='line'> 52</span> </span><span class="NAME">google.system.soap.ServiceListener.prototype.beforeSerialize</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT">
 <span class='line'> 53</span> </span><span class="WHIT">    </span><span class="NAME">service</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">methodName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">parameterValues</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">continueCallback</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errorCallback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
@@ -71,10 +71,10 @@
 <span class='line'> 64</span>  * @param {google.system.soap.SoapService} service Service been invoked.
 <span class='line'> 65</span>  * @param {Document} document The XML document to be sent to the server.
 <span class='line'> 66</span>  * @param {function()} continueCallback Function to be called in case of
-<span class='line'> 67</span>  * success.
+<span class='line'> 67</span>  *     success.
 <span class='line'> 68</span>  * @param {function(google.system.soap.Exception)} errorCallback Function
-<span class='line'> 69</span>  * to be called in case an error has occurred a SOAP Exception object is
-<span class='line'> 70</span>  * expected by this function.
+<span class='line'> 69</span>  *     to be called in case an error has occurred a SOAP Exception object is
+<span class='line'> 70</span>  *     expected by this function.
 <span class='line'> 71</span>  */</span><span class="WHIT">
 <span class='line'> 72</span> </span><span class="NAME">google.system.soap.ServiceListener.prototype.beforeSend</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT">
 <span class='line'> 73</span> </span><span class="WHIT">    </span><span class="NAME">service</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">document</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">continueCallback</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errorCallback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
@@ -91,12 +91,12 @@
 <span class='line'> 84</span>  * @param {google.system.soap.SoapService} service Service been invoked.
 <span class='line'> 85</span>  * @param {Document} responseXml The XML response document.
 <span class='line'> 86</span>  * @param {boolean} isError True if the response XML is SOAP exception returned
-<span class='line'> 87</span>  * by the server.
+<span class='line'> 87</span>  *     by the server.
 <span class='line'> 88</span>  * @param {function()} continueCallback Function to be called in case of
-<span class='line'> 89</span>  * success.
+<span class='line'> 89</span>  *     success.
 <span class='line'> 90</span>  * @param {function(google.system.soap.Exception)} errorCallback Function
-<span class='line'> 91</span>  * to be called in case an error has occurred a SOAP Exception object is
-<span class='line'> 92</span>  * expected by this function.
+<span class='line'> 91</span>  *     to be called in case an error has occurred a SOAP Exception object is
+<span class='line'> 92</span>  *     expected by this function.
 <span class='line'> 93</span>  */</span><span class="WHIT">
 <span class='line'> 94</span> </span><span class="NAME">google.system.soap.ServiceListener.prototype.beforeDeserialize</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT">
 <span class='line'> 95</span> </span><span class="WHIT">    </span><span class="NAME">service</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">responseXml</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">isError</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">continueCallback</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errorCallback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
@@ -114,12 +114,12 @@
 <span class='line'>107</span>  * @param {google.system.soap.SoapService} service Service been invoked.
 <span class='line'>108</span>  * @param {google.system.soap.SoapObject} soapObject The SOAP Object.
 <span class='line'>109</span>  * @param {boolean} isError True if the SOAP Object contains a SOAP Exception
-<span class='line'>110</span>  * returned by the server.
+<span class='line'>110</span>  *     returned by the server.
 <span class='line'>111</span>  * @param {function()} continueCallback Function to be called in case of
-<span class='line'>112</span>  * success.
+<span class='line'>112</span>  *     success.
 <span class='line'>113</span>  * @param {function(google.system.soap.Exception)} errorCallback Function
-<span class='line'>114</span>  * to be called in case an error has occurred a SOAP Exception object is
-<span class='line'>115</span>  * expected by this function.
+<span class='line'>114</span>  *     to be called in case an error has occurred a SOAP Exception object is
+<span class='line'>115</span>  *     expected by this function.
 <span class='line'>116</span>  */</span><span class="WHIT">
 <span class='line'>117</span> </span><span class="NAME">google.system.soap.ServiceListener.prototype.beforeReturn</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT">
 <span class='line'>118</span> </span><span class="WHIT">    </span><span class="NAME">service</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">soapObject</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">isError</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">continueCallback</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">errorCallback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">

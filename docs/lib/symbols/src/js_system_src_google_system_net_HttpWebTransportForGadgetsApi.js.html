@@ -25,7 +25,7 @@
 <span class='line'> 18</span> 
 <span class='line'> 19</span> </span><span class="COMM">/**
 <span class='line'> 20</span>  * @fileoverview Defines HttpWebTransport, a wrapper that uses Google Gadgets
-<span class='line'> 21</span>  * API for making for making HTTP calls.
+<span class='line'> 21</span>  *     API for making for making HTTP calls.
 <span class='line'> 22</span>  */</span><span class="WHIT">
 <span class='line'> 23</span> 
 <span class='line'> 24</span> </span><span class="NAME">goog.provide</span><span class="PUNC">(</span><span class="STRN">'google.system.net.HttpWebTransportForGadgetsApi'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
@@ -37,7 +37,7 @@
 <span class='line'> 30</span>  * making HTTP calls.
 <span class='line'> 31</span>  *
 <span class='line'> 32</span>  * @param {google.system.net.HttpWebTransportSettings} settings Settings to be
-<span class='line'> 33</span>  * applied.
+<span class='line'> 33</span>  *     applied.
 <span class='line'> 34</span>  * @extends google.system.net.HttpWebTransport
 <span class='line'> 35</span>  * @constructor
 <span class='line'> 36</span>  */</span><span class="WHIT">
@@ -63,13 +63,14 @@
 <span class='line'> 56</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">params</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 57</span> </span><span class="WHIT">  </span><span class="NAME">params</span><span class="PUNC">[</span><span class="NAME">gadgets.io.RequestParameters.METHOD</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">method</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 58</span> </span><span class="WHIT">  </span><span class="NAME">params</span><span class="PUNC">[</span><span class="NAME">gadgets.io.RequestParameters.POST_DATA</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">content</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 59</span> 
-<span class='line'> 60</span> </span><span class="WHIT">  </span><span class="NAME">gadgets.io.makeRequest</span><span class="PUNC">(</span><span class="NAME">url</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">goog.bind</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">response</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 61</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">response.errors.length</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 62</span> </span><span class="WHIT">      </span><span class="NAME">onSuccess</span><span class="PUNC">(</span><span class="NAME">response.text</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 63</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 64</span> </span><span class="WHIT">      </span><span class="NAME">onFailure</span><span class="PUNC">(</span><span class="NAME">response.text</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 65</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
-<span class='line'> 66</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">params</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 67</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 68</span> </span></pre></body></html>
+<span class='line'> 59</span> </span><span class="WHIT">  </span><span class="NAME">params</span><span class="PUNC">[</span><span class="NAME">gadgets.io.RequestParameters.HEADERS</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">headers</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 60</span> 
+<span class='line'> 61</span> </span><span class="WHIT">  </span><span class="NAME">gadgets.io.makeRequest</span><span class="PUNC">(</span><span class="NAME">url</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">goog.bind</span><span class="PUNC">(</span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">response</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 62</span> </span><span class="WHIT">    </span><span class="KEYW">if</span><span class="WHIT"> </span><span class="PUNC">(</span><span class="PUNC">!</span><span class="NAME">response.errors.length</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 63</span> </span><span class="WHIT">      </span><span class="NAME">onSuccess</span><span class="PUNC">(</span><span class="NAME">response.text</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 64</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT"> </span><span class="KEYW">else</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 65</span> </span><span class="WHIT">      </span><span class="NAME">onFailure</span><span class="PUNC">(</span><span class="NAME">response.text</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 66</span> </span><span class="WHIT">    </span><span class="PUNC">}</span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="WHIT">  </span><span class="PUNC">}</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">this</span><span class="PUNC">)</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">params</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 68</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 69</span> </span></pre></body></html>

@@ -41,7 +41,7 @@
 <span class='line'> 34</span>  * @param {string} xmlNamespace Xml namespace of the service.
 <span class='line'> 35</span>  * @param {string} fullClassName Full class name of the service.
 <span class='line'> 36</span>  * @param {string} fullBaseClassName Full class name of the base class for the
-<span class='line'> 37</span>  * service.
+<span class='line'> 37</span>  *     service.
 <span class='line'> 38</span>  * @extends google.system.soap.ObjectType
 <span class='line'> 39</span>  * @constructor
 <span class='line'> 40</span>  */</span><span class="WHIT">
@@ -49,78 +49,84 @@
 <span class='line'> 42</span> </span><span class="WHIT">    </span><span class="NAME">fullBaseClassName</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
 <span class='line'> 43</span> </span><span class="WHIT">  </span><span class="NAME">google.system.soap.ObjectType.call</span><span class="PUNC">(</span><span class="KEYW">this</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">xmlNamespace</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">fullClassName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="KEYW">false</span><span class="PUNC">,</span><span class="WHIT">
 <span class='line'> 44</span> </span><span class="WHIT">      </span><span class="NAME">fullBaseClassName</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 45</span> </span><span class="WHIT">  </span><span class="NAME">this.methods_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 46</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 47</span> </span><span class="NAME">goog.inherits</span><span class="PUNC">(</span><span class="NAME">google.system.soap.ServiceType</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">google.system.soap.ObjectType</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 48</span> 
-<span class='line'> 49</span> </span><span class="COMM">/**
-<span class='line'> 50</span>  * Utility static method to define a service.
-<span class='line'> 51</span>  *
-<span class='line'> 52</span>  * @param {string} xmlNamespace XML namespace.
-<span class='line'> 53</span>  * @param {string} fullClassName Full class name of the service.
-<span class='line'> 54</span>  * @param {string} fullBaseClassName Full class name of the base class for
-<span class='line'> 55</span>  * the service.
-<span class='line'> 56</span>  * @return {google.system.soap.ServiceType} The new service type.
-<span class='line'> 57</span>  */</span><span class="WHIT">
-<span class='line'> 58</span> </span><span class="NAME">google.system.soap.ServiceType.defineService</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT">
-<span class='line'> 59</span> </span><span class="WHIT">    </span><span class="NAME">xmlNamespace</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">fullClassName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">fullBaseClassName</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 60</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">google.system.soap.ServiceType</span><span class="PUNC">(</span><span class="NAME">xmlNamespace</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">fullClassName</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 61</span> </span><span class="WHIT">      </span><span class="NAME">fullBaseClassName</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 62</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 63</span> 
-<span class='line'> 64</span> </span><span class="COMM">/**
-<span class='line'> 65</span>  * Utility static method to retrieve the {google.system.soap.ServiceType}
-<span class='line'> 66</span>  * associated to a given class name.
-<span class='line'> 67</span>  *
-<span class='line'> 68</span>  * @param {string} fullClassName The full class name.
-<span class='line'> 69</span>  * @return {google.system.soap.ServiceType} Returns the service type.
-<span class='line'> 70</span>  */</span><span class="WHIT">
-<span class='line'> 71</span> </span><span class="NAME">google.system.soap.ServiceType.getServiceTypeByName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">fullClassName</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 72</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">serviceClass</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">goog.getObjectByName</span><span class="PUNC">(</span><span class="NAME">fullClassName</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 73</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">serviceClass</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">serviceClass.prototype.getType</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 74</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 75</span> 
-<span class='line'> 76</span> </span><span class="COMM">/**
-<span class='line'> 77</span>  * Adds a method to the service definition.
-<span class='line'> 78</span>  *
-<span class='line'> 79</span>  * @param {string} methodName The method name.
-<span class='line'> 80</span>  * @param {string} requestNamespace The method request namespace.
-<span class='line'> 81</span>  * @param {string} responseNamespace The method response namespace.
-<span class='line'> 82</span>  * @param {string} use The use of the method literal/encoded.
-<span class='line'> 83</span>  * @param {string} parameterStyle The parameter style wrapped or non-wrapped.
-<span class='line'> 84</span>  * @param {string} returnXmlElement The XML element to start the deserialization
-<span class='line'> 85</span>  * with.
-<span class='line'> 86</span>  * @param {Object} returnTypeDefinition The return definition type.
-<span class='line'> 87</span>  * @param {Array} headers The Headers configured for the service.
-<span class='line'> 88</span>  * @param {Array} parameters The parameters that the service takes.
-<span class='line'> 89</span>  * @return {google.system.soap.MethodSignature} The created method signature.
-<span class='line'> 90</span>  */</span><span class="WHIT">
-<span class='line'> 91</span> </span><span class="NAME">google.system.soap.ServiceType.prototype.addMethod</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT">
-<span class='line'> 92</span> </span><span class="WHIT">    </span><span class="NAME">methodName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">requestNamespace</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">responseNamespace</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">use</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">parameterStyle</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 93</span> </span><span class="WHIT">    </span><span class="NAME">returnXmlElement</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">returnTypeDefinition</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">headers</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">parameters</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'> 94</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">method</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">google.system.soap.MethodSignature</span><span class="PUNC">(</span><span class="NAME">requestNamespace</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 95</span> </span><span class="WHIT">      </span><span class="NAME">responseNamespace</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">use</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">parameterStyle</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">returnXmlElement</span><span class="PUNC">,</span><span class="WHIT">
-<span class='line'> 96</span> </span><span class="WHIT">      </span><span class="NAME">returnTypeDefinition</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">headers</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">parameters</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 97</span> </span><span class="WHIT">  </span><span class="NAME">this.methods_</span><span class="PUNC">[</span><span class="NAME">methodName</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">method</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 98</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">method</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 99</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>100</span> 
-<span class='line'>101</span> </span><span class="COMM">/**
-<span class='line'>102</span>  * Retrieves all the service methods.
-<span class='line'>103</span>  *
-<span class='line'>104</span>  * @return {Array.&lt;google.system.soap.MethodSignature>} The service methods.
-<span class='line'>105</span>  */</span><span class="WHIT">
-<span class='line'>106</span> </span><span class="NAME">google.system.soap.ServiceType.prototype.getMethods</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>107</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">goog.array.clone</span><span class="PUNC">(</span><span class="NAME">this.methods_</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>108</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>109</span> 
-<span class='line'>110</span> </span><span class="COMM">/**
-<span class='line'>111</span>  * Retrieves a method given a name.
-<span class='line'>112</span>  *
-<span class='line'>113</span>  * @param {string} name The name of the method to find.
-<span class='line'>114</span>  * @return {google.system.soap.MethodSignature} The service method signature.
-<span class='line'>115</span>  */</span><span class="WHIT">
-<span class='line'>116</span> </span><span class="NAME">google.system.soap.ServiceType.prototype.getMethodByName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
-<span class='line'>117</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.methods_</span><span class="PUNC">[</span><span class="NAME">name</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>118</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'>119</span> </span></pre></body></html>
+<span class='line'> 45</span> 
+<span class='line'> 46</span> </span><span class="WHIT">  </span><span class="COMM">/**
+<span class='line'> 47</span>    * Service list of methods.
+<span class='line'> 48</span>    * @type {Array.&lt;google.system.soap.MethodSignature>}
+<span class='line'> 49</span>    * @private
+<span class='line'> 50</span>    */</span><span class="WHIT">
+<span class='line'> 51</span> </span><span class="WHIT">  </span><span class="NAME">this.methods_</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="PUNC">[</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 52</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 53</span> </span><span class="NAME">goog.inherits</span><span class="PUNC">(</span><span class="NAME">google.system.soap.ServiceType</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">google.system.soap.ObjectType</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 54</span> 
+<span class='line'> 55</span> </span><span class="COMM">/**
+<span class='line'> 56</span>  * Utility static method to define a service.
+<span class='line'> 57</span>  *
+<span class='line'> 58</span>  * @param {string} xmlNamespace XML namespace.
+<span class='line'> 59</span>  * @param {string} fullClassName Full class name of the service.
+<span class='line'> 60</span>  * @param {string} fullBaseClassName Full class name of the base class for
+<span class='line'> 61</span>  *     the service.
+<span class='line'> 62</span>  * @return {google.system.soap.ServiceType} The new service type.
+<span class='line'> 63</span>  */</span><span class="WHIT">
+<span class='line'> 64</span> </span><span class="NAME">google.system.soap.ServiceType.defineService</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 65</span> </span><span class="WHIT">    </span><span class="NAME">xmlNamespace</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">fullClassName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">fullBaseClassName</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 66</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">google.system.soap.ServiceType</span><span class="PUNC">(</span><span class="NAME">xmlNamespace</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">fullClassName</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 67</span> </span><span class="WHIT">      </span><span class="NAME">fullBaseClassName</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 68</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 69</span> 
+<span class='line'> 70</span> </span><span class="COMM">/**
+<span class='line'> 71</span>  * Utility static method to retrieve the {google.system.soap.ServiceType}
+<span class='line'> 72</span>  * associated to a given class name.
+<span class='line'> 73</span>  *
+<span class='line'> 74</span>  * @param {string} fullClassName The full class name.
+<span class='line'> 75</span>  * @return {google.system.soap.ServiceType} Returns the service type.
+<span class='line'> 76</span>  */</span><span class="WHIT">
+<span class='line'> 77</span> </span><span class="NAME">google.system.soap.ServiceType.getServiceTypeByName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">fullClassName</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'> 78</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">serviceClass</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">goog.getObjectByName</span><span class="PUNC">(</span><span class="NAME">fullClassName</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 79</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">serviceClass</span><span class="WHIT"> </span><span class="PUNC">?</span><span class="WHIT"> </span><span class="NAME">serviceClass.prototype.getType</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">:</span><span class="WHIT"> </span><span class="KEYW">null</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 80</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 81</span> 
+<span class='line'> 82</span> </span><span class="COMM">/**
+<span class='line'> 83</span>  * Adds a method to the service definition.
+<span class='line'> 84</span>  *
+<span class='line'> 85</span>  * @param {string} methodName The method name.
+<span class='line'> 86</span>  * @param {string} requestNamespace The method request namespace.
+<span class='line'> 87</span>  * @param {string} responseNamespace The method response namespace.
+<span class='line'> 88</span>  * @param {string} use The use of the method literal/encoded.
+<span class='line'> 89</span>  * @param {string} parameterStyle The parameter style wrapped or non-wrapped.
+<span class='line'> 90</span>  * @param {string} returnXmlElement The XML element to start the deserialization
+<span class='line'> 91</span>  *     with.
+<span class='line'> 92</span>  * @param {Object} returnTypeDefinition The return definition type.
+<span class='line'> 93</span>  * @param {Array} headers The Headers configured for the service.
+<span class='line'> 94</span>  * @param {Array} parameters The parameters that the service takes.
+<span class='line'> 95</span>  * @return {google.system.soap.MethodSignature} The created method signature.
+<span class='line'> 96</span>  */</span><span class="WHIT">
+<span class='line'> 97</span> </span><span class="NAME">google.system.soap.ServiceType.prototype.addMethod</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="WHIT">
+<span class='line'> 98</span> </span><span class="WHIT">    </span><span class="NAME">methodName</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">requestNamespace</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">responseNamespace</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">use</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">parameterStyle</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'> 99</span> </span><span class="WHIT">    </span><span class="NAME">returnXmlElement</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">returnTypeDefinition</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">headers</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">parameters</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>100</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">method</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">google.system.soap.MethodSignature</span><span class="PUNC">(</span><span class="NAME">requestNamespace</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>101</span> </span><span class="WHIT">      </span><span class="NAME">responseNamespace</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">use</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">parameterStyle</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">returnXmlElement</span><span class="PUNC">,</span><span class="WHIT">
+<span class='line'>102</span> </span><span class="WHIT">      </span><span class="NAME">returnTypeDefinition</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">headers</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">parameters</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>103</span> </span><span class="WHIT">  </span><span class="NAME">this.methods_</span><span class="PUNC">[</span><span class="NAME">methodName</span><span class="PUNC">]</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">method</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>104</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">method</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>105</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>106</span> 
+<span class='line'>107</span> </span><span class="COMM">/**
+<span class='line'>108</span>  * Retrieves all the service methods.
+<span class='line'>109</span>  *
+<span class='line'>110</span>  * @return {Array.&lt;google.system.soap.MethodSignature>} The service methods.
+<span class='line'>111</span>  */</span><span class="WHIT">
+<span class='line'>112</span> </span><span class="NAME">google.system.soap.ServiceType.prototype.getMethods</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>113</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">goog.array.clone</span><span class="PUNC">(</span><span class="NAME">this.methods_</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>114</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>115</span> 
+<span class='line'>116</span> </span><span class="COMM">/**
+<span class='line'>117</span>  * Retrieves a method given a name.
+<span class='line'>118</span>  *
+<span class='line'>119</span>  * @param {string} name The name of the method to find.
+<span class='line'>120</span>  * @return {google.system.soap.MethodSignature} The service method signature.
+<span class='line'>121</span>  */</span><span class="WHIT">
+<span class='line'>122</span> </span><span class="NAME">google.system.soap.ServiceType.prototype.getMethodByName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">name</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
+<span class='line'>123</span> </span><span class="WHIT">  </span><span class="KEYW">return</span><span class="WHIT"> </span><span class="NAME">this.methods_</span><span class="PUNC">[</span><span class="NAME">name</span><span class="PUNC">]</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>124</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'>125</span> </span></pre></body></html>

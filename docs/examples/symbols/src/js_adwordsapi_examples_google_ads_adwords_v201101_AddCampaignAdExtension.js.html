@@ -25,7 +25,7 @@
 <span class='line'> 18</span> 
 <span class='line'> 19</span> </span><span class="COMM">/**
 <span class='line'> 20</span>  * @fileoverview Defines AddCampaignAdExtension, a code example that shows how
-<span class='line'> 21</span>  * to add an Ad Extension to an existing campaign.
+<span class='line'> 21</span>  *     to add an Ad Extension to an existing campaign.
 <span class='line'> 22</span>  */</span><span class="WHIT">
 <span class='line'> 23</span> 
 <span class='line'> 24</span> </span><span class="NAME">goog.provide</span><span class="PUNC">(</span><span class="STRN">'google.ads.adwords.examples.v201101.AddCampaignAdExtension'</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
@@ -63,9 +63,9 @@
 <span class='line'> 56</span>  * Runs the code example.
 <span class='line'> 57</span>  *
 <span class='line'> 58</span>  * @param {google.ads.adwords.AdWordsUser} user AdWords user running the code
-<span class='line'> 59</span>  * example.
+<span class='line'> 59</span>  *     example.
 <span class='line'> 60</span>  * @param {function} callback the callback method to be called once this example
-<span class='line'> 61</span>  * is complete.
+<span class='line'> 61</span>  *     is complete.
 <span class='line'> 62</span>  */</span><span class="WHIT">
 <span class='line'> 63</span> </span><span class="NAME">google.ads.adwords.examples.v201101.AddCampaignAdExtension.prototype.run</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT">
 <span class='line'> 64</span> </span><span class="WHIT">    </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">user</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">callback</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
@@ -83,9 +83,9 @@
 <span class='line'> 76</span> </span><span class="WHIT">  </span><span class="NAME">address1.postalCode</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'94043'</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 77</span> </span><span class="WHIT">  </span><span class="NAME">address1.countryCode</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'US'</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 78</span> 
-<span class='line'> 79</span> </span><span class="WHIT">  </span><span class="COMM">// Add location 2: 38 avenue de l'Op�ra, 75002 Paris, FR</span><span class="WHIT">
+<span class='line'> 79</span> </span><span class="WHIT">  </span><span class="COMM">// Add location 2: 38 avenue de l'Opéra, 75002 Paris, FR</span><span class="WHIT">
 <span class='line'> 80</span> </span><span class="WHIT">  </span><span class="KEYW">var</span><span class="WHIT"> </span><span class="NAME">address2</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">new</span><span class="WHIT"> </span><span class="NAME">google.ads.adwords.v201101.Address</span><span class="PUNC">(</span><span class="PUNC">)</span><span class="PUNC">;</span><span class="WHIT">
-<span class='line'> 81</span> </span><span class="WHIT">  </span><span class="NAME">address2.streetAddress</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"38 avenue de l'Op�ra"</span><span class="PUNC">;</span><span class="WHIT">
+<span class='line'> 81</span> </span><span class="WHIT">  </span><span class="NAME">address2.streetAddress</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">"38 avenue de l'Opéra"</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 82</span> </span><span class="WHIT">  </span><span class="NAME">address2.cityName</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'Paris'</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 83</span> </span><span class="WHIT">  </span><span class="NAME">address2.postalCode</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'75002'</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'> 84</span> </span><span class="WHIT">  </span><span class="NAME">address2.countryCode</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="STRN">'FR'</span><span class="PUNC">;</span><span class="WHIT">
