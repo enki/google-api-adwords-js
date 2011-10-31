@@ -29,6 +29,7 @@ goog.require('google.system.core.Runtime');
 
       //Specify one of the following if your are providing the credentials
       //of a manager MCC account.
+      //ClientEmail can only be used with version v201101 or lower.
       //ClientEmail: 'ENTER_MANAGED_ACCOUNT_EMAIL_HERE',
       //ClientCustomerId: 'ENTER_YOUR_CLIENT_CUSTOMER_ID_HERE',
 

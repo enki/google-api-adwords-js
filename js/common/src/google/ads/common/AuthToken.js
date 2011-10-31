@@ -162,10 +162,11 @@ google.ads.common.AuthToken.prototype.extractException_ = function(
   var tblResponse = this.parseResponse_(response);
   var url = tblResponse['Url'];
   var errCode = tblResponse['Error'];
+  var info = tblResponse['Info'];
   var captchaToken = tblResponse['CaptchaToken'];
   var captchaUrl = this.CAPTCHA_URL_PREFIX_ + tblResponse['CaptchaUrl'];
 
-  return new google.ads.common.AuthTokenException(errCode, url,
+  return new google.ads.common.AuthTokenException(errCode, info, url,
       captchaToken, captchaUrl,
       google.ads.common.CommonErrorMessages.AuthTokenLoginFailed);
 };

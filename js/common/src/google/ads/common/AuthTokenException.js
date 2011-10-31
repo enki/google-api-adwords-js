@@ -42,7 +42,7 @@ goog.require('google.ads.common.AdsException');
  *     another exception, then you can wrap the original exception within this
  *     exception.
  */
-google.ads.common.AuthTokenException = function(errorCode,
+google.ads.common.AuthTokenException = function(errorCode, info,
     errorUrl, captchaToken, captchaUrl, message, innerException) {
   google.ads.common.AdsException.call(this, message, innerException);
 
@@ -52,6 +52,13 @@ google.ads.common.AuthTokenException = function(errorCode,
    * @private
    */
   this.errorCode_ = errorCode;
+
+  /**
+   * Authentication error info.
+   * @type {string}
+   * @private
+   */
+  this.info_ = info;
 
   /**
    * Error url.
@@ -96,6 +103,26 @@ google.ads.common.AuthTokenException.prototype.getErrorCode =
 google.ads.common.AuthTokenException.prototype.setErrorCode =
     function(errorCode) {
   this.errorCode_ = errorCode;
+};
+
+/**
+ * Gets the error info.
+ *
+ * @return {number} The error info.
+ */
+google.ads.common.AuthTokenException.prototype.getInfo =
+    function() {
+  return this.info_;
+};
+
+/**
+ * Sets the error info.
+ *
+ * @param {string} info The error info.
+ */
+google.ads.common.AuthTokenException.prototype.setInfo =
+    function(info) {
+  this.info_ = info;
 };
 
 /**

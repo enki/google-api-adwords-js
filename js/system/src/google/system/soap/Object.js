@@ -111,6 +111,21 @@ google.system.soap.Object.prototype.deserialize = function(node, xmlnt) {
 };
 
 /**
+ * Method that serializes a SOAP Object to a string.
+ *
+ * @param {string} parentElementName Parent element name that wraps the object.
+ * @return {string} The object serialized to a string.
+ */
+google.system.soap.Object.prototype.serializeToString =
+    function(parentElementName) {
+  var doc = goog.dom.xml.createDocument();
+  var element = doc.createElement(parentElementName);
+  this.serialize(doc, null, element, null);
+
+  return goog.dom.xml.serialize(element);
+};
+
+/**
  * Method that serializes a SOAP Object into XML.
  *
  * @param {Document} doc Current XML document to append.
@@ -121,8 +136,8 @@ google.system.soap.Object.prototype.deserialize = function(node, xmlnt) {
 google.system.soap.Object.prototype.serialize = function(
     doc, xmlnt, parentNode, parentNamespace) {
   var defaultNs = this.getSerializationNamespace_(parentNamespace);
-  var nodePrefix = xmlnt.getPrefixFromNamespace(defaultNs);
-  var propertyName = null;
+  var nodePrefix = xmlnt != null ?
+      xmlnt.getPrefixFromNamespace(defaultNs) : null;
   var allProperties = this.getType().getProperties();
   for (var i = 0; i < allProperties.length; i++) {
     var property = allProperties[i];
@@ -197,7 +212,7 @@ google.system.soap.Object.prototype.getSerializationNodeNameForProperty_ =
 google.system.soap.Object.prototype.serializeProperty_ = function(
     doc, xmlnt, namespace, prefix, name, value) {
   var nodeName = this.getSerializationNodeNameForProperty_(name, value);
-  var node = doc.createElement(prefix + ':' + nodeName);
+  var node = doc.createElement((prefix != null ? prefix + ':' : '') + nodeName);
   if (value instanceof google.system.soap.Object) {
     if (!goog.isNull(value.getType().getBaseType())) {
       // The prefix for the object may not be the same as prefix of the node.
@@ -205,11 +220,14 @@ google.system.soap.Object.prototype.serializeProperty_ = function(
       // <o:targets xsi:type="cm:CountryTarget">
       //   <cm:countryCode>US</cm:countryCode>
       // </o:targets>
-      var typePrefix = xmlnt.getPrefixFromNamespace(
-          value.getSerializationNamespace_(namespace));
+      var typePrefix = xmlnt != null ? xmlnt.getPrefixFromNamespace(
+          value.getSerializationNamespace_(namespace)) : null;
 
-      node.setAttribute('xsi:type', typePrefix + ':' +
+      if (xmlnt != null) {
+        node.setAttribute('xsi:type',
+          (typePrefix != null ? typePrefix + ':' : '') +
           value.getType().getClassName());
+      }
     }
     value.serialize(doc, xmlnt, node, namespace);
   } else {

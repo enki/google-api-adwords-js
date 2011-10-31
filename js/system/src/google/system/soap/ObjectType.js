@@ -233,12 +233,20 @@ google.system.soap.ObjectType.prototype.getProperties = function(
   var properties = [];
 
   if (!ignoreInheritance) {
+    // Anash: We need to enforce order of nodes when there's inheritance in
+    // serialized types. Base class properties should come before derived
+    // class properties.
     var tempType = this;
+    var types = [];
     while (tempType != null) {
-      for (var i = 0; i < tempType.properties_.length; i++) {
-        properties.push(tempType.properties_[i]);
-      }
+      types.push(tempType);
       tempType = tempType.getBaseType();
+    }
+    types = types.reverse();
+    for(var i = 0; i < types.length; i++) {
+      for (var j = 0; j < types[i].properties_.length; j++) {
+        properties.push(types[i].properties_[j]);
+      }
     }
   } else {
     properties = goog.array.clone(this.properties_);
